@@ -1,9 +1,8 @@
 package com.japhy.single.application.converter;
 
+import com.japhy.single.api.dto.UserDTO;
 import com.japhy.single.domain.account.entity.User;
 import com.japhy.single.infrastructure.helper.Converter;
-import com.japhy.single.api.dto.UserDTO;
-import java.util.function.Function;
 
 /**
  * @author Japhy
@@ -11,9 +10,9 @@ import java.util.function.Function;
  */
 public class UserConverter extends Converter<UserDTO, User> {
 
-    public UserConverter(
-            Function<UserDTO, User> fromDto,
-            Function<User, UserDTO> fromEntity) {
-        super(fromDto, fromEntity);
+    public UserConverter() {
+        super(dto -> User.builder().name(dto.getName()).phone(dto.getPhone()).build(),
+                user -> UserDTO.builder().avatar(user.getAvatar()).name(user.getName())
+                        .phone(user.getPhone()).build());
     }
 }

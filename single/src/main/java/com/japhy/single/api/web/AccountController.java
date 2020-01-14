@@ -1,5 +1,6 @@
 package com.japhy.single.api.web;
 
+import com.japhy.single.application.converter.UserConverter;
 import com.japhy.single.domain.account.entity.User;
 import com.japhy.single.domain.account.repository.sample.datajpa.UserCrudRepository;
 import com.japhy.single.domain.account.repository.sample.datajpa.UserJpaRepository;
@@ -21,6 +22,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -43,28 +45,20 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class AccountController {
 
+    @Autowired
     private UserRepository userRepository;
 
+    @Autowired
     private UserJpaRepository userJpaRepository;
 
+    @Autowired
     private UserPagingRepository userPagingRepository;
 
+    @Autowired
     private UserCrudRepository userCrudRepository;
 
+    @Autowired
     private UserAnnotationInterfaceRepository userAnnotationInterfaceRepository;
-
-    public AccountController(
-            UserRepository userRepository,
-            UserJpaRepository userJpaRepository,
-            UserPagingRepository userPagingRepository,
-            UserCrudRepository userCrudRepository,
-            UserAnnotationInterfaceRepository userAnnotationInterfaceRepository) {
-        this.userRepository = userRepository;
-        this.userJpaRepository = userJpaRepository;
-        this.userPagingRepository = userPagingRepository;
-        this.userCrudRepository = userCrudRepository;
-        this.userAnnotationInterfaceRepository = userAnnotationInterfaceRepository;
-    }
 
     @GetMapping("/list")
     @ApiOperation(value = "账户信息", notes = "根据昵称查询用户信息")
@@ -103,6 +97,9 @@ public class AccountController {
             @ApiResponse(code = 200, response = ResponseEntity.class, message = "success")
     })
     public ResponseEntity<?> saveUser(@RequestBody @Valid UserDTO userDto) {
-        return ResponseEntity.ok("ok");
+        UserConverter converter = new UserConverter();
+        User user = converter.convertFromDto(userDto);
+        User save = userCrudRepository.save(user);
+        return ResponseEntity.ok(save);
     }
 }

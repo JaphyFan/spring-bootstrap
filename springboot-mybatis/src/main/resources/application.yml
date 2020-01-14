@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://39.99.149.197:3306/wergym?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: mysql
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  type-aliases-package: com.japhy.examples.model
+  config-location: classpath:mybatis/mybatis-config.xml
+#  必须指明mapper位置
+  mapper-locations: classpath:mybatis/mapper/*Mapper.xml
+logging.level.root: WARN
+# 调试异常有用
+logging.level.com.japhy.examples.mapper: TRACE

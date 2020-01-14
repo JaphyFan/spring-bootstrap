@@ -1,4 +1,4 @@
-package com.japhy.single.infrastructure.constant;
+package com.japhy.single.infrastructure.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

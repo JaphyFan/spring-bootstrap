@@ -3,6 +3,7 @@ package com.japhy.single.api.dto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.NotBlank;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -13,6 +14,7 @@ import lombok.ToString;
 @ApiModel
 @Getter
 @ToString
+@Builder
 public class UserDTO {
 
     @ApiModelProperty(value = "姓名")

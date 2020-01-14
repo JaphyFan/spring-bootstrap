@@ -16,4 +16,5 @@ public interface UserRepository extends Repository<User, Long> {
      * @return
      */
     List<User> queryAllByNickNameContains(String name);
+
 }
