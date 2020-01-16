@@ -11,8 +11,8 @@ will try to follow the best practice
     - exception handler 
     - param validation done 
     - job 
-    - log
-    - custom config
+    - log done
+    - custom config doen
 ### Persistence level
     - jpa done
     - mybatis done
@@ -20,7 +20,7 @@ will try to follow the best practice
     - rabitmq 
     - kafka
 ### Database
-    - mysql
+    - mysql done
     - mongoDB
     - resdi
     - encache
