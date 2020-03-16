@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "custom.config.redis.ttl",
+      "type": "java.lang.Integer",
+      "description": "redis default time to live."
+  }
+] }
