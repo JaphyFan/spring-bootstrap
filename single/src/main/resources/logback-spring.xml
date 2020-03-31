@@ -1,14 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--<springProfile name="staging">-->
-<!--	&lt;!&ndash; configuration to be enabled when the "staging" profile is active &ndash;&gt;-->
-<!--</springProfile>-->
-
-<!--<springProperty scope="context" name="fluentHost" source="myapp.fluentd.host"-->
-<!--	defaultValue="localhost"/>-->
-<!--<appender name="FLUENT" class="ch.qos.logback.more.appenders.DataFluentAppender">-->
-<!--<remoteHost>${fluentHost}</remoteHost>-->
-<!--...-->
-<!--</appender>-->
 <configuration>
 	<include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">

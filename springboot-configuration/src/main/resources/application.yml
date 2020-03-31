@@ -1,0 +1,19 @@
+japhy.age: ${random.long(10)}
+japhy.phone: "ddd"
+japhy.enabled: true
+spring:
+  profiles:
+    active: dev
+---
+spring.profiles: dev
+japhy.name: japhy
+japhy.age: ${random.long(10)}
+japhy.enabled: true
+japhy.phone: "ddd"
+---
+spring.profiles: test
+japhy.age: ${random.long(20)}
+japhy.phone: "test"
+japhy.enabled: true
+
+

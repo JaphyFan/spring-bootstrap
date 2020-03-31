@@ -1,0 +1,26 @@
+# Redis数据库索引（默认为0）
+spring:
+  redis:
+    database: 0
+    # Redis服务器地址
+    host: 39.99.155.113
+    # Redis服务器连接端口
+    port: 6379
+    # Redis服务器连接密码（默认为空）
+    password:
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1s
+        max-idle: 8
+        min-idle: 0
+  cache:
+    redis:
+      time-to-live: 180s #缓存超时时间ms
+      cache-null-values: false #是否缓存空值
+    type: redis
+
+custom:
+  config:
+    redis:
+      ttl: 1800

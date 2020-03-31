@@ -1,0 +1,12 @@
+2020-01-16 17:08:19,915 [main] INFO  [c.j.s.d.a.r.s.j.UserAnnotationInterfaceRepositoryTest] StartupInfoLogger.java:55 - Starting UserAnnotationInterfaceRepositoryTest on JaphydeMacBook-Pro.local with PID 44353 (started by japhy in /Users/japhy/Documents/code/bootstrap/single)
+2020-01-16 17:08:19,917 [main] INFO  [c.j.s.d.a.r.s.j.UserAnnotationInterfaceRepositoryTest] SpringApplication.java:651 - No active profile set, falling back to default profiles: default
+2020-01-16 17:08:20,894 [main] WARN  [o.s.w.context.support.GenericWebApplicationContext] AbstractApplicationContext.java:558 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.xml.XmlBeanDefinitionStoreException: Line 2 in XML document from class path resource [logback-spring.xml] is invalid; nested exception is org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 16; cvc-elt.1: Cannot find the declaration of element 'configuration'.
+2020-01-16 17:08:20,910 [main] INFO  [o.s.b.a.l.ConditionEvaluationReportLoggingListener] ConditionEvaluationReportLoggingListener.java:136 - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-01-16 17:09:58,028 [main] INFO  [c.j.s.d.a.r.s.j.UserAnnotationInterfaceRepositoryTest] StartupInfoLogger.java:55 - Starting UserAnnotationInterfaceRepositoryTest on JaphydeMacBook-Pro.local with PID 44502 (started by japhy in /Users/japhy/Documents/code/bootstrap/single)
+2020-01-16 17:09:58,030 [main] INFO  [c.j.s.d.a.r.s.j.UserAnnotationInterfaceRepositoryTest] SpringApplication.java:651 - No active profile set, falling back to default profiles: default
+2020-01-16 17:09:59,055 [main] WARN  [o.s.w.context.support.GenericWebApplicationContext] AbstractApplicationContext.java:558 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.xml.XmlBeanDefinitionStoreException: Line 5 in XML document from class path resource [logback-spring.xml] is invalid; nested exception is org.xml.sax.SAXParseException; lineNumber: 5; columnNumber: 16; cvc-elt.1: Cannot find the declaration of element 'configuration'.
+2020-01-16 17:09:59,067 [main] INFO  [o.s.b.a.l.ConditionEvaluationReportLoggingListener] ConditionEvaluationReportLoggingListener.java:136 - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.

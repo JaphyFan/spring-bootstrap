@@ -8,7 +8,7 @@ import lombok.Builder;
 
 /**
  * @author Japhy
- * @date 2020/2/6 10:19
+ * @since 1.0
  */
 @Builder
 public class UserRedis implements Serializable {
