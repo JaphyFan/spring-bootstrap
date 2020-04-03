@@ -247,23 +247,9 @@
                     <descriptorRef>artifact</descriptorRef>
                   </assembly>
                 </build>
-                <run>
-                  <ports>
-                    <port>8080:8080</port>
-                  </ports>
-                </run>
               </image>
             </images>
           </configuration>
-          <executions>
-            <execution>
-              <id>build</id>
-              <phase>post-integration-test</phase>
-              <goals>
-                <goal>build</goal>
-              </goals>
-            </execution>
-          </executions>
         </plugin>
 
         <plugin>
