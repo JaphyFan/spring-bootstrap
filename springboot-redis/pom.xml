@@ -105,7 +105,7 @@
             </goals>
           </execution>
           <execution>
-            <id>build</id>
+            <id>start</id>
             <phase>post-integration-test</phase>
             <goals>
               <goal>start</goal>
