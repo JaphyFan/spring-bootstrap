@@ -250,6 +250,22 @@
               </image>
             </images>
           </configuration>
+          <executions>
+            <execution>
+              <id>stop</id>
+              <phase>clean</phase>
+              <goals>
+                <goal>stop</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>remove</id>
+              <phase>post-clean</phase>
+              <goals>
+                <goal>remove</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
 
         <plugin>
