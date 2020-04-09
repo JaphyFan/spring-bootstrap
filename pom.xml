@@ -5,18 +5,18 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.japhy</groupId>
-  <artifactId>bootstrap</artifactId>
+  <artifactId>bootstrap-parent</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>bootstrap</name>
+  <name>bootstrap-parent</name>
   <description>parent project for all others</description>
 
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
       <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
+      <distribution>manual</distribution>
     </license>
   </licenses>
 
@@ -58,18 +58,14 @@
     <jmockit.version>1.49</jmockit.version>
     <checkstyle.config.location>codestyle/checkstyle.xml</checkstyle.config.location>
     <maven_checkstyle_version>3.1.1</maven_checkstyle_version>
+    <argLine>-Xms256m -Xmx256m -Dfile.encoding=UTF-8
+      -XX:MetaspaceSize=64m -XX:MaxMetaspaceSize=128m</argLine>
+    <sonar.jacoco.reportPaths>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPaths>
+    <surefireArgLine/>
   </properties>
 
   <dependencyManagement>
     <dependencies>
-<!--      <dependency>-->
-<!--        <groupId>org.springframework.cloud</groupId>-->
-<!--        <artifactId>spring-cloud-dependencies</artifactId>-->
-<!--        <version>${spring-cloud.version}</version>-->
-<!--        <type>pom</type>-->
-<!--        <scope>import</scope>-->
-<!--      </dependency>-->
-
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
@@ -77,47 +73,47 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-      <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-lang3</artifactId>
-        <version>${common.lang3.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.google.guava</groupId>
-        <artifactId>guava</artifactId>
-        <version>${guava.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.google.code.gson</groupId>
-        <artifactId>gson</artifactId>
-        <version>${gson.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-engine</artifactId>
-        <version>5.6.0</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-params</artifactId>
-        <version>5.6.0</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>cglib</groupId>
-        <artifactId>cglib-nodep</artifactId>
-        <version>3.3.0</version>
-        <scope>test</scope>
-      </dependency>
-
     </dependencies>
   </dependencyManagement>
 
   <dependencies>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>${common.lang3.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${guava.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>${gson.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.6.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>5.6.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>cglib</groupId>
+      <artifactId>cglib-nodep</artifactId>
+      <version>3.3.0</version>
+      <scope>test</scope>
+    </dependency>
 
     <!-- util -->
     <dependency>
@@ -206,78 +202,10 @@
     <finalName>${project.artifactId}-${project.version}</finalName>
     <pluginManagement>
       <plugins>
-
-        <!--          springboot plugin           s-->
-        <plugin>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-maven-plugin</artifactId>
-          <version>${spring.boot.version}</version>
-          <configuration>
-            <finalName>${project.build.finalName}</finalName>
-          </configuration>
-          <executions>
-            <execution>
-              <goals>
-                <goal>repackage</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-
-        <!--          maven docker plugin         -->
-        <plugin>
-          <groupId>io.fabric8</groupId>
-          <artifactId>docker-maven-plugin</artifactId>
-          <version>0.33.0</version>
-          <extensions>true</extensions>
-          <configuration>
-            <authConfig>
-              <username>japhy</username>
-              <password>fanjh0825</password>
-            </authConfig>
-            <showLogs>true</showLogs>
-            <verbose>true</verbose>
-            <images>
-              <image>
-                <name>${project.artifactId}</name>
-                <build>
-                  <!-- filter>@</filter-->
-                  <dockerFileDir>${project.basedir}/src/docker</dockerFileDir>
-                  <assembly>
-                    <descriptorRef>artifact</descriptorRef>
-                  </assembly>
-                </build>
-              </image>
-            </images>
-          </configuration>
-          <executions>
-            <execution>
-              <id>stop</id>
-              <phase>clean</phase>
-              <goals>
-                <goal>stop</goal>
-              </goals>
-            </execution>
-            <execution>
-              <id>remove</id>
-              <phase>post-clean</phase>
-              <goals>
-                <goal>remove</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-release-plugin</artifactId>
           <version>3.0.0-M1</version>
-        </plugin>
-
-        <plugin>
-          <groupId>org.sonarsource.scanner.maven</groupId>
-          <artifactId>sonar-maven-plugin</artifactId>
-          <version>3.7.0.1746</version>
         </plugin>
 
         <plugin>
@@ -331,24 +259,70 @@
           <artifactId>maven-site-plugin</artifactId>
           <version>3.9.0</version>
         </plugin>
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>3.0.0</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-report-plugin</artifactId>
+          <artifactId>maven-surefire-plugin</artifactId>
           <version>3.0.0-M4</version>
           <configuration>
-            <xrefLocation>target/xref</xrefLocation>
+            <useSystemClassLoader>true</useSystemClassLoader>
+            <reportsDirectory>${project.basedir}/../target/surefire-reports
+            </reportsDirectory>
+            <!--suppress UnresolvedMavenProperty -->
+            <argLine>${argLine} @{surefireArgLine}</argLine>
           </configuration>
         </plugin>
-
+        <!-- performance tests -->
+        <plugin>
+          <groupId>com.lazerycode.jmeter</groupId>
+          <artifactId>jmeter-maven-plugin</artifactId>
+          <version>3.0.0</version>
+          <configuration>
+            <testResultsTimestamp>false</testResultsTimestamp>
+            <propertiesUser>
+              <host>localhost</host>
+              <port>9000</port>
+              <root>/</root>
+            </propertiesUser>
+          </configuration>
+          <executions>
+            <execution>
+              <id>configuration</id>
+              <goals>
+                <goal>configure</goal>
+              </goals>
+            </execution>
+            <!-- if activated, jmeter will run automatically on integration-test and verify goals -->
+            <!--<execution>
+                <phase>integration-test</phase>
+                <goals>
+                    <goal>configure</goal>
+                    <goal>jmeter</goal>
+                    <goal>results</goal>
+                </goals>
+            </execution>-->
+          </executions>
+        </plugin>
       </plugins>
     </pluginManagement>
 
     <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring.boot.version}</version>
+        <configuration>
+          <finalName>${project.build.finalName}</finalName>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
@@ -362,38 +336,6 @@
             <arg>-parameters</arg>
           </compilerArgs>
         </configuration>
-      </plugin>
-
-      <!-- performance tests -->
-      <plugin>
-        <groupId>com.lazerycode.jmeter</groupId>
-        <artifactId>jmeter-maven-plugin</artifactId>
-        <version>3.0.0</version>
-        <configuration>
-          <testResultsTimestamp>false</testResultsTimestamp>
-          <propertiesUser>
-            <host>localhost</host>
-            <port>9000</port>
-            <root>/</root>
-          </propertiesUser>
-        </configuration>
-        <executions>
-          <execution>
-            <id>configuration</id>
-            <goals>
-              <goal>configure</goal>
-            </goals>
-          </execution>
-          <!-- if activated, jmeter will run automatically on integration-test and verify goals -->
-          <!--<execution>
-              <phase>integration-test</phase>
-              <goals>
-                  <goal>configure</goal>
-                  <goal>jmeter</goal>
-                  <goal>results</goal>
-              </goals>
-          </execution>-->
-        </executions>
       </plugin>
     </plugins>
   </build>
@@ -420,72 +362,16 @@
 
   <profiles>
 
-    <!-- "release" profiles used for deploying with fabric8 -->
-    <profile>
-      <id>release</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.6</version>
-            <configuration>
-              <skip>false</skip>
-            </configuration>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-source-plugin</artifactId>
-            <configuration>
-              <skipSource>false</skipSource>
-            </configuration>
-            <executions>
-              <execution>
-                <id>attach-sources</id>
-                <goals>
-                  <goal>jar</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <configuration>
-              <skip>false</skip>
-            </configuration>
-            <executions>
-              <execution>
-                <id>attach-javadocs</id>
-                <goals>
-                  <goal>jar</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
     <!-- Enable JaCoCo Test -->
     <profile>
       <id>jacoco</id>
       <activation>
-        <jdk>[1.8,)</jdk>
+        <property>
+          <name>active</name>
+          <value>test</value>
+        </property>
       </activation>
       <dependencies>
-        <!-- JaCoCo runtime must be in classpath for offline mode -->
         <dependency>
           <groupId>org.jacoco</groupId>
           <artifactId>org.jacoco.agent</artifactId>
@@ -503,19 +389,25 @@
             <version>0.8.5</version>
             <executions>
               <execution>
-                <id>instrument</id>
-                <phase>process-classes</phase>
+                <id>pre-test</id>
                 <goals>
-                  <goal>instrument</goal>
+                  <goal>prepare-agent</goal>
                 </goals>
+                <configuration>
+                  <append>true</append>
+                  <destFile>${sonar.jacoco.reportPaths}</destFile>
+                  <propertyName>surefireArgLine</propertyName>
+                </configuration>
               </execution>
               <execution>
-                <id>restore</id>
+                <id>post-test</id>
                 <phase>test</phase>
                 <goals>
-                  <goal>restore-instrumented-classes</goal>
                   <goal>report</goal>
                 </goals>
+                <configuration>
+                  <dataFile>${sonar.jacoco.reportPaths}</dataFile>
+                </configuration>
               </execution>
             </executions>
           </plugin>
@@ -524,9 +416,12 @@
     </profile>
 
     <profile>
-      <id>checkstyle</id>
+      <id>quality-check</id>
       <activation>
-        <jdk>[1.8,)</jdk>
+        <property>
+          <name>active</name>
+          <value>test</value>
+        </property>
       </activation>
       <build>
         <plugins>
@@ -550,10 +445,155 @@
                   <headerLocation>LICENSE</headerLocation>
                   <encoding>UTF-8</encoding>
                   <consoleOutput>true</consoleOutput>
-                  <failOnViolation>true</failOnViolation>
                 </configuration>
                 <goals>
                   <goal>check</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>3.7.0.1746</version>
+            <executions>
+              <execution>
+                <id>sonar</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sonar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- "release" profiles used for deploying with fabric8 -->
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <configuration>
+              <skip>true</skip>
+            </configuration>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>3.2.1</version>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+      <reporting>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.2.0</version>
+            <reportSets>
+              <reportSet>
+                <id>attach-javadocs</id>
+                <reports>
+                  <report>aggregate</report>
+                </reports>
+              </reportSet>
+            </reportSets>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-project-info-reports-plugin</artifactId>
+            <version>3.0.0</version>
+            <reportSets>
+              <reportSet>
+                <reports>
+                  <report>index</report>
+                  <report>summary</report>
+                  <report>dependency-info</report>
+                  <report>scm</report>
+                  <report>plugin-management</report>
+                  <report>team</report>
+                  <report>ci-management</report>
+                  <report>plugins</report>
+                  <report>distribution-management</report>
+                  <report>licenses</report>
+                  <report>modules</report>
+                </reports>
+              </reportSet>
+            </reportSets>
+          </plugin>
+          <plugin>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-maven-plugin</artifactId>
+            <version>4.0.0</version>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jxr-plugin</artifactId>
+            <version>3.0.0</version>
+            <reportSets>
+              <reportSet>
+                <id>aggregate</id>
+                <reports>
+                  <report>aggregate</report>
+                  <report>test-aggregate</report>
+                </reports>
+              </reportSet>
+            </reportSets>
+          </plugin>
+
+        </plugins>
+      </reporting>
+    </profile>
+
+    <profile>
+      <id>docker</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <!--          maven docker plugin         -->
+          <plugin>
+            <groupId>io.fabric8</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+            <version>0.33.0</version>
+            <extensions>true</extensions>
+            <configuration>
+              <showLogs>true</showLogs>
+              <verbose>true</verbose>
+            </configuration>
+            <executions>
+              <execution>
+                <id>clean-docker</id>
+                <phase>clean</phase>
+                <goals>
+                  <goal>stop</goal>
+                  <goal>remove</goal>
                 </goals>
               </execution>
             </executions>
@@ -562,5 +602,4 @@
       </build>
     </profile>
   </profiles>
-
 </project>

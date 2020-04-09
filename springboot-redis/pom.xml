@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.japhy</groupId>
-    <artifactId>bootstrap</artifactId>
+    <artifactId>bootstrap-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
@@ -36,11 +36,6 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-configuration-processor</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -78,19 +73,22 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-
-      <plugin>
         <groupId>io.fabric8</groupId>
         <artifactId>docker-maven-plugin</artifactId>
         <configuration>
           <images>
             <image>
+              <name>${project.artifactId}</name>
+              <build>
+                <!-- filter>@</filter-->
+                <dockerFileDir>${project.basedir}/src/main/docker</dockerFileDir>
+                <assembly>
+                  <descriptorRef>artifact</descriptorRef>
+                </assembly>
+              </build>
               <run>
                 <ports>
-                  <port>8080:8080</port>
+                  <port>9000:9000</port>
                 </ports>
               </run>
             </image>
@@ -98,17 +96,25 @@
         </configuration>
         <executions>
           <execution>
-            <id>build</id>
+            <id>start-container</id>
             <phase>post-integration-test</phase>
             <goals>
               <goal>build</goal>
+              <goal>start</goal>
             </goals>
           </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.sonarsource.scanner.maven</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+        <executions>
           <execution>
-            <id>start</id>
-            <phase>post-integration-test</phase>
+            <id>sonar</id>
+            <phase>verify</phase>
             <goals>
-              <goal>start</goal>
+              <goal>sonar</goal>
             </goals>
           </execution>
         </executions>
