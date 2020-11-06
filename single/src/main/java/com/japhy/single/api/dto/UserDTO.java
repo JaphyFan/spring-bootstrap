@@ -11,7 +11,7 @@ import lombok.ToString;
  * @author Japhy
  * @date 2019/12/30 23:47
  */
-@ApiModel
+@ApiModel(description = "考试设置页面请求参数")
 @Getter
 @ToString
 @Builder

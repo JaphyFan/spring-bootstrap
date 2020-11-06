@@ -14,3 +14,4 @@ mybatis:
 logging.level.root: WARN
 # 调试异常有用
 logging.level.com.japhy.examples.mapper: TRACE
+

@@ -99,6 +99,7 @@ public class AccountController {
     public ResponseEntity<?> saveUser(@RequestBody @Valid UserDTO userDto) {
         UserConverter converter = new UserConverter();
         User user = converter.convertFromDto(userDto);
+//        throw new CustomException();
         User save = userCrudRepository.save(user);
         return ResponseEntity.ok(save);
     }

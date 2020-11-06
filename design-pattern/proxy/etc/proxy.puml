@@ -1,0 +1,35 @@
+@startuml
+
+package com.japhy.design.proxy {
+    interface WizardTower {
+        + enter(Wizard)
+    }
+
+    class IvoryTower {
+        + IvoryTower()
+        + enter(wizard: Wizard)
+    }
+
+    class Wizard {
+        - name: String
+        + Wizard(name: String)
+        + toString(): String
+    }
+
+    class WizardTowerProxy {
+        - NUM_WIZARD_ALLOWED: int
+        - numWizards: int
+        - tower: WizardTower
+        --
+        + WizardTowerProxy(tower: WizardTower)
+        + enter(wizard: Wizard)
+    }
+
+    WizardTowerProxy ..|> WizardTower
+    WizardTowerProxy --> WizardTower
+    IvoryTower ..|> WizardTower
+
+}
+
+
+@enduml

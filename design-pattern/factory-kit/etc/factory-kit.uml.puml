@@ -1,0 +1,41 @@
+@startuml
+
+package com.japhy.design {
+interface Weapon <<Interface>>
+
+class Axe {
+    + Axe()
+    + toString():String
+}
+class Bow {
+    + Bow()
+    + toString():String
+}
+class Spear {
+    + Spear()
+    + toString():String
+}
+class Sword {
+    + Sword()
+    + toString():String
+}
+interface WeaponFactory {
+create(WeaponType):Weapon
+{static} factory(Consumer<Builder>): WeaponFactory
+}
+interface Builder {
+add(WeaponType, Supplier<Weapon>): void
+}
+enum WeaponType {
+AXE,BOW,SPEAR,SWORD;
+}
+
+Axe ..|> Weapon
+Bow ..|> Weapon
+Spear ..|> Weapon
+Sword ..|> Weapon
+
+}
+
+
+@enduml

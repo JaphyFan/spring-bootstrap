@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ImportResource;
  * @date 2020/1/16 10:07
  */
 @Configuration
-@ImportResource("classpath:logback-spring.xml")
+//@ImportResource("classpath:logback-spring.xml")
 public class LogbackConfig {
 
 }

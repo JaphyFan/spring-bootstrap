@@ -10,7 +10,7 @@ spring:
       ddl-auto: update
     open-in-view: true
   datasource:
-    url: jdbc:mysql://39.99.149.197:3306/wergym?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://39.99.149.197:3306/demo?useUnicode=true&characterEncoding=utf-8
     username: root
     password: mysql
     driver-class-name: com.mysql.cj.jdbc.Driver

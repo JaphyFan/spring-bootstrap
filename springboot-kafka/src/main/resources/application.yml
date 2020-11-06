@@ -1,9 +1,10 @@
 spring:
   kafka:
-    bootstrap-servers: 39.99.149.197:9092
+    bootstrap-servers: 39.99.155.113:9092
     consumer:
       group-id: japhyDemo
     listener:
       missingTopicsFatal: false
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
