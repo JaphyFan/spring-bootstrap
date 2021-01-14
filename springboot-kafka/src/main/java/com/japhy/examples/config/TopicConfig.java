@@ -14,12 +14,12 @@ public class TopicConfig {
 
     @Bean
     public NewTopic topic1() {
-        return TopicBuilder.name("topic1").partitions(10).replicas(3).compact().build();
+        return TopicBuilder.name("demo").partitions(1).replicas(1).compact().build();
     }
 
     @Bean
     public NewTopic topic2() {
-        return TopicBuilder.name("topic2").partitions(10).replicas(3).config(
+        return TopicBuilder.name("topic2").partitions(1).replicas(1).config(
                 org.apache.kafka.common.config.TopicConfig.COMPRESSION_TYPE_CONFIG, "zstd")
                 .compact().build();
     }

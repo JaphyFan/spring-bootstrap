@@ -2,34 +2,24 @@
 
 package com.japhy.design.proxy {
     interface WizardTower {
-        + enter(Wizard)
-    }
-
-    class IvoryTower {
-        + IvoryTower()
         + enter(wizard: Wizard)
     }
-
-    class Wizard {
-        - name: String
-        + Wizard(name: String)
-        + toString(): String
+    class IvoryTower {
+        + enter(wizard: Wizard)
     }
-
+    class Wizard {
+        - name
+    }
     class WizardTowerProxy {
-        - NUM_WIZARD_ALLOWED: int
+        - NUM_WIZARDS_ALLOWED: int
         - numWizards: int
         - tower: WizardTower
-        --
-        + WizardTowerProxy(tower: WizardTower)
         + enter(wizard: Wizard)
+        + wizardTowerProxy(tower: WizardTower)
     }
-
-    WizardTowerProxy ..|> WizardTower
-    WizardTowerProxy --> WizardTower
+    WizardTower .> Wizard
     IvoryTower ..|> WizardTower
-
+    WizardTowerProxy "1" o--> "1" WizardTower
+    WizardTowerProxy ..|> WizardTower
 }
-
-
 @enduml

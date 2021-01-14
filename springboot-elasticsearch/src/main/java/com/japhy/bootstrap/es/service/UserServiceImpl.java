@@ -29,13 +29,14 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Optional<User> findByUser(String id) {
-        User user = elasticsearchOperations.get(id, User.class);
+//        User user = elasticsearchOperations.get(id, User.class);
+        User user = new User();
         return Optional.ofNullable(user);
     }
 
     @Override
     public SearchHits<User> queryAllUsers() {
-        SearchHits<User> search = elasticsearchOperations.search(Query.findAll(), User.class);
-        return search;
+//        SearchHits<User> search = elasticsearchOperations.search(Query.findAll(), User.class);
+        return null;
     }
 }

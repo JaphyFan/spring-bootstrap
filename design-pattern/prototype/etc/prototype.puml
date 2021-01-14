@@ -1,0 +1,62 @@
+@startuml
+
+package com.japhy.design {
+
+    interface com.japhy.design.prototype.Prototype {
+        copy(): com.japhy.design.prototype.Prototype
+    }
+
+    abstract class Mage {
+        + Mage(weapon: String): Mage
+        + Mage(mage: Mage): Mage
+        + copy(): Mage {abstract}
+    }
+
+    abstract class com.japhy.design.prototype.Beast {
+        + com.japhy.design.prototype.Beast(String weapon): com.japhy.design.prototype.Beast
+        + com.japhy.design.prototype.Beast(beast: beast): com.japhy.design.prototype.Beast
+        + copy(): com.japhy.design.prototype.Beast {abstract}
+    }
+    class OrcMage {
+        - weapon: String
+        + OrcMage(): OrcMage
+        + OrcMage(orcMage: OrcMage): OrcMage
+        + copy(): Mage
+    }
+    class com.japhy.design.prototype.OrcBeast {
+        - weapon: String
+        + com.japhy.design.prototype.OrcBeast(): com.japhy.design.prototype.OrcBeast
+        + com.japhy.design.prototype.OrcBeast(orcBeast: com.japhy.design.prototype.OrcBeast): com.japhy.design.prototype.OrcBeast
+        + copy(): com.japhy.design.prototype.OrcBeast
+    }
+
+    class ElfMage {
+        - weapon: String
+        + ElfMage(): ElfMage
+        + ElfMage(elfMage: ElfMage): ElfMage
+        + copy(): ElfMage
+    }
+    class com.japhy.design.prototype.ElfBeast {
+        - weapon: String
+        + com.japhy.design.prototype.ElfBeast(): com.japhy.design.prototype.ElfBeast
+        + com.japhy.design.prototype.ElfBeast(elfBeast: com.japhy.design.prototype.ElfBeast): com.japhy.design.prototype.ElfBeast
+        + copy(): com.japhy.design.prototype.ElfBeast
+    }
+
+    class HeroFactory {
+        - mage: Mage
+        - beast: com.japhy.design.prototype.Beast
+        + HeroFactory(mage: Mage, beast: com.japhy.design.prototype.Beast)
+    }
+
+    Mage ..|> com.japhy.design.prototype.Prototype
+    com.japhy.design.prototype.Beast ..|> com.japhy.design.prototype.Prototype
+    OrcMage --|> Mage
+    com.japhy.design.prototype.OrcBeast --|> com.japhy.design.prototype.Beast
+    ElfMage --|> Mage
+    com.japhy.design.prototype.ElfBeast --|> com.japhy.design.prototype.Beast
+    HeroFactory -->com.japhy.design.prototype.Beast
+    HeroFactory -->Mage
+}
+
+@enduml

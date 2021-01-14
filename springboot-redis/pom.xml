@@ -6,7 +6,7 @@
   <parent>
     <groupId>com.japhy.bootstrap</groupId>
     <artifactId>bootstrap-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${revision}${changelist}</version>
   </parent>
 
   <artifactId>springboot-redis</artifactId>
@@ -16,9 +16,15 @@
 
   <properties>
     <java.version>1.8</java.version>
+    <surefireArgLine/>
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>com.github.kstyrc</groupId>
+      <artifactId>embedded-redis</artifactId>
+      <version>0.6</version>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-redis</artifactId>
@@ -30,7 +36,7 @@
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
+      <artifactId>spring-boot-devtools</artifactId>
     </dependency>
 
     <dependency>
@@ -55,11 +61,19 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- spring session -->
     <dependency>
-      <groupId>org.springframework.session</groupId>
-      <artifactId>spring-session-data-redis</artifactId>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>testcontainers</artifactId>
+      <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+
+    <!-- spring session -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>

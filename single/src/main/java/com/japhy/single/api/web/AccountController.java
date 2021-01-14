@@ -90,17 +90,4 @@ public class AccountController {
         log.info("repository users: --- {}", usersRepo);
         return ResponseEntity.ok("ok");
     }
-
-    @PostMapping("/save")
-    @ApiOperation(value = "保存用户")
-    @ApiResponses({
-            @ApiResponse(code = 200, response = ResponseEntity.class, message = "success")
-    })
-    public ResponseEntity<?> saveUser(@RequestBody @Valid UserDTO userDto) {
-        UserConverter converter = new UserConverter();
-        User user = converter.convertFromDto(userDto);
-//        throw new CustomException();
-        User save = userCrudRepository.save(user);
-        return ResponseEntity.ok(save);
-    }
 }

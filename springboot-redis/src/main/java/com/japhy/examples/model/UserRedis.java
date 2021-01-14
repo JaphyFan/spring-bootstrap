@@ -1,16 +1,19 @@
 package com.japhy.examples.model;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import java.io.Serializable;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author Japhy
  * @since 1.0
  */
 @Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserRedis implements Serializable {
 
     private static final long serialVersionUID = -1541408164202572383L;
@@ -20,36 +23,10 @@ public class UserRedis implements Serializable {
 
     private Long age;
 
-    public UserRedis() {
-    }
+    private String address;
 
-    public UserRedis(Long id, String name, Long age) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-    }
+    private Long mobile;
 
-    public Long getId() {
-        return id;
-    }
+    private Integer gender;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getAge() {
-        return age;
-    }
-
-    public void setAge(Long age) {
-        this.age = age;
-    }
 }

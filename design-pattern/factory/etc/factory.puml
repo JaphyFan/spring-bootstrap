@@ -1,0 +1,35 @@
+@startuml
+
+package com.japhy.design.factory {
+    enum CarType {
+        + FORD {static}
+        + FERRARI {static}
+    }
+
+    class Ford {
+        - DESCRIPTION: String
+        + Ford()
+        + getDescription(): String
+    }
+
+    class Ferrari {
+        - DESCRIPTION: String
+        + Ferrari()
+        + getDescription(): String
+    }
+
+    class CarFactory {
+        + getCar(carType: CarType): Car {static}
+    }
+
+    interface Car {
+        + getDescription(): String
+    }
+
+    Ford ..|> Car
+    Ferrari ..|> Car
+
+}
+
+
+@enduml

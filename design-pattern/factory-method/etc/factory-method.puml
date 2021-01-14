@@ -1,0 +1,43 @@
+@startuml
+
+package com.japhy.design {
+
+interface Weapon {
+    + getWeaponType(): WeaponType
+}
+enum WeaponType {
+    AXE,SWORD;
+}
+class ElfWeapon {
+    + ElfWeapon(weaponType: WeaponType)
+    + getWeaponType(): WeaponType
+}
+class OrcWeapon {
+    + OrcWeapon(weaponType: WeaponType)
+    + getWeaponType(): WeaponType
+}
+
+interface BlackSmith {
+    + manufacture(weaponType: WeaponType): Weapon
+}
+
+class ElfBlackSmith {
+    + manufacture(weaponType: WeaponType): Weapon
+}
+
+class OrcBlackSmith {
+    + manufacture(weaponType: WeaponType): Weapon
+}
+
+ElfBlackSmith ..|> BlackSmith
+OrcBlackSmith ..|> BlackSmith
+
+ElfWeapon ..|> Weapon
+OrcWeapon ..|> Weapon
+
+ElfWeapon --> WeaponType
+OrcWeapon --> WeaponType
+
+}
+
+@enduml

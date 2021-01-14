@@ -1,0 +1,15 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: web-base
+
+management:
+  info:
+    git:
+      mode: full
+  endpoints:
+    web:
+      base-path: /mgm
+      exposure:
+        include: "*"

@@ -1,8 +1,10 @@
 spring:
   kafka:
-    bootstrap-servers: 39.99.155.113:9092
+#    bootstrap-servers:
+#      - 39.99.155.113:9092
     consumer:
       group-id: japhyDemo
+      auto-offset-reset: earliest
     listener:
       missingTopicsFatal: false
     producer:

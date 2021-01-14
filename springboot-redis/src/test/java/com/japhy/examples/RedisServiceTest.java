@@ -1,5 +1,6 @@
 package com.japhy.examples;
 
+import com.japhy.EmbeddedRedisConfig;
 import com.japhy.examples.model.UserRedis;
 import java.util.Arrays;
 import java.util.List;
@@ -7,6 +8,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -18,6 +21,7 @@ import org.springframework.data.redis.core.ValueOperations;
  * @date 2020/2/6 13:24
  */
 @SpringBootTest
+@Import(EmbeddedRedisConfig.class)
 class RedisServiceTest {
 
     @Autowired

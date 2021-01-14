@@ -1,6 +1,7 @@
 package com.japhy.examples;
 
 import com.japhy.examples.model.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -12,14 +13,14 @@ import org.springframework.util.concurrent.ListenableFuture;
  * @date 2020/3/16 15:54
  */
 @Service
+@RequiredArgsConstructor
 public class KafkaService {
 
-    @Autowired
-    private KafkaTemplate kafkaTemplate;
+    private final KafkaTemplate<String, String> kafkaTemplate;
 
-    public void sendMessage() {
+    public void sendMessage(String message) {
         User user = new User("japhy", 12L);
-        ListenableFuture send = kafkaTemplate.send("demo", user);
+        ListenableFuture send = kafkaTemplate.send("demo", message);
     }
 
     public void recvMessage() {

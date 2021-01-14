@@ -1,0 +1,44 @@
+@startuml
+
+package com.japhy.design.chain {
+    abstract class RequestHandler {
+        - next: RequestHandler
+        + RequestHandler(next: RequestHandler)
+        {abstract} + handleRequest(request: Request): void
+    }
+
+    class King {
+        + build(): void
+        + makeRequest(request: Request): void
+    }
+
+    class Officer {
+        + Officer(officer: Officer)
+        + handleRequest(request: Request)
+    }
+
+    class Soldier {
+        + Soldier(soldier: Soldier)
+        + handleRequest(request: Request)
+    }
+    class Commander {
+        + Commander(commander: Commander)
+        + handleRequest(request: Request)
+    }
+    class Request {
+        - handled: boolean
+        - requestType: String
+        + Request(requestType: String)
+        + markHandled(): void
+        + getRequestType(): String
+        + isHandled(): boolean
+    }
+
+    Soldier --|> RequestHandler
+    Commander --|> RequestHandler
+    Request --|> RequestHandler
+    King --> RequestHandler
+    RequestHandler "next"--> RequestHandler
+}
+
+@enduml

@@ -1,0 +1,42 @@
+@startuml
+
+package com.japhy.design.command {
+
+    abstract class Target {
+        - visibility: Visibility
+        - size: Size
+        + getSize(): Size
+        + getVisibility(): Visibility
+        + printStatus(): String
+        + changeSize(): void
+        + changeVisibility(): void
+    }
+
+    class Goblin {
+        + Goblin()
+        + toString(): String
+    }
+
+    enum Size {
+        SMALL, BIG
+    }
+
+    enum Visibility {
+        VISIBLE, INVISIBLE
+    }
+
+    class Wizard {
+        - undoQueue: Deque<Runnable>
+        - redoQueue: Deque<Runnable>
+
+        + castSpell()
+        + redoLastSpell()
+        + undoLastSpell()
+    }
+
+    Goblin --|> Target
+    Target --> Size
+    Target --> Visibility
+}
+
+@enduml

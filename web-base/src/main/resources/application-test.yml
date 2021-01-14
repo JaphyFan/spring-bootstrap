@@ -1,0 +1,10 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+#    schema:
+#      - order-schema.sql
+    data:
+      - order-data.sql

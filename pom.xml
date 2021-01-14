@@ -6,7 +6,7 @@
 
   <groupId>com.japhy.bootstrap</groupId>
   <artifactId>bootstrap-parent</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>${revision}${changelist}</version>
   <packaging>pom</packaging>
 
   <name>bootstrap-parent</name>
@@ -39,23 +39,25 @@
     <module>springboot-redis</module>
     <module>lamda</module>
     <module>design-pattern</module>
+    <module>spring-demo</module>
+    <module>springboot-security</module>
+    <module>web-base</module>
   </modules>
 
   <!--  配置依赖的版本-->
   <properties>
+    <revision>0.0.2</revision>
+    <changelist>-RELEASE</changelist>
     <java.version>1.8</java.version>
     <spring.boot.version>2.3.1.RELEASE</spring.boot.version>
-    <swagger.version>2.9.2</swagger.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.install.skip>true</maven.install.skip><!-- aggregator POMs not intended to be installed -->
     <maven.deploy.skip>true</maven.deploy.skip><!-- aggregator POMs not intended to be deployed -->
-    <docker.plugin.version>1.0.0</docker.plugin.version>
     <guava.version>28.2-jre</guava.version>
-    <common.lang3.version>3.9</common.lang3.version>
+    <common.lang3.version>3.10</common.lang3.version>
     <docker.image.prefix>demo-japhy</docker.image.prefix>
     <gson.version>2.8.6</gson.version>
-    <jmockit.version>1.49</jmockit.version>
     <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
     <checkstyle.config.location>codestyle/checkstyle.xml</checkstyle.config.location>
     <maven_checkstyle_version>3.1.1</maven_checkstyle_version>
@@ -63,6 +65,7 @@
       -XX:MetaspaceSize=64m -XX:MaxMetaspaceSize=128m</argLine>
     <sonar.jacoco.reportPaths>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPaths>
     <surefireArgLine/>
+    <testcontainers.version>1.15.1</testcontainers.version>
   </properties>
 
   <dependencyManagement>
@@ -81,9 +84,15 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+      <dependency>
+        <groupId>org.testcontainers</groupId>
+        <artifactId>testcontainers-bom</artifactId>
+        <version>${testcontainers.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
-
   <dependencies>
 
     <dependency>
@@ -105,17 +114,11 @@
     </dependency>
 
     <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.6.0</version>
-      <scope>test</scope>
+      <groupId>com.github.kstyrc</groupId>
+      <artifactId>embedded-redis</artifactId>
+      <version>0.6</version>
     </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-params</artifactId>
-      <version>5.6.0</version>
-      <scope>test</scope>
-    </dependency>
+
     <dependency>
       <groupId>cglib</groupId>
       <artifactId>cglib-nodep</artifactId>
@@ -128,12 +131,6 @@
       <groupId>com.auth0</groupId>
       <artifactId>java-jwt</artifactId>
       <version>3.3.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
-      <version>3.3.3</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
@@ -161,36 +158,12 @@
       <version>2.2.0</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-    </dependency>
-    <!-- swagger doc 默认的swagger-models 1.5.20 bug number format exception-->
+
+    <!--since 3.0 swagger just need this dependency-->
     <dependency>
       <groupId>io.springfox</groupId>
-      <artifactId>springfox-swagger2</artifactId>
-      <version>${swagger.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>io.swagger</groupId>
-          <artifactId>swagger-models</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>io.swagger</groupId>
-      <artifactId>swagger-models</artifactId>
-      <version>1.6.0</version>
-    </dependency>
-    <dependency>
-      <groupId>io.springfox</groupId>
-      <artifactId>springfox-swagger-ui</artifactId>
-      <version>2.9.2</version>
-    </dependency>
-    <dependency>
-      <groupId>io.springfox</groupId>
-      <artifactId>springfox-spring-web</artifactId>
-      <version>${swagger.version}</version>
+      <artifactId>springfox-boot-starter</artifactId>
+      <version>3.0.0</version>
     </dependency>
   </dependencies>
 
@@ -214,6 +187,32 @@
     <finalName>${project.artifactId}-${project.version}</finalName>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>flatten-maven-plugin</artifactId>
+          <version>1.1.0</version>
+          <configuration>
+            <updatePomFile>true</updatePomFile>
+            <flattenMode>resolveCiFriendliesOnly</flattenMode>
+          </configuration>
+          <executions>
+            <execution>
+              <id>flatten</id>
+              <phase>process-resources</phase>
+              <goals>
+                <goal>flatten</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>flatten.clean</id>
+              <phase>clean</phase>
+              <goals>
+                <goal>clean</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-release-plugin</artifactId>
@@ -284,6 +283,7 @@
             <argLine>${argLine} @{surefireArgLine}</argLine>
           </configuration>
         </plugin>
+
         <!-- performance tests -->
         <plugin>
           <groupId>com.lazerycode.jmeter</groupId>

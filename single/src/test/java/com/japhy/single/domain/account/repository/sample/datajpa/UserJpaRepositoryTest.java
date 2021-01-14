@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.test.context.jdbc.Sql;
 
 /**
  * @author Japhy
@@ -23,6 +24,7 @@ class UserJpaRepositoryTest {
     private UserJpaRepository userJpaRepository;
 
     @Test
+    @Sql("data.sql")
     void queryAllByNickNameContains() {
         PageRequest request = PageRequest.of(0, 10, Sort.by(Direction.DESC, "id"));
         Page<User> fan = userJpaRepository.queryAllByNickNameContains("fan", request);
