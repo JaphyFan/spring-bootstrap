@@ -1,9 +1,0 @@
-{
-  "properties": [
-    {
-      "name": "swagger.enabled",
-      "type": "java.lang.Boolean",
-      "description": "whether swagger is open."
-    }
-  ]
-}

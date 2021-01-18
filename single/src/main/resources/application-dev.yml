@@ -1,8 +1,0 @@
-# 暴露所有检测点，可通过调试工具查看
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-swagger:
-  enabled: false

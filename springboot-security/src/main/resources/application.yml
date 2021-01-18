@@ -1,0 +1,11 @@
+
+server:
+  port: 9001
+
+logging.level.org.springframework.boot.autoconfigure.security: INFO
+spring:
+  thymeleaf:
+    cache: false
+
+
+custom.test: 1

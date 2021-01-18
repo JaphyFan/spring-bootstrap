@@ -37,11 +37,9 @@
 
   <modules>
     <module>springboot-redis</module>
-    <module>lamda</module>
-    <module>design-pattern</module>
-    <module>spring-demo</module>
     <module>springboot-security</module>
     <module>web-base</module>
+    <module>spring-source</module>
   </modules>
 
   <!--  配置依赖的版本-->
@@ -135,7 +133,7 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.10</version>
+      <version>1.18.16</version>
       <scope>provided</scope>
     </dependency>
 

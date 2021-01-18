@@ -1,0 +1,25 @@
+hbase:
+  rootDir: /opt/big_data/hbase
+  zookeeper:
+    quorum: xuehai-nn,xuehai-dn,xuehai-cm
+    property:
+      clientPort: 2181
+
+zookeeper:
+  znode:
+    parent: /hbase
+
+logging:
+  level: debug
+  level.web: debug
+
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.5.9:3306/xh_xueqing_test?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8
+    username: webmail_user
+    password: xhtest2018
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: none

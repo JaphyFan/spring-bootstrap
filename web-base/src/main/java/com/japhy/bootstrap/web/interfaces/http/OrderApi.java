@@ -4,6 +4,7 @@ import com.japhy.bootstrap.web.application.converter.OrderConverter;
 import com.japhy.bootstrap.web.domain.order.model.entity.Order;
 import com.japhy.bootstrap.web.domain.order.model.vo.OrderParam;
 import com.japhy.bootstrap.web.domain.order.service.OrderService;
+import com.japhy.bootstrap.web.infrastructure.annotations.LogExectionTime;
 import com.japhy.bootstrap.web.infrastructure.util.Converter;
 import com.japhy.bootstrap.web.interfaces.dto.OrderDto;
 import io.swagger.annotations.Api;
@@ -82,6 +83,7 @@ public class OrderApi {
         return ResponseEntity.created(URI.create("/api/v1/orders/" + order1.getId())).body(order1);
     }
 
+    @LogExectionTime
     @ApiOperation(value = "test get array param", notes = "@RequestParam will automatically split dot separated string")
     @GetMapping("/testArray")
     ResponseEntity<List<String>> testArray(@RequestParam List<String> orderNos) {
