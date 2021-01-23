@@ -1,6 +1,6 @@
 package com.japhy.springbootjpa.domain.user.repository.jpa;
 
-import com.japhy.single.domain.account.entity.User;
+import com.japhy.springbootjpa.domain.user.entity.User;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

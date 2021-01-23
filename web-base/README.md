@@ -4,3 +4,16 @@
 ## 模块划分
 - 用户
 - 订单
+
+## web 通用技术
+- [x] rest controller and test
+- [x] jpa and test
+- [x] redis
+- [] rabbit
+- [x] event and test
+- [] aop
+- [] transaction
+- [] scheduled job
+- logging test
+- 
+

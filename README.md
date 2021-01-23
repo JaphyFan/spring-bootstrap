@@ -23,8 +23,6 @@ will try to follow the best practice
     - mysql done
     - mongoDB
     - resdi
-    - encache
-    - neo4j
 ### Connection pool
     - durid done
     - hikari

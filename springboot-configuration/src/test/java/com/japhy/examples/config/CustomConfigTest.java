@@ -18,7 +18,17 @@ class CustomConfigTest {
     @Test
     void testConfig() {
         Assertions.assertThat(customConfig.getAge()).isLessThan(10);
+        Assertions.assertThat(customConfig.getAge()).isNotNull();
         Assertions.assertThat(customConfig.getName()).isEqualTo("japhy");
-        Assertions.assertThat(customConfig.getPhone()).isBlank();
+        Assertions.assertThat(customConfig.getPhone()).isEqualTo("ddd");
+    }
+
+    @Test
+    void testMavenProperty() {
+
+        Assertions.assertThat(customConfig.getMavenProject()).isEqualTo("from-maven");
+        Assertions.assertThat(customConfig.getAddress()).isEqualTo("from-maven-property");
+        Assertions.assertThat(customConfig.getYamlProperty()).isEqualTo("yaml-property");
+
     }
 }

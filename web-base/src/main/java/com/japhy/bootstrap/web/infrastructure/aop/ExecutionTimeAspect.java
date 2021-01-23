@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Aspect
-public class ExampleAspect {
+public class ExecutionTimeAspect {
 
-    @Around("@annotation(com.japhy.bootstrap.web.infrastructure.annotations.LogExectionTime)")
+    @Around("@annotation(com.japhy.bootstrap.web.infrastructure.annotations.LogExecutionTime)")
     public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
         long start = System.currentTimeMillis();
         Object proceed = joinPoint.proceed();

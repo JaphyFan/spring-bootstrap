@@ -1,6 +1,7 @@
 japhy.age: ${random.long(10)}
 japhy.phone: "ddd"
 japhy.enabled: true
+yaml-property: "yaml-property"
 spring:
   profiles:
     active: dev
@@ -10,6 +11,8 @@ japhy.name: japhy
 japhy.age: ${random.long(10)}
 japhy.enabled: true
 japhy.phone: "ddd"
+japhy.mavenProject: '@maven.project@'
+japhy.yamlProperty: ${yaml-property}
 ---
 spring.profiles: test
 japhy.age: ${random.long(20)}

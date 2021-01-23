@@ -25,6 +25,36 @@ public class CustomConfig {
 
     private String phone;
 
+    private String mavenProject;
+
+    private String address;
+
+    private String yamlProperty;
+
+    public String getYamlProperty() {
+        return yamlProperty;
+    }
+
+    public void setYamlProperty(String yamlProperty) {
+        this.yamlProperty = yamlProperty;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getMavenProject() {
+        return mavenProject;
+    }
+
+    public void setMavenProject(String mavenProject) {
+        this.mavenProject = mavenProject;
+    }
+
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }

@@ -14,8 +14,8 @@ spring:
     password: mysql
 
 logging:
-  file:
+#  file:
 #    name: web-base.log
 #    path: /logs/
   level:
-    root: debug
+    root: info
