@@ -61,6 +61,16 @@ public class SwaggerConfig {
             .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class)).build();
     }
 
+    @Bean
+    public Docket createFeatureApi() {
+        return new Docket(DocumentationType.OAS_30)
+            .groupName("feature-api").apiInfo(apiInfo())
+            .produces(Sets.newHashSet("application/json"))
+            .select()
+            .paths(PathSelectors.ant("/**/features/**"))
+            .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class)).build();
+    }
+
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("Web Base API").description("this is the base api")
             .termsOfServiceUrl("www.web-base.com")

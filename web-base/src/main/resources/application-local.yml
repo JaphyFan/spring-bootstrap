@@ -19,3 +19,4 @@ logging:
 #    path: /logs/
   level:
     root: info
+

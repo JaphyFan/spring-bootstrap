@@ -1,0 +1,46 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package  com.japhy.design.chain {
+
+class Request {
+    - type: RequestType
+    - isHandled: boolean
+    + Request(type: RequestType)
+    + getDescription(): String
+    + isHandled(): boolean
+}
+enum RequestType {
+    SOLIDER, OFFICER
+}
+
+abstract class RequestHandler {
+    - next: RequestHandler
+    + RequestHandler(next: RequestHandler))
+    - handleRequest(request: Request): void
+}
+
+class Solider {
+    - handleRequest(request: Request): void
+}
+
+class Officer {
+    - handleRequest(request: Request): void
+}
+
+class King {
+    + makeRequest(request: Request): void
+}
+
+Solider --|> RequestHandler
+Officer --|> RequestHandler
+King -> Request
+RequestHandler -> RequestHandler
+Request --> RequestType
+RequestHandler o--> Request
+
+
+
+}
+
+@enduml

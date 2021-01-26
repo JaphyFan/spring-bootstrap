@@ -5,15 +5,14 @@
 - 用户
 - 订单
 
-## web 通用技术
+## web 通用技术点
 - [x] rest controller and test
 - [x] jpa and test
-- [x] redis
-- [] rabbit
+- [ ] redis
+- [ ] rabbit
 - [x] event and test
-- [] aop
-- [] transaction
-- [] scheduled job
-- logging test
-- 
-
+- [x] aop
+- [ ] transaction
+- [x] scheduled job
+- [ ] security
+- [ ] webfilter

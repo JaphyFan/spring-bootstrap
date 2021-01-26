@@ -4,6 +4,7 @@ import com.japhy.bootstrap.web.domain.order.model.entity.Order;
 import com.japhy.bootstrap.web.domain.order.model.vo.OrderParam;
 import com.japhy.bootstrap.web.domain.order.repository.OrderRepository;
 import com.japhy.bootstrap.web.domain.order.service.OrderService;
+import com.japhy.bootstrap.web.infrastructure.annotations.LogExecutionTime;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +33,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @LogExecutionTime
     public Order saveOrder(Order order) {
         return orderRepository.save(order);
     }

@@ -3,6 +3,7 @@ package com.japhy.bootstrap.web.infrastructure.aop;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Aspect
+@EnableAspectJAutoProxy
 public class ExecutionTimeAspect {
 
     @Around("@annotation(com.japhy.bootstrap.web.infrastructure.annotations.LogExecutionTime)")

@@ -18,7 +18,7 @@ public class ServletDemo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        resp.getWriter().println("custom sevlet");
+        resp.getWriter().println("custom servlet");
         resp.getWriter().flush();
         resp.getWriter().close();
     }

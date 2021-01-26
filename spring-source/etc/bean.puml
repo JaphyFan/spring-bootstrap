@@ -1,0 +1,21 @@
+@startuml
+
+interface BeanFactory {}
+
+interface AutowireCapableBeanFactory{}
+
+interface ListableBeanFactory{}
+
+interface HierarchicalBeanFactory
+
+interface ConfigurableListableBeanFactory
+
+interface ApplicationContext
+
+AutowireCapableBeanFactory --|> BeanFactory
+HierarchicalBeanFactory --|> BeanFactory
+ListableBeanFactory --|> BeanFactory
+ConfigurableListableBeanFactory --> ListableBeanFactory
+ConfigurableListableBeanFactory --> AutowireCapableBeanFactory
+ApplicationContext --|> ListableBeanFactory
+@enduml

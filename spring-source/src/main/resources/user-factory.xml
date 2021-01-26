@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <bean id="user" class="com.japhy.spring.User" init-method="myInit" destroy-method="myDestroy">
+
+  </bean>
+
+  <bean id="user2" class="com.japhy.spring.User" init-method="myInit" destroy-method="myDestroy">
+    <property name="address" ref="hz"/>
+  </bean>
+
+  <bean id="user3" class="com.japhy.spring.User" init-method="myInit" destroy-method="myDestroy">
+   <constructor-arg ref="hz"/>
+  </bean>
+
+  <bean id="hz" class="com.japhy.spring.Address">
+    <property name="city" value="hangzhou"/>
+  </bean>
+</beans>

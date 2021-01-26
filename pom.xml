@@ -51,7 +51,6 @@
     <module>springboot-elasticsearch</module>
     <module>springboot-es-high-level-rest</module>
     <module>springboot-hateoas</module>
-    <module>springboot-jdbc</module>
     <module>springboot-jpa</module>
     <module>springboot-kafka</module>
     <module>springboot-mongo</module>
