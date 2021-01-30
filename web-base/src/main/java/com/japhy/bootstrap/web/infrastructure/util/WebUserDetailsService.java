@@ -1,7 +1,7 @@
-package com.japhy.springsecurity.service;
+package com.japhy.bootstrap.web.infrastructure.util;
 
-import com.japhy.springsecurity.model.User;
-import com.japhy.springsecurity.repository.UserRepository;
+import com.japhy.bootstrap.web.domain.user.entity.User;
+import com.japhy.bootstrap.web.domain.user.repository.UserRepository;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -14,11 +14,11 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author Japhy
- * @since 2021/1/4 13:14
+ * @since 2021/1/30 14:38
  */
 @Service
 @RequiredArgsConstructor
-public class UserRepositoryUserDetailsService implements UserDetailsService {
+public class WebUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
@@ -28,7 +28,7 @@ public class UserRepositoryUserDetailsService implements UserDetailsService {
         return byUserName.map(user -> {
             List<GrantedAuthority> grantedAuthorities =
                 AuthorityUtils.commaSeparatedStringToAuthorityList(user.getRoles());
-            user.setAuthorityList(grantedAuthorities);
+            user.setGrantedAuthorityList(grantedAuthorities);
             return user;
         }).orElseThrow(
             () -> new UsernameNotFoundException("username=" + username + " is not found"));

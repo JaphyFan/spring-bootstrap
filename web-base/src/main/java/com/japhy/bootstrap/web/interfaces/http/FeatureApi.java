@@ -20,8 +20,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class FeatureApi {
 
     @GetMapping("/filter")
-    public ResponseEntity<Void> test() {
+    public ResponseEntity<String> test() {
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/docker")
+    public ResponseEntity<String> docker() {
+        return ResponseEntity.ok("docker start");
+    }
+
+
 
 }

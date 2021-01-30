@@ -9,11 +9,15 @@
         <h1>Login page</h1>
         <p>Example user: user / password</p>
         <p th:if="${loginError}" class="error">Wrong user or password</p>
-        <form th:action="@{/login}" method="post">
+        <form th:action="@{/auth/form}" method="post">
             <label for="username">Username</label>:
             <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
             <label for="password">Password</label>:
             <input type="password" id="password" name="password" /> <br />
+            <div style="display: flex">
+                <input type="text" name="captcha" placeholder="captcha">
+                <img src="/captcha/captcha.jpg" alt="captcha" height="50px" width="150px">
+            </div>
             <input type="submit" value="Log in" />
         </form>
         <p><a href="/index" th:href="@{/index}">Back to home page</a></p>

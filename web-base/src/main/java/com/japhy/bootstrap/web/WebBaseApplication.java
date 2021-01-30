@@ -9,8 +9,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 /**
  * @author japhy
  */
-@SpringBootApplication(exclude = {RabbitAutoConfiguration.class, SecurityAutoConfiguration.class,
-    ManagementWebSecurityAutoConfiguration.class})
+@SpringBootApplication(exclude = {RabbitAutoConfiguration.class})
 public class WebBaseApplication {
 
     public static void main(String[] args) {

@@ -1,58 +1,80 @@
 package com.japhy.springsecurity.config;
 
-import lombok.RequiredArgsConstructor;
+import com.japhy.springsecurity.filter.VerificationCodeFilter;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.lang.NonNull;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * @author Japhy
  * @since 2020/4/14 16:35
  */
 @EnableWebSecurity
-@RequiredArgsConstructor
 public class WebSecureConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
 
+    public WebSecureConfig(
+        @Lazy @NonNull @Qualifier("userRepositoryUserDetailsService")
+            UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests(registry -> {
+            registry.antMatchers("/admin/**").hasRole("ADMIN");
+            registry.antMatchers("/app/**").permitAll();
+            registry.antMatchers("/api/v1/users/**").hasRole("USER");
+
             registry.antMatchers("/user/**").hasRole("USER");
             registry.antMatchers("/css/**", "/index").permitAll();
+            registry.antMatchers("/captcha/captcha.jpg").permitAll();
         }).formLogin(
-            configurer -> configurer.loginPage("/login").failureForwardUrl("/login-error")
+            configurer -> configurer.loginPage("/login").loginProcessingUrl("/auth/form")
+                .failureForwardUrl("/login-error")
                 .defaultSuccessUrl("/", true))
-            .logout().logoutSuccessUrl("/");
+            .logout().logoutSuccessUrl("/")
+            .logoutSuccessHandler((request, response, authentication) -> {
+                // to something when log out
+            }).invalidateHttpSession(true)
+            .deleteCookies("cookie1", "cookie2")
+
+            .and()
+            .csrf().disable()
+            .sessionManagement().maximumSessions(1);
+
+        http.addFilterBefore(new VerificationCodeFilter(), UsernamePasswordAuthenticationFilter.class);
 
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)
-        .passwordEncoder(encoder());
+        auth.userDetailsService(userDetailsService);
     }
-
+//
+//    // 内存数据库实现账号密码
 //    @Bean
-//    @Override
 //    public UserDetailsService userDetailsService() {
-//        UserDetails user =
-//            User.withDefaultPasswordEncoder().username("user").password("admin").roles("USER")
-//                .build();
-//        return new InMemoryUserDetailsManager(user);
+//        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+//        manager.createUser(User.withUsername("user").password(encoder().encode("123")).roles("USER").build());
+//        manager.createUser(User.withUsername("admin").password(encoder().encode("123")).roles("ADMIN").build());
+//
+//        return manager;
 //    }
-
+//
     @Bean
     public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder();
+        return NoOpPasswordEncoder.getInstance();
+//        return new BCryptPasswordEncoder();
     }
 }

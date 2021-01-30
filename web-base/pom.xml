@@ -79,7 +79,10 @@
     <dependency>
       <groupId>org.awaitility</groupId>
       <artifactId>awaitility</artifactId>
-      <version>4.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt</artifactId>
     </dependency>
 
     <dependency>
@@ -142,6 +145,8 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
+          <!--devtools 直接再容器中调试 since 2.3-->
+          <excludeDevtools>false</excludeDevtools>
           <excludes>
             <exclude>
               <groupId>org.springframework.boot</groupId>

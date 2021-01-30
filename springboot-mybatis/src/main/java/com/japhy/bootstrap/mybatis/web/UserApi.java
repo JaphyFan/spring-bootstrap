@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2020/1/14 12:21
  */
 @RestController
-@RequestMapping("api/v1/user")
+@RequestMapping("api/v1/users")
 public class UserApi {
 
     @Autowired
     private UserMapper userMapper;
 
-    @GetMapping("getById")
+    @GetMapping("/getById")
     public ResponseEntity<?>  getUserById() {
         User user = userMapper.selectByPrimaryKey(30000L);
         PageInfo<User> page1 = PageHelper.startPage(4, 10)

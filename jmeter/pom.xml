@@ -9,7 +9,7 @@
     <version>2.3.1.RELEASE</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
-  <groupId>com.japhy</groupId>
+  <groupId>com.japhy.bootstrap</groupId>
   <artifactId>jmeter</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>jmeter</name>
@@ -25,11 +25,6 @@
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
-    <dependency>
-      <groupId>com.japhy</groupId>
-      <artifactId>basic</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
@@ -64,6 +59,9 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <excludeDevtools>false</excludeDevtools>
+        </configuration>
       </plugin>
     </plugins>
   </build>

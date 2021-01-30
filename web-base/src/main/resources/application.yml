@@ -3,6 +3,9 @@ server:
 spring:
   application:
     name: web-base
+  devtools:
+    remote:
+      secret: secret
 
 management:
   info:

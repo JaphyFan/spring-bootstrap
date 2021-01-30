@@ -22,6 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/v1/users", produces = "application/json")
 public class UserApi {
 
+    @GetMapping("hello")
+    public String hello() {
+        return "Hello";
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@AuthenticationPrincipal User user, @PathVariable Long id) {
         return null;
