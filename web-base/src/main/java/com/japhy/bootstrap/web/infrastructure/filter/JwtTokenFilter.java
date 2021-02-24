@@ -1,6 +1,5 @@
 package com.japhy.bootstrap.web.infrastructure.filter;
 
-import com.google.common.collect.Lists;
 import com.japhy.bootstrap.web.infrastructure.util.JwtUtil;
 import com.japhy.bootstrap.web.infrastructure.util.WebUserDetailsService;
 import java.io.IOException;

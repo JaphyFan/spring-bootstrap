@@ -56,3 +56,9 @@ spring:
         url-pattern: /druid/*
         login-password: druid
         login-username: admin
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri:

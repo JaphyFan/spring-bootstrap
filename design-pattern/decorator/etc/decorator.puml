@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package com.japhy.design {
+    interface Troll{
+        + attack(): void
+        + getAttackPower(): int
+        + fleeBattle(): void
+    }
+
+    class SimpleTroll {
+        + attack(): void
+        + getAttackPower(): int
+        + fleeBattle(): void
+    }
+
+    class ClubbedTroll {
+        - troll: Troll
+        + attack(): void
+        + getAttackPower(): int
+        + fleeBattle(): void
+    }
+
+    SimpleTroll ..|> Troll
+    ClubbedTroll ..|> Troll
+    ClubbedTroll *--> Troll
+}
+
+@enduml

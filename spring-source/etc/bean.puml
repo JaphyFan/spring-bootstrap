@@ -15,7 +15,7 @@ interface ApplicationContext
 AutowireCapableBeanFactory --|> BeanFactory
 HierarchicalBeanFactory --|> BeanFactory
 ListableBeanFactory --|> BeanFactory
-ConfigurableListableBeanFactory --> ListableBeanFactory
-ConfigurableListableBeanFactory --> AutowireCapableBeanFactory
+ConfigurableListableBeanFactory --|> ListableBeanFactory
+ConfigurableListableBeanFactory --|> AutowireCapableBeanFactory
 ApplicationContext --|> ListableBeanFactory
 @enduml

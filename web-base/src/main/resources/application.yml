@@ -16,3 +16,4 @@ management:
       base-path: /mgm
       exposure:
         include: "*"
+

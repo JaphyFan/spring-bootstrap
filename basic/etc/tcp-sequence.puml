@@ -1,0 +1,10 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title TCP sequence diagram
+autonumber
+
+client -> server: syn=1 seq=x
+server --> client: syn=1 ack=x+1 seq=y
+client -> server: syn=1 ack=y+1
+
+@enduml

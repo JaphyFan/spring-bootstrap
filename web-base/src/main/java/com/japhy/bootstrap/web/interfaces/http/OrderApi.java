@@ -1,11 +1,10 @@
 package com.japhy.bootstrap.web.interfaces.http;
 
-import com.japhy.bootstrap.web.application.converter.OrderConverter;
+import com.japhy.bootstrap.web.application.mapper.OrderMapper;
 import com.japhy.bootstrap.web.domain.order.model.entity.Order;
 import com.japhy.bootstrap.web.domain.order.model.vo.OrderParam;
 import com.japhy.bootstrap.web.domain.order.service.OrderService;
 import com.japhy.bootstrap.web.infrastructure.annotations.LogExecutionTime;
-import com.japhy.bootstrap.web.infrastructure.util.Converter;
 import com.japhy.bootstrap.web.interfaces.dto.OrderDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -39,12 +38,13 @@ public class OrderApi {
 
     private final OrderService orderService;
 
+    private final OrderMapper orderMapper;
+
     @ApiOperation(value = "find order by id ", notes = "http get method to find order by id, if not found, return http status code 404.")
     @GetMapping("{id}")
     public ResponseEntity<OrderDto> findById(@PathVariable("id") Long id) {
         Optional<Order> order = orderService.queryOrderById(id);
-        Converter<Order, OrderDto> converter = new OrderConverter();
-        return order.map(value -> ResponseEntity.ok(converter.fromEntity(value)))
+        return order.map(value -> ResponseEntity.ok(orderMapper.orderToOrderDto(value)))
             .orElseGet(() -> ResponseEntity.notFound().build());
     }
 

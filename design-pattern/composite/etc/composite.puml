@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package com.japhy.design {
+
+abstract class LetterComposite {
+    # letterComposites: List<LetterComposite>
+    + LetterComposite(letterComposites: List<LetterComposite>)
+    + add(letterComposite: LetterComposite): LetterComposite
+    + print(): void
+    + count(): int
+    + printBefore(): void {abstract}
+    + printAfter(): void {abstract}
+}
+class Letter {
+    - c: char {final}
+    + Letter(char c)
+
+}
+class Sentence {
+    + printAfter(): void
+}
+class Word {
+    + printAfter(): void
+}
+
+Letter --|> LetterComposite
+Word --|> LetterComposite
+Sentence --|> LetterComposite
+LetterComposite o--|> LetterComposite : List<LetterComposite>
+}
+
+@enduml

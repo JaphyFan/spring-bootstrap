@@ -139,6 +139,9 @@
     <module>builder</module>
     <module>chain</module>
     <module>command</module>
+    <module>bridge</module>
+    <module>composite</module>
+    <module>decorator</module>
     <!--<module>feature-toggle</module>-->
     <!--<module>value-object</module>-->
     <!--<module>module</module>-->
@@ -360,6 +363,11 @@
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-core</artifactId>
       <version>${logback.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 

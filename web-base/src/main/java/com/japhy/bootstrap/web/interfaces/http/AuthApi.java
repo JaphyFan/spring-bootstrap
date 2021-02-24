@@ -46,7 +46,7 @@ public class AuthApi {
 
             User user = (User) authenticate.getPrincipal();
             return ResponseEntity.ok()
-                .header(HttpHeaders.AUTHORIZATION, jwtUtil.generateToken(user))
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + jwtUtil.generateToken(user))
                 .body(user);
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

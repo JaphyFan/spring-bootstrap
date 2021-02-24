@@ -1,0 +1,60 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package com.japhy.design.bridge {
+
+interface Enchantment {
+    + onActive(): void
+    + apply(): void
+    + onDeactive(): void
+}
+
+interface Weapon {
+    + wield(): void
+    + unwield(): void
+    + swing(): void
+    + getEnchantment(): Enchantment
+}
+
+class Sword {
+    - enchantment: Enchantment
+    + Sword(enchantment: Enchantment)
+    + wield(): void
+    + unwield(): void
+    + swing(): void
+    + getEnchantment(): Enchantment
+}
+
+class Axe {
+    - enchantment: Enchantment
+    + Axe(enchantment: Enchantment)
+    + wield(): void
+    + unwield(): void
+    + swing(): void
+    + getEnchantment(): Enchantment
+}
+
+class FlyingEnchantment {
+    + onActive(): void
+    + apply(): void
+    + onDeactive(): void
+}
+
+class EatingSoulEnchantment {
+    + onActive(): void
+    + apply(): void
+    + onDeactive(): void
+}
+
+Sword ..|> Weapon
+Axe ..|> Weapon
+
+FlyingEnchantment ..|> "Enchantment" Enchantment
+EatingSoulEnchantment ..|> "Enchantment" Enchantment
+
+Sword --> Enchantment
+Axe --> Enchantment
+
+}
+
+@enduml

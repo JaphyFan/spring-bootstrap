@@ -2,7 +2,6 @@ package com.japhy.bootstrap.web.infrastructure.config;
 
 import com.japhy.bootstrap.web.domain.user.repository.UserRepository;
 import com.japhy.bootstrap.web.infrastructure.filter.JwtTokenFilter;
-import javax.servlet.Filter;
 import javax.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -41,7 +40,7 @@ public class WebSecureConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // 关闭cross site request ferge，开启cross origin resource shafe
+        // 关闭cross site request forgery，开启cross origin resource shafe
         http.cors().and().csrf().disable();
 
         // 关闭session 使用jwt
@@ -73,4 +72,6 @@ public class WebSecureConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+
+
 }
