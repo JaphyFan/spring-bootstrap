@@ -7,8 +7,15 @@ import com.japhy.bootstrap.web.domain.order.service.OrderService;
 import com.japhy.bootstrap.web.infrastructure.annotations.LogExecutionTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import javax.annotation.security.RolesAllowed;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,6 +30,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
 
     @Override
+    @RolesAllowed("USER_ADMIN")
     public Optional<Order> queryOrderById(Long id) {
         return orderRepository.findById(id);
     }
@@ -30,6 +38,14 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> queryOrder(OrderParam orderParam) {
         return null;
+    }
+
+    @Override
+    @Async
+    public Future<Order> asyncGetOrderById(Long id) throws InterruptedException {
+        log.info("thread name is -----------------" + Thread.currentThread().getName());
+        TimeUnit.SECONDS.sleep(10L);
+        return new AsyncResult<>(Order.builder().orderNo("orderNo").build());
     }
 
     @Override

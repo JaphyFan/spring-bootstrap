@@ -38,13 +38,11 @@ public class OrderApi {
 
     private final OrderService orderService;
 
-    private final OrderMapper orderMapper;
-
     @ApiOperation(value = "find order by id ", notes = "http get method to find order by id, if not found, return http status code 404.")
     @GetMapping("{id}")
     public ResponseEntity<OrderDto> findById(@PathVariable("id") Long id) {
         Optional<Order> order = orderService.queryOrderById(id);
-        return order.map(value -> ResponseEntity.ok(orderMapper.orderToOrderDto(value)))
+        return order.map(value -> ResponseEntity.ok(OrderMapper.INSTANCE.orderToOrderDto(value)))
             .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
@@ -83,10 +81,4 @@ public class OrderApi {
         return ResponseEntity.created(URI.create("/api/v1/orders/" + order1.getId())).body(order1);
     }
 
-    @LogExecutionTime
-    @ApiOperation(value = "test get array param", notes = "@RequestParam will automatically split dot separated string")
-    @GetMapping("/testArray")
-    ResponseEntity<List<String>> testArray(@RequestParam List<String> orderNos) {
-        return ResponseEntity.ok(orderNos);
-    }
 }

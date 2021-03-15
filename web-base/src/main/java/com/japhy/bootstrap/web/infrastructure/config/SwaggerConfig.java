@@ -5,6 +5,7 @@ import static java.util.Collections.singletonList;
 
 import com.fasterxml.classmate.TypeResolver;
 import com.google.common.collect.Sets;
+import java.util.Arrays;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -45,8 +46,23 @@ public class SwaggerConfig {
             .apiInfo(apiInfo())
             .produces(Sets.newHashSet("application/json"))
             .protocols(Sets.newHashSet("http"))
+            .securityContexts(singletonList(securityContext()))
+            .securitySchemes(singletonList(apiKey()))
             .select()
             .paths(PathSelectors.ant("/**/users/**"))
+            .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
+            .build();
+    }
+
+    @Bean
+    public Docket createPublicApi() {
+        return new Docket(DocumentationType.OAS_30)
+            .groupName("public-api")
+            .apiInfo(apiInfo())
+            .produces(Sets.newHashSet("application/json"))
+            .protocols(Sets.newHashSet("http"))
+            .select()
+            .paths(PathSelectors.ant("/**/public/**"))
             .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
             .build();
     }
@@ -56,6 +72,8 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.OAS_30)
             .groupName("order-api").apiInfo(apiInfo())
             .produces(Sets.newHashSet("application/json"))
+            .securityContexts(singletonList(securityContext()))
+            .securitySchemes(singletonList(apiKey()))
             .select()
             .paths(PathSelectors.ant("/**/orders/**"))
             .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class)).build();
@@ -66,6 +84,8 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.OAS_30)
             .groupName("feature-api").apiInfo(apiInfo())
             .produces(Sets.newHashSet("application/json"))
+            .securityContexts(singletonList(securityContext()))
+            .securitySchemes(singletonList(apiKey()))
             .select()
             .paths(PathSelectors.ant("/**/features/**"))
             .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class)).build();
@@ -82,17 +102,17 @@ public class SwaggerConfig {
     }
 
     //FIXME: security 配置 japhy 2021/1/21
-    @Autowired
-    private TypeResolver typeResolver;
-
+//    @Autowired
+//    private TypeResolver typeResolver;
+//
     private ApiKey apiKey() {
-        return new ApiKey("mykey", "api_key", "header");
+        return new ApiKey("Authorization", "Authorization", "header");
     }
 
     private SecurityContext securityContext() {
         return SecurityContext.builder()
             .securityReferences(defaultAuth())
-            .forPaths(PathSelectors.regex("/anyPath.*"))
+            .operationSelector(operationContext -> operationContext.requestMappingPattern().startsWith("/api/"))
             .build();
     }
 
@@ -102,41 +122,41 @@ public class SwaggerConfig {
         AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
         authorizationScopes[0] = authorizationScope;
         return singletonList(
-            new SecurityReference("mykey", authorizationScopes));
+            new SecurityReference("Authorization", authorizationScopes));
     }
-
-    @Bean
-    SecurityConfiguration security() {
-        return SecurityConfigurationBuilder.builder()
-            .clientId("test-app-client-id")
-            .clientSecret("test-app-client-secret")
-            .realm("test-app-realm")
-            .appName("test-app")
-            .scopeSeparator(",")
-            .additionalQueryStringParams(null)
-            .useBasicAuthenticationWithAccessCodeGrant(false)
-            .enableCsrfSupport(false)
-            .build();
-    }
-
-    @Bean
-    UiConfiguration uiConfig() {
-        return UiConfigurationBuilder.builder()
-            .deepLinking(true)
-            .displayOperationId(false)
-            .defaultModelsExpandDepth(1)
-            .defaultModelExpandDepth(1)
-            .defaultModelRendering(ModelRendering.EXAMPLE)
-            .displayRequestDuration(false)
-            .docExpansion(DocExpansion.NONE)
-            .filter(false)
-            .maxDisplayedTags(null)
-            .operationsSorter(OperationsSorter.ALPHA)
-            .showExtensions(false)
-            .showCommonExtensions(false)
-            .tagsSorter(TagsSorter.ALPHA)
-            .supportedSubmitMethods(UiConfiguration.Constants.DEFAULT_SUBMIT_METHODS)
-            .validatorUrl(null)
-            .build();
-    }
+//
+//    @Bean
+//    SecurityConfiguration security() {
+//        return SecurityConfigurationBuilder.builder()
+//            .clientId("test-app-client-id")
+//            .clientSecret("test-app-client-secret")
+//            .realm("test-app-realm")
+//            .appName("test-app")
+//            .scopeSeparator(",")
+//            .additionalQueryStringParams(null)
+//            .useBasicAuthenticationWithAccessCodeGrant(false)
+//            .enableCsrfSupport(false)
+//            .build();
+//    }
+//
+//    @Bean
+//    UiConfiguration uiConfig() {
+//        return UiConfigurationBuilder.builder()
+//            .deepLinking(true)
+//            .displayOperationId(false)
+//            .defaultModelsExpandDepth(1)
+//            .defaultModelExpandDepth(1)
+//            .defaultModelRendering(ModelRendering.EXAMPLE)
+//            .displayRequestDuration(false)
+//            .docExpansion(DocExpansion.NONE)
+//            .filter(false)
+//            .maxDisplayedTags(null)
+//            .operationsSorter(OperationsSorter.ALPHA)
+//            .showExtensions(false)
+//            .showCommonExtensions(false)
+//            .tagsSorter(TagsSorter.ALPHA)
+//            .supportedSubmitMethods(UiConfiguration.Constants.DEFAULT_SUBMIT_METHODS)
+//            .validatorUrl(null)
+//            .build();
+//    }
 }

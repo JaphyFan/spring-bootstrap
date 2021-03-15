@@ -1,0 +1,41 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package com.japhy.design.flyweight {
+
+    enum PortionType {
+        HEALING,
+        POISON,
+        STRENGTH
+    }
+
+    interface Portion {
+        + drink(): void
+    }
+
+    class HealingPortion {
+        + drink(): void
+    }
+
+    class PoisonPortion {
+        + drink(): void
+    }
+
+    class StrengthPortion {
+        + drink(): void
+    }
+
+    class PortionFactory {
+        - LOGGER: Logger {static}
+        - portionMap: Map<PortionType, Portion>
+        + PortionFactory()
+        + createPortion(portionType: PortionType): Portion
+    }
+
+    HealingPortion ..|> Portion
+    PoisonPortion ..|> Portion
+    StrengthPortion ..|> Portion
+}
+
+
+@enduml

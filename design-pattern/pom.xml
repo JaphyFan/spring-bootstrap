@@ -142,6 +142,7 @@
     <module>bridge</module>
     <module>composite</module>
     <module>decorator</module>
+    <module>flyweight</module>
     <!--<module>feature-toggle</module>-->
     <!--<module>value-object</module>-->
     <!--<module>module</module>-->

@@ -1,4 +1,4 @@
-package com.japhy.example.hbase;
+package com.japhy.bootstrap.hbase;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.hadoop.hbase.client.Put;
@@ -23,7 +23,6 @@ public class DemoService {
                 Bytes.toBytes("fanjh"));
             tableInterface.put(put);
             return null;
-
         });
     }
 }

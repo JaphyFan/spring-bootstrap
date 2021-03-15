@@ -7,6 +7,8 @@ import com.japhy.bootstrap.web.infrastructure.util.WebUserDetailsService;
 import com.japhy.bootstrap.web.interfaces.dto.AuthenticationRequest;
 import com.japhy.bootstrap.web.interfaces.dto.CreateUserRequest;
 import com.japhy.bootstrap.web.interfaces.dto.UserVo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -27,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/public")
 @RequiredArgsConstructor
+@Api("认证")
 public class AuthApi {
 
     private final AuthenticationManager authenticationManager;
@@ -37,6 +40,7 @@ public class AuthApi {
 
     private final UserService userService;
 
+    @ApiOperation("登录认证")
     @PostMapping("/authenticate")
     public ResponseEntity<User> login(@RequestBody AuthenticationRequest authRequest) {
         try {
@@ -53,6 +57,7 @@ public class AuthApi {
         }
     }
 
+    @ApiOperation("注册")
     @PostMapping("/register")
     public ResponseEntity<User> register(@RequestBody CreateUserRequest user) {
         User user1 = userService.createUser(user);

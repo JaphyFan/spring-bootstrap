@@ -1,5 +1,7 @@
 package com.japhy.bootstrap.config.config;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +17,8 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 @ConfigurationProperties(prefix = "japhy", ignoreInvalidFields = true)
 @Profile("dev")
+@Getter
+@Setter
 public class CustomConfig {
 
     private boolean enabled;
@@ -30,60 +34,4 @@ public class CustomConfig {
     private String address;
 
     private String yamlProperty;
-
-    public String getYamlProperty() {
-        return yamlProperty;
-    }
-
-    public void setYamlProperty(String yamlProperty) {
-        this.yamlProperty = yamlProperty;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getMavenProject() {
-        return mavenProject;
-    }
-
-    public void setMavenProject(String mavenProject) {
-        this.mavenProject = mavenProject;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Long getAge() {
-        return age;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAge(Long age) {
-        this.age = age;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 }

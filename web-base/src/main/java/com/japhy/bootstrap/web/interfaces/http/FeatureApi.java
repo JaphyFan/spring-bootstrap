@@ -1,16 +1,22 @@
 package com.japhy.bootstrap.web.interfaces.http;
 
+import com.japhy.bootstrap.web.application.event.publisher.OrderCreatedEventPublisher;
 import com.japhy.bootstrap.web.application.mapper.OrderMapper;
 import com.japhy.bootstrap.web.domain.order.model.entity.Order;
+import com.japhy.bootstrap.web.infrastructure.annotations.LogExecutionTime;
 import com.japhy.bootstrap.web.interfaces.dto.OrderDto;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import java.util.Date;
+import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -24,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api("demonstrate some features")
 public class FeatureApi {
 
-    private final OrderMapper orderMapper;
+    private final OrderCreatedEventPublisher publisher;
 
     @GetMapping("/filter")
     public ResponseEntity<String> test() {
@@ -41,5 +47,19 @@ public class FeatureApi {
     public ResponseEntity<String> role() {
         return ResponseEntity.ok("admin role test");
     }
+
+    @LogExecutionTime
+    @ApiOperation(value = "test get array param", notes = "@RequestParam will automatically split dot separated string")
+    @GetMapping("/testArray")
+    ResponseEntity<List<String>> testArray(@RequestParam List<String> orderNos) {
+        return ResponseEntity.ok(orderNos);
+    }
+
+    @GetMapping("/async")
+    public ResponseEntity<String> async() {
+        publisher.publishEvent(new Order());
+        return ResponseEntity.ok("async test");
+    }
+
 
 }

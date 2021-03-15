@@ -6,7 +6,6 @@ spring:
   devtools:
     remote:
       secret: secret
-
 management:
   info:
     git:
@@ -17,3 +16,6 @@ management:
       exposure:
         include: "*"
 
+
+custom:
+  word: hello
