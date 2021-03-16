@@ -63,6 +63,9 @@
     <module>structure</module>
     <module>web-base</module>
     <module>spring-source</module>
+    <module>springcloud-eureka</module>
+    <module>springcloud-order</module>
+    <module>springcloud-bill</module>
   </modules>
 
   <!--  配置依赖的版本-->
@@ -199,6 +202,7 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter</artifactId>
     </dependency>
+
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
