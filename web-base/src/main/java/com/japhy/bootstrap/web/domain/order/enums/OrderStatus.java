@@ -2,7 +2,6 @@ package com.japhy.bootstrap.web.domain.order.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 /**

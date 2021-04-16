@@ -1,4 +1,4 @@
-package com.japhy.springbootjpa.domain.user.projections;
+package com.japhy.springbootjpa.domain.user.projection;
 
 import org.springframework.beans.factory.annotation.Value;
 
@@ -10,4 +10,8 @@ public interface OpenProjection {
 
     @Value("#{target.id + '' + target.name}")
     String combinedIdAndName();
+
+    String getId();
+
+    String getName();
 }

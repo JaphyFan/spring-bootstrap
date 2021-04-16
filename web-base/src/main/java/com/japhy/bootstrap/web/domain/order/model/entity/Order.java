@@ -10,10 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.context.event.EventListener;
 
 /**
  * @author Japhy
@@ -41,12 +44,16 @@ public class Order {
     private Date createTime;
 
     @Column(name = "update_time")
+
     private Date updateTime;
 
     @Column(name = "operator_id")
     private Long operatorId;
 
     private Integer status;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date timeStamp;
 
     @PrePersist
     void createAt() {

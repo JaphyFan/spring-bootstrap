@@ -81,4 +81,10 @@ public class OrderApi {
         return ResponseEntity.created(URI.create("/api/v1/orders/" + order1.getId())).body(order1);
     }
 
+    @ApiOperation(value = "get order ")
+    @GetMapping("/name")
+    public ResponseEntity<String> getOrder(@RequestParam String name) {
+        return ResponseEntity.ok(name);
+    }
+
 }

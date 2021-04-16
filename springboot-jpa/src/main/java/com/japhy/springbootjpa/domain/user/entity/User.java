@@ -1,5 +1,9 @@
 package com.japhy.springbootjpa.domain.user.entity;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,5 +41,14 @@ public class User {
     private String phone;
 
     private String avatar;
+
+    @Column(columnDefinition = "TIME")
+    private LocalTime localTime;
+
+    @Column(columnDefinition = "DATE")
+    private LocalDate localDate;
+
+    @Column(columnDefinition = "TIMESTAMP")
+    private LocalDateTime localDateTime;
 
 }

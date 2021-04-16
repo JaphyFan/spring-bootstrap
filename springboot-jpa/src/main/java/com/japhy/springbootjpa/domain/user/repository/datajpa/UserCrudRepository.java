@@ -1,15 +1,14 @@
 package com.japhy.springbootjpa.domain.user.repository.datajpa;
 
 import com.japhy.springbootjpa.domain.user.entity.User;
-import com.japhy.springbootjpa.domain.user.projections.OpenProjection;
+import com.japhy.springbootjpa.domain.user.projection.OpenProjection;
 import com.japhy.springbootjpa.interfaces.dto.UserDto;
 import com.japhy.springbootjpa.interfaces.dto.UserVo;
 import java.util.List;
-import javax.persistence.ConstructorResult;
-import javax.persistence.SqlResultSetMapping;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 /**
  * @author Japhy
@@ -25,10 +24,5 @@ public interface UserCrudRepository extends CrudRepository<User, Long> {
 
     @Query(value = "select id, name from user ", nativeQuery = true)
     List<OpenProjection> query4InterfaceNative();
-
-    @Query(value = "select * from user",
-        countQuery = "select count(*) from user",
-        nativeQuery = true)
-    List<User> pageQuery(PageRequest pageRequest);
 
 }

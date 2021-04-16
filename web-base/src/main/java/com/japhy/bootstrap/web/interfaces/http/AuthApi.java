@@ -44,9 +44,9 @@ public class AuthApi {
     @PostMapping("/authenticate")
     public ResponseEntity<User> login(@RequestBody AuthenticationRequest authRequest) {
         try {
-            Authentication authenticate = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(authRequest.getUserName(),
-                    authRequest.getPassword()));
+            Authentication authenticate = authenticationManager
+                    .authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUserName(),
+                            authRequest.getPassword()));
 
             User user = (User) authenticate.getPrincipal();
             return ResponseEntity.ok()

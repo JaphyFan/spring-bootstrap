@@ -1,5 +1,6 @@
 package com.japhy.bootstrap.web.interfaces.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,11 +25,14 @@ public class OrderDto {
 
     private Long userId;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date createTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updateTime;
 
     private Long operatorId;
 
     private Integer status;
+
 }

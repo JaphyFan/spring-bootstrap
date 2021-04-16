@@ -1,3 +1,0 @@
-INSERT INTO `userRedis`(`id`, `name`, `phone`, `avatar`, `nick_name`) VALUES (30001, 'BlKzq', '11668682761', 'VFoPMgM0wp', 'fani9GMGXxH');
-INSERT INTO `userRedis`(`id`, `name`, `phone`, `avatar`, `nick_name`) VALUES (30000, 'sMorT', '79027913956', 'VB3kksbncG', 'E4dJRX2b');
-INSERT INTO `userRedis`(`id`, `name`, `phone`, `avatar`, `nick_name`) VALUES (29999, 'sMorT', '97457376306', 'V5v5MsLleX', 'YOYhjBSs');

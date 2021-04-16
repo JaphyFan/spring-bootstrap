@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,6 +27,12 @@ public class OrderApi {
     @GetMapping("/v1/orders")
     @ApiOperation("获取全部订单")
     public ResponseEntity<List<String>> getOrders() {
+        return ResponseEntity.ok(Lists.newArrayList("order1", "order2"));
+    }
+
+    @PostMapping("/v1/orders")
+    @ApiOperation("获取全部订单")
+    public ResponseEntity<List<String>> updateOrder(@RequestBody OrderDto orderDto) {
         return ResponseEntity.ok(Lists.newArrayList("order1", "order2"));
     }
 

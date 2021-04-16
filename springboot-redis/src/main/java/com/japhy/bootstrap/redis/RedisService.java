@@ -28,6 +28,12 @@ public class RedisService {
         return userRedis;
     }
 
+    @Cacheable(value = "users", key = "#name", condition = "#name != null")
+    public List<UserRedis> queryUserByName(String name) {
+        System.out.println("the method is invoked");
+        return Lists.newArrayList();
+    }
+
     @Cacheable(value = "cacheList", key = "#name")
     public List<UserRedis> queryUserList(String name, List<UserRedis> userRedisList) {
         log.trace("users is listed");

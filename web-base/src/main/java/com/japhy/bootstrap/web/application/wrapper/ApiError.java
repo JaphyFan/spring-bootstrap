@@ -28,7 +28,7 @@ public class ApiError {
     private String msg;
 
     /**
-     * zipkin 使用的trackId
+     * zipkin 使用的traceId
      */
     private String traceId;
 

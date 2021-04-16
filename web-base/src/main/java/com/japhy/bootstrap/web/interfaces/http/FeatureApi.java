@@ -1,18 +1,15 @@
 package com.japhy.bootstrap.web.interfaces.http;
 
 import com.japhy.bootstrap.web.application.event.publisher.OrderCreatedEventPublisher;
-import com.japhy.bootstrap.web.application.mapper.OrderMapper;
 import com.japhy.bootstrap.web.domain.order.model.entity.Order;
 import com.japhy.bootstrap.web.infrastructure.annotations.LogExecutionTime;
-import com.japhy.bootstrap.web.interfaces.dto.OrderDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import java.util.Date;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +27,8 @@ import org.springframework.web.bind.annotation.RestController;
 @Api("demonstrate some features")
 public class FeatureApi {
 
-    private final OrderCreatedEventPublisher publisher;
+    @Setter
+    private OrderCreatedEventPublisher publisher;
 
     @GetMapping("/filter")
     public ResponseEntity<String> test() {
