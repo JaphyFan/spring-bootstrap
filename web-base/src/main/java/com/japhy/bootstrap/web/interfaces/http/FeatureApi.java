@@ -5,6 +5,7 @@ import com.japhy.bootstrap.web.domain.order.model.entity.Order;
 import com.japhy.bootstrap.web.infrastructure.annotations.LogExecutionTime;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import lombok.RequiredArgsConstructor;
@@ -49,7 +50,7 @@ public class FeatureApi {
     @LogExecutionTime
     @ApiOperation(value = "test get array param", notes = "@RequestParam will automatically split dot separated string")
     @GetMapping("/testArray")
-    ResponseEntity<List<String>> testArray(@RequestParam List<String> orderNos) {
+    ResponseEntity<List<String>> testArray(@ApiParam @RequestParam List<String> orderNos) {
         return ResponseEntity.ok(orderNos);
     }
 
@@ -59,5 +60,8 @@ public class FeatureApi {
         return ResponseEntity.ok("async test");
     }
 
-
+    @GetMapping("/optional")
+    public ResponseEntity<String> optional(@ApiParam @RequestParam(required = false) String test) {
+        return ResponseEntity.ok(test);
+    }
 }

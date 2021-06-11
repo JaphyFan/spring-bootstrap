@@ -77,8 +77,8 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.install.skip>true</maven.install.skip><!-- aggregator POMs not intended to be installed -->
     <maven.deploy.skip>true</maven.deploy.skip><!-- aggregator POMs not intended to be deployed -->
-    <guava.version>29.0-jre</guava.version>
-    <common.lang3.version>3.10</common.lang3.version>
+    <guava.version>30.1.1-jre</guava.version>
+    <common.lang3.version>3.11</common.lang3.version>
     <docker.image.prefix>demo-japhy</docker.image.prefix>
     <gson.version>2.8.6</gson.version>
     <spring-cloud.version>2020.0.2</spring-cloud.version>

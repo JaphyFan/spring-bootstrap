@@ -15,7 +15,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 @RequiredArgsConstructor
 public class KafkaService {
 
-    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
 
     public void sendMessage(String message) {
         User user = new User("japhy", 12L);
@@ -31,5 +31,6 @@ public class KafkaService {
         System.out.println("--------------- consuming --------------------");
         System.out.println(content);
     }
+
 
 }

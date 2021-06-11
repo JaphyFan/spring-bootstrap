@@ -15,7 +15,7 @@ import org.springframework.data.solr.server.support.HttpSolrClientFactoryBean;
  * @since 2020/5/20 16:26
  */
 @Configuration
-@Profile("dev")
+@Profile("server")
 @EnableSolrRepositories
 public class HttpSolrConfig {
 
