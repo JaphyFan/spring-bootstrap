@@ -1,0 +1,6 @@
++UnlockDiagnosticVMOptions
+CompileCommand=print,*JitTool.main
++PrintAssembly
++TraceClassLoading
++LogCompilation
+LogFile=./logs/logfile.log
