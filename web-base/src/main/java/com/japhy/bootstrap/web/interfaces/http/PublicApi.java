@@ -4,6 +4,7 @@ import com.japhy.bootstrap.web.application.mapper.OrderMapper;
 import com.japhy.bootstrap.web.domain.order.model.entity.Order;
 import com.japhy.bootstrap.web.interfaces.dto.OrderDto;
 import io.swagger.annotations.Api;
+import java.time.LocalDateTime;
 import java.util.Date;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,8 +28,9 @@ public class PublicApi {
     @GetMapping("/mapper")
     public ResponseEntity<OrderDto> mapper() {
         Date date = new Date();
+        LocalDateTime localDateTime = LocalDateTime.now();
         Order order =
-            Order.builder().createTime(date).id(1L).operatorId(1L).orderNo("no").status(1)
+            Order.builder().createTime(localDateTime).id(1L).operatorId(1L).orderNo("no").status(1)
                 .updateTime(date).userId(1L).build();
         return ResponseEntity.ok(OrderMapper.INSTANCE.orderToOrderDto(order));
     }

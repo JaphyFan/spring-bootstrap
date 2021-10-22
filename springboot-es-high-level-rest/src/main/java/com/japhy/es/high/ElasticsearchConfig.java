@@ -1,6 +1,5 @@
-package com.xhtec.bigdata.question.infrastructure.config;
+package com.japhy.es.high;
 
-import com.japhy.es.high.ElasticsearchProperties;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

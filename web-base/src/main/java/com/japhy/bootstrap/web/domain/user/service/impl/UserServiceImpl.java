@@ -5,6 +5,7 @@ import com.japhy.bootstrap.web.domain.user.entity.User;
 import com.japhy.bootstrap.web.domain.user.enums.Role;
 import com.japhy.bootstrap.web.domain.user.repository.UserRepository;
 import com.japhy.bootstrap.web.domain.user.service.UserService;
+import com.japhy.bootstrap.web.infrastructure.config.WebSecureConfig;
 import com.japhy.bootstrap.web.interfaces.dto.CreateUserRequest;
 import java.util.Objects;
 import java.util.Optional;
@@ -12,6 +13,7 @@ import javax.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@ConditionalOnBean(value = WebSecureConfig.class)
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;

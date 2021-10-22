@@ -2,6 +2,7 @@ package com.japhy.bootstrap.web.interfaces.http;
 
 import com.japhy.bootstrap.web.domain.user.entity.User;
 import com.japhy.bootstrap.web.domain.user.service.UserService;
+import com.japhy.bootstrap.web.infrastructure.config.WebSecureConfig;
 import com.japhy.bootstrap.web.infrastructure.util.JwtUtil;
 import com.japhy.bootstrap.web.infrastructure.util.WebUserDetailsService;
 import com.japhy.bootstrap.web.interfaces.dto.AuthenticationRequest;
@@ -10,6 +11,7 @@ import com.japhy.bootstrap.web.interfaces.dto.UserVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/public")
 @RequiredArgsConstructor
 @Api("认证")
+@ConditionalOnBean(value = WebSecureConfig.class)
 public class AuthApi {
 
     private final AuthenticationManager authenticationManager;

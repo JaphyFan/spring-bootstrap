@@ -1,6 +1,7 @@
 package com.japhy.bootstrap.web.domain.order.model.entity;
 
 import com.japhy.bootstrap.web.domain.order.enums.OrderStatus;
+import java.time.LocalDateTime;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +17,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.context.event.EventListener;
 
 /**
  * @author Japhy
@@ -41,7 +41,7 @@ public class Order {
     private Long userId;
 
     @Column(name = "create_time")
-    private Date createTime;
+    private LocalDateTime createTime;
 
     @Column(name = "update_time")
 
@@ -53,11 +53,11 @@ public class Order {
     private Integer status;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date timeStamp;
+    private Date timestamp;
 
     @PrePersist
     void createAt() {
-        this.createTime = new Date();
+        this.createTime = LocalDateTime.now();
         this.status = OrderStatus.CREATED.getStatus();
         // get current user
     }

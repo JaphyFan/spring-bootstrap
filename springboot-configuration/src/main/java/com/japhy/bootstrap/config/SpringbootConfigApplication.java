@@ -22,4 +22,5 @@ public class SpringbootConfigApplication {
         return new CustomConfigValidator();
     }
 
+
 }

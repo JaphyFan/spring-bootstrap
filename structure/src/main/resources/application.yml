@@ -52,4 +52,6 @@ spring:
         login-password: druid
         login-username: admin
 
+logging:
+  level.root: trace
 

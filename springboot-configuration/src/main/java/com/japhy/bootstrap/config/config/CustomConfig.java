@@ -34,4 +34,6 @@ public class CustomConfig {
     private String address;
 
     private String yamlProperty;
+
+    private String demo;
 }

@@ -76,8 +76,9 @@ public class OrderApi {
 
     @ApiOperation(value = "create order")
     @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
-        Order order1 = orderService.saveOrder(order);
+    public ResponseEntity<Order> createOrder(@RequestBody OrderDto order) {
+        OrderMapper orderMapper = OrderMapper.INSTANCE;
+        Order order1 = orderService.saveOrder(orderMapper.orderDtoToOrder(order));
         return ResponseEntity.created(URI.create("/api/v1/orders/" + order1.getId())).body(order1);
     }
 

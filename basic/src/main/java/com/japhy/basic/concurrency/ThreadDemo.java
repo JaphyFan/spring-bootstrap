@@ -2,6 +2,7 @@ package com.japhy.basic.concurrency;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Japhy
@@ -9,10 +10,14 @@ import java.util.concurrent.Executors;
  */
 public class ThreadDemo {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(10);
         executorService.submit(new Task());
         executorService.submit(new Task());
+        executorService.awaitTermination(100, TimeUnit.SECONDS);
+        if (executorService.isTerminated()) {
+            executorService.shutdownNow();
+        }
     }
 
     static class Task extends Thread {

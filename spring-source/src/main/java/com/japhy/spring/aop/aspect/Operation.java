@@ -6,6 +6,7 @@ package com.japhy.spring.aop.aspect;
  */
 public class Operation {
 
+    
     public void k() {
         System.out.println("its k ing inging");
     }

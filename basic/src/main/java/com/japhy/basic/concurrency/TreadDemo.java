@@ -1,5 +1,9 @@
 package com.japhy.basic.concurrency;
 
+import java.util.Collections;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * @author Japhy
  * @since 2020/11/3 10:21
@@ -7,6 +11,7 @@ package com.japhy.basic.concurrency;
 public class TreadDemo {
 
     public static void main(String[] args) {
+        ExecutorService executorService = Executors.newFixedThreadPool(1);
         for (int i = 0; i < 5; i++) {
             Runnable r = () -> {
                 int a = 1;
@@ -18,7 +23,7 @@ public class TreadDemo {
                     e.printStackTrace();
                 }
             };
-            Thread thread = new Thread(r);
+            Thread thread = new Thread(r, "hello");
             thread.start();
         }
     }

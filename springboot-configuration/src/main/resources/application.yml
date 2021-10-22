@@ -5,6 +5,10 @@ yaml-property: yaml-property
 spring:
   profiles:
     active: dev
+
+logging:
+  level:
+    root: trace
 ---
 spring.profiles: dev
 japhy.name: japhy
@@ -22,3 +26,4 @@ spring:
   cloud:
     refresh:
       extra-refreshable:
+

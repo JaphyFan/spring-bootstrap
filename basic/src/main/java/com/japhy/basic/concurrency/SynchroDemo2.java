@@ -17,6 +17,7 @@ public class SynchroDemo2 {
         SynchroDemo2 t = new SynchroDemo2();
         t.method();
         Thread thread = new Thread();
+
     }
 
 

@@ -15,4 +15,6 @@ public interface OrderMapper {
     OrderMapper INSTANCE = Mappers.getMapper(OrderMapper.class);
 
     OrderDto orderToOrderDto(Order order);
+
+    Order orderDtoToOrder(OrderDto order);
 }

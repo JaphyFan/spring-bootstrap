@@ -5,7 +5,7 @@
 - 用户
 - 订单
 
-## web 通用技术点
+## web common tec
 - [x] rest controller and test
 - [x] jpa and test
 - [ ] redis

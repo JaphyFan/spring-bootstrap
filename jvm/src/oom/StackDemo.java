@@ -16,7 +16,7 @@ public class StackDemo {
         List<HeapObj> heapObjList = new ArrayList<>();
 
         while (true) {
-//            heapObjList.add(new HeapObj());
+            heapObjList.add(new HeapObj());
         }
     }
 

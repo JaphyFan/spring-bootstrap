@@ -26,7 +26,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(jsr250Enabled = true, prePostEnabled = true, securedEnabled = true)
 @RequiredArgsConstructor
-@Profile("!unit-test")
+@Profile({"auth"})
 public class WebSecureConfig extends WebSecurityConfigurerAdapter {
 
     private final UserRepository userRepository;
@@ -43,7 +43,7 @@ public class WebSecureConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // 关闭cross site request forgery，开启cross origin resource shafe
+        // 关闭cross site request forgery，开启cross origin resource share
         http.cors().and().csrf().disable();
 
         // 关闭session 使用jwt

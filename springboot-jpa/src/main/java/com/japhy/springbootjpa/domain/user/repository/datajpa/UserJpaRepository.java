@@ -1,6 +1,7 @@
 package com.japhy.springbootjpa.domain.user.repository.datajpa;
 
 import com.japhy.springbootjpa.domain.user.entity.User;
+import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,4 +21,6 @@ public interface UserJpaRepository extends JpaRepository<User, Long> {
      * @return
      */
     Page<User> queryAllByNickNameContains(String nickName, Pageable pageable);
+
+    Optional<User> findFirstByName(String name);
 }

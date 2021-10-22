@@ -89,7 +89,7 @@
       -XX:MetaspaceSize=64m -XX:MaxMetaspaceSize=128m</argLine>
     <sonar.jacoco.reportPaths>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPaths>
     <surefireArgLine/>
-    <testcontainers.version>1.15.1</testcontainers.version>
+    <testcontainers.version>1.15.3</testcontainers.version>
   </properties>
 
   <dependencyManagement>
@@ -199,6 +199,13 @@
       <artifactId>lombok</artifactId>
       <scope>provided</scope>
     </dependency>
+
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-junit5</artifactId>
+      <version>2.15.0</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -236,6 +243,7 @@
     </resources>
 
     <finalName>${project.artifactId}-${project.version}</finalName>
+
     <pluginManagement>
       <plugins>
         <plugin>
@@ -332,8 +340,39 @@
             </reportsDirectory>
             <!--suppress UnresolvedMavenProperty -->
             <argLine>${argLine} @{surefireArgLine}</argLine>
+            <testFailureIgnore>false</testFailureIgnore>
+            <!--<argLine>-->
+            <!--  -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"-->
+            <!--</argLine>-->
+          <!--  <systemProperties>-->
+          <!--    <property>-->
+          <!--      <name>junit.jupiter.extensions.autodetection.enabled</name>-->
+          <!--      <value>true</value>-->
+          <!--    </property>-->
+          <!--  </systemProperties>-->
           </configuration>
+          <!--<dependencies>-->
+          <!--  <dependency>-->
+          <!--    <groupId>org.junit.platform</groupId>-->
+          <!--    <artifactId>junit-platform-surefire-provider</artifactId>-->
+          <!--    <version>1.2.0</version>-->
+          <!--  </dependency>-->
+          <!--  <dependency>-->
+          <!--    <groupId>org.aspectj</groupId>-->
+          <!--    <artifactId>aspectjweaver</artifactId>-->
+          <!--    <version>${aspectj.version}</version>-->
+          <!--  </dependency>-->
+          <!--</dependencies>-->
         </plugin>
+
+        <!--<plugin>-->
+        <!--  <groupId>io.qameta.allure</groupId>-->
+        <!--  <artifactId>allure-maven</artifactId>-->
+        <!--  <version>2.10.0</version>-->
+        <!--  <configuration>-->
+        <!--    <reportVersion>2.4.1</reportVersion>-->
+        <!--  </configuration>-->
+        <!--</plugin>-->
 
         <!-- performance tests -->
         <plugin>
