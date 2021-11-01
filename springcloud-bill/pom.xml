@@ -8,6 +8,7 @@
     <artifactId>bootstrap-parent</artifactId>
     <version>${revision}${changelist}</version>
   </parent>
+
   <artifactId>springcloud-bill</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>springcloud-bill</name>
