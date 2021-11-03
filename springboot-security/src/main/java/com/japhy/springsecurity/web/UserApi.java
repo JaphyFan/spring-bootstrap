@@ -1,7 +1,6 @@
 package com.japhy.springsecurity.web;
 
 import com.japhy.springsecurity.model.User;
-import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

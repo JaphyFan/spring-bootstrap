@@ -24,9 +24,9 @@ public class ThreadDemo {
 
         @Override
         public void run() {
-            Integer i = 1;
+            int i = 1;
             while (true) {
-                Integer j = 2;
+                int j = 2;
                 i += j;
             }
         }

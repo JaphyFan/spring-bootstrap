@@ -21,8 +21,6 @@ public class ReferenceCountingGc {
         oA = null;
         oB = null;
 
-        System.gc();
-
     }
 
     public static void main(String[] args) {

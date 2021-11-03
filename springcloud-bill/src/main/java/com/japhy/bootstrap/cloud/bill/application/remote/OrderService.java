@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Japhy
  * @since 2021/3/16 15:41
  */
-@FeignClient(value = "order-service")
+@FeignClient("cloud-order")
 public interface OrderService {
 
     @RequestMapping("/api/v1/orders")
