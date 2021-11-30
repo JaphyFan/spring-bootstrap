@@ -1,0 +1,50 @@
+server:
+  port: 6800
+
+
+spring:
+  jackson:
+    time-zone: Asia/Shanghai
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    open-in-view: false
+  shardingsphere:
+    datasource:
+      names: local
+      local:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/db0?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+        username: root
+        password: mysql
+        hikari:
+          maximum-pool-size: 20
+          minimum-idle: 3
+          connection-test-query: select 1
+    rules:
+      sharding:
+        binding-tables[0]: user
+        tables:
+          user:
+            actual-data-nodes: local.user$->{0..1}
+            table-strategy:
+              standard:
+                sharding-column: order_id
+                sharding-algorithm-name: order-id-inline
+            key-generate-strategy:
+              column: order_id
+              key-generator-name: snowflake
+        sharding-algorithms:
+          order-id-inline:
+            type: INLINE
+            props:
+              algorithm-expression: user$->{order_id % 2}
+        key-generators:
+          snowflake.type: SNOWFLAKE
+          snowflake:
+            props:
+              worker-id: 123
+    props:
+      sql: true
