@@ -3,6 +3,7 @@ package com.japhy.bootstrap.redis.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
@@ -61,6 +62,9 @@ public class RedisConfig {
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         om.activateDefaultTyping(om.getPolymorphicTypeValidator(),
                 ObjectMapper.DefaultTyping.NON_FINAL);
+        om.registerModule(new JavaTimeModule());
+        om.registerModule(new Jdk8Module());
+        om.registerModule(new ParameterNamesModule());
         jackson2JsonRedisSerializer.setObjectMapper(om);
         RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration
                 .defaultCacheConfig();

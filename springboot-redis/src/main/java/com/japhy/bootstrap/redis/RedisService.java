@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,6 @@ import org.springframework.stereotype.Service;
 public class RedisService {
 
     private final StringRedisTemplate redisTemplate;
-
 
     @Cacheable(value = "user", key = "#userRedis.getId()")
     public UserRedis saveUser(UserRedis userRedis) {

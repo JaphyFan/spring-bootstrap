@@ -5,6 +5,11 @@ spring:
   application:
     name: cloud-bill
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 eureka:
   client:
     service-url:

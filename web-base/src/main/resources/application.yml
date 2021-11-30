@@ -16,7 +16,11 @@ management:
       base-path: /mgm
       exposure:
         include: "*"
+  endpoint:
+    health:
+      show-details: always
 
 
 custom:
   word: hello
+

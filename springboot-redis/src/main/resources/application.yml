@@ -24,3 +24,5 @@ custom:
   config:
     redis:
       ttl: 1800
+#      输出springboot cache redis日志
+logging.level.org.springframework.cache: TRACE
