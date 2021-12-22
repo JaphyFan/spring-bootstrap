@@ -6,7 +6,10 @@ spring:
     driver-class-name: org.h2.Driver
     continue-on-error: false
     platform: h2
-#    schema: classpath:/db/schema.sql
+    hikari:
+      maximum-pool-size: 5
+      connection-test-query: "SELECT 1"
+  #    schema: classpath:/db/schema.sql
   h2:
     console:
       enabled: true

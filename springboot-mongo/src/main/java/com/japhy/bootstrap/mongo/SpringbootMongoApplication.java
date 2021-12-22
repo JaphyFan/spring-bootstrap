@@ -1,4 +1,4 @@
-package com.japhy.springbootmongo;
+package com.japhy.bootstrap.mongo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

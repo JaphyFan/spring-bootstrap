@@ -4,5 +4,3 @@ management:
     web:
       exposure:
         include: "*"
-swagger:
-  enabled: false

@@ -1,4 +1,4 @@
-package com.japhy.spring.aop;
+package com.japhy.spring.aop.aspect;
 
 import lombok.NoArgsConstructor;
 

@@ -1,4 +1,4 @@
-package com.japhy.spring.aop;
+package com.japhy.spring.aop.aspect;
 
 import java.lang.reflect.Method;
 import org.springframework.aop.AfterReturningAdvice;

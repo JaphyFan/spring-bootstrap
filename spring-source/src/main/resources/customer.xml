@@ -3,11 +3,11 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <bean id="customerService" class="com.japhy.spring.aop.CustomerService" >
+  <bean id="customerService" class="com.japhy.spring.aop.aspect.CustomerService" >
     <property name="name" value="japhy"></property>
   </bean>
 
-  <bean id="beforeAdvice" class="com.japhy.spring.aop.BeforeAdvice"></bean>
+  <bean id="beforeAdvice" class="com.japhy.spring.aop.aspect.BeforeAdvice"></bean>
   <bean id="customerServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
     <property name="target" ref="customerService"/>
     <property name="interceptorNames">

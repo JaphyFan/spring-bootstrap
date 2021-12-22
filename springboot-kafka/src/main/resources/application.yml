@@ -1,3 +1,4 @@
+
 spring:
   kafka:
 #    bootstrap-servers:
@@ -9,4 +10,4 @@ spring:
       missingTopicsFatal: false
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-
+debug: true

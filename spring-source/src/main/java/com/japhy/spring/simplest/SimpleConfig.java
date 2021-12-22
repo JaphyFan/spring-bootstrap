@@ -8,6 +8,6 @@ import org.springframework.context.annotation.Configuration;
  * @since 2021/7/23 18:05
  */
 @Configuration
-@ComponentScan("com.japhy.spring.simplest")
+//@ComponentScan("com.japhy.spring.simplest")
 public class SimpleConfig {
 }

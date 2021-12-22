@@ -34,7 +34,7 @@ spring:
                 sharding-column: order_id
                 sharding-algorithm-name: order-id-inline
             key-generate-strategy:
-              column: order_id
+              column: id
               key-generator-name: snowflake
         sharding-algorithms:
           order-id-inline:

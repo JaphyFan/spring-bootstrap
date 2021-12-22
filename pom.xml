@@ -346,7 +346,7 @@
             <useSystemClassLoader>true</useSystemClassLoader>
             <reportsDirectory>${project.basedir}/target/surefire-reports</reportsDirectory>
             <!--suppress UnresolvedMavenProperty -->
-            <argLine>${argLine} @{surefireArgLine} -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
+            <argLine>${argLine} ${surefireArgLine} -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
             <testFailureIgnore>false</testFailureIgnore>
             <systemProperties>
               <property>
