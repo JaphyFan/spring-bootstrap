@@ -1,6 +1,6 @@
-package com.japhy.springsecurity.web;
+package com.japhy.security.web;
 
-import com.japhy.springsecurity.model.User;
+import com.japhy.security.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

@@ -1,4 +1,4 @@
-package com.japhy.springsecurity.web;
+package com.japhy.security.web;
 
 import com.google.code.kaptcha.Producer;
 import java.awt.image.BufferedImage;

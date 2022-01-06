@@ -1,4 +1,4 @@
-package com.japhy.springsecurity.model;
+package com.japhy.security.model;
 
 import java.util.Collection;
 import java.util.List;

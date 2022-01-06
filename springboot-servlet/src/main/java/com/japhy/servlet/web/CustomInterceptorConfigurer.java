@@ -17,4 +17,5 @@ public class CustomInterceptorConfigurer implements WebMvcConfigurer {
         registry.addInterceptor(new InterceptorDemo()).addPathPatterns("/api/v1/gopage");
         WebMvcConfigurer.super.addInterceptors(registry);
     }
+
 }

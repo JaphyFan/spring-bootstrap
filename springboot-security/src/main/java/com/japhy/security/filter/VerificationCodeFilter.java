@@ -1,6 +1,6 @@
-package com.japhy.springsecurity.filter;
+package com.japhy.security.filter;
 
-import com.japhy.springsecurity.VerificationException;
+import com.japhy.security.VerificationException;
 import java.io.IOException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 /**

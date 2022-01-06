@@ -43,7 +43,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Async
     public Future<Order> asyncGetOrderById(Long id) throws InterruptedException {
-        log.info("thread name is -----------------" + Thread.currentThread().getName());
+        log.info("thread name is ------------dsfjlsjdlfjsldjf;sj;jlsjdfsdsjldjljfs;jf;sf-----" + Thread.currentThread().getName());
         TimeUnit.SECONDS.sleep(10L);
         return new AsyncResult<>(Order.builder().orderNo("orderNo").build());
     }

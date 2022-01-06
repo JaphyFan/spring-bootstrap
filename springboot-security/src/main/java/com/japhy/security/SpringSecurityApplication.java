@@ -1,4 +1,4 @@
-package com.japhy.springsecurity;
+package com.japhy.security;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

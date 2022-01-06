@@ -1,4 +1,4 @@
-package com.japhy.bootstrap.web.application.mapper;
+package com.japhy.bootstrap.web.application.converter;
 
 import com.japhy.bootstrap.web.domain.order.model.entity.Order;
 import com.japhy.bootstrap.web.interfaces.dto.OrderDto;

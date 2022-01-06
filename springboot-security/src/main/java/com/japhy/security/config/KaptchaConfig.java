@@ -1,4 +1,4 @@
-package com.japhy.springsecurity.config;
+package com.japhy.security.config;
 
 import com.google.code.kaptcha.Producer;
 import com.google.code.kaptcha.impl.DefaultKaptcha;

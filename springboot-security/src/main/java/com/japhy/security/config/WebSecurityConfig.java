@@ -1,12 +1,13 @@
-package com.japhy.springsecurity.config;
+package com.japhy.security.config;
 
-import com.japhy.springsecurity.filter.VerificationCodeFilter;
+import com.japhy.security.filter.VerificationCodeFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.lang.NonNull;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,15 +20,18 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * @since 2020/4/14 16:35
  */
 @EnableWebSecurity
-public class WebSecureConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final UserDetailsService userDetailsService;
+    @Autowired
+    @Lazy
+    @Qualifier("userRepositoryUserDetailsService")
+    private UserDetailsService userDetailsService;
 
-    public WebSecureConfig(
-        @Lazy @NonNull @Qualifier("userRepositoryUserDetailsService")
-            UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
+//    public WebSecurityConfig(
+//        @Lazy @NonNull @Qualifier("userRepositoryUserDetailsService")
+//            UserDetailsService userDetailsService) {
+//        this.userDetailsService = userDetailsService;
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -46,7 +50,7 @@ public class WebSecureConfig extends WebSecurityConfigurerAdapter {
             .logout().logoutSuccessUrl("/")
             .logoutSuccessHandler((request, response, authentication) -> {
                 // to something when log out
-            }).invalidateHttpSession(true)
+            }).invalidateHttpSession(true).clearAuthentication(true)
             .deleteCookies("cookie1", "cookie2")
 
             .and()
@@ -55,6 +59,11 @@ public class WebSecureConfig extends WebSecurityConfigurerAdapter {
 
         http.addFilterBefore(new VerificationCodeFilter(), UsernamePasswordAuthenticationFilter.class);
 
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/resources/**", "/images/**", "/styles/**");
     }
 
     @Override

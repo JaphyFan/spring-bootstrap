@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.boot.web.servlet.support.SpringBootServletInitializer</OriginalElement>
+  <nodes>
+    <node x="48.0" y="-274.0">org.springframework.web.context.AbstractContextLoaderInitializer</node>
+    <node x="387.5" y="-274.0">org.springframework.boot.web.servlet.support.SpringBootServletInitializer</node>
+    <node x="78.0" y="-414.0">org.springframework.web.WebApplicationInitializer</node>
+    <node x="47.0" y="-34.0">org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer</node>
+    <node x="35.5" y="-154.0">org.springframework.web.servlet.support.AbstractDispatcherServletInitializer</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.web.context.AbstractContextLoaderInitializer" target="org.springframework.web.WebApplicationInitializer" relationship="REALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer" target="org.springframework.web.servlet.support.AbstractDispatcherServletInitializer" relationship="GENERALIZATION">
+      <point x="-80.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.boot.web.servlet.support.SpringBootServletInitializer" target="org.springframework.web.WebApplicationInitializer" relationship="REALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="520.0" y="-320.0" />
+      <point x="200.0" y="-320.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.web.servlet.support.AbstractDispatcherServletInitializer" target="org.springframework.web.context.AbstractContextLoaderInitializer" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="1.0" showDependencies="false" x="344.0" y="-210.0" />
+  <SelectedNodes>
+    <node>org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

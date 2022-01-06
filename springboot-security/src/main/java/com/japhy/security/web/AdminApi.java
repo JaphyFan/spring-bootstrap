@@ -1,4 +1,4 @@
-package com.japhy.springsecurity.web;
+package com.japhy.security.web;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

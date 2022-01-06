@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.beans.factory.config.PropertyResourceConfigurer</OriginalElement>
+  <nodes>
+    <node x="221.5" y="0.0">java.lang.FunctionalInterface</node>
+    <node x="28.0" y="0.0">org.springframework.core.Ordered</node>
+    <node x="191.0" y="78.0">org.springframework.beans.factory.config.BeanFactoryPostProcessor</node>
+    <node x="0.0" y="78.0">org.springframework.core.PriorityOrdered</node>
+    <node x="204.0" y="156.0">org.springframework.beans.factory.config.PropertyResourceConfigurer</node>
+    <node x="473.0" y="78.0">org.springframework.core.io.support.PropertiesLoaderSupport</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.beans.factory.config.PropertyResourceConfigurer" target="org.springframework.core.PriorityOrdered" relationship="REALIZATION">
+      <point x="-68.75" y="-14.0" />
+      <point x="272.75" y="136.0" />
+      <point x="203.75" y="136.0" />
+      <point x="203.75" y="126.0" />
+      <point x="85.5" y="126.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.PropertyResourceConfigurer" target="org.springframework.core.io.support.PropertiesLoaderSupport" relationship="GENERALIZATION">
+      <point x="68.75" y="-14.0" />
+      <point x="410.25" y="136.0" />
+      <point x="597.5" y="136.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.PropertyResourceConfigurer" target="org.springframework.beans.factory.config.BeanFactoryPostProcessor" relationship="REALIZATION">
+      <point x="-68.75" y="-14.0" />
+      <point x="272.75" y="136.0" />
+      <point x="203.75" y="136.0" />
+      <point x="203.75" y="126.0" />
+      <point x="322.0" y="126.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.core.PriorityOrdered" target="org.springframework.core.Ordered" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.BeanFactoryPostProcessor" target="java.lang.FunctionalInterface" relationship="ANNOTATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="361.0" y="92.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

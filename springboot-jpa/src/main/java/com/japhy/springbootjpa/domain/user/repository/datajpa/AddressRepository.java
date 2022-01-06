@@ -3,6 +3,7 @@ package com.japhy.springbootjpa.domain.user.repository.datajpa;
 import com.japhy.springbootjpa.domain.user.entity.Address;
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.RepositoryDefinition;
 
 /**
  * @author Japhy

@@ -1,6 +1,6 @@
-package com.japhy.springsecurity.repository;
+package com.japhy.security.repository;
 
-import com.japhy.springsecurity.model.User;
+import com.japhy.security.model.User;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 

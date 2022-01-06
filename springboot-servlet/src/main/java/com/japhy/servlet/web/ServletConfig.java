@@ -1,5 +1,8 @@
 package com.japhy.servlet.web;
 
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.japhy.servlet.web.filter.RequestResponseLoggingFilter;
 import com.japhy.servlet.web.filter.TransactionFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -33,5 +36,14 @@ public class ServletConfig {
         registrationBean.setFilter(new TransactionFilter());
         registrationBean.addUrlPatterns("/api/v1/features/*");
         return registrationBean;
+    }
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        objectMapper.setSerializationInclusion(Include.NON_NULL);
+        objectMapper.findAndRegisterModules();
+        return objectMapper;
     }
 }

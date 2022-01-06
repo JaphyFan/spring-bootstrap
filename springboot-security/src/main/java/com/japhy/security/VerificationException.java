@@ -1,4 +1,4 @@
-package com.japhy.springsecurity;
+package com.japhy.security;
 
 import javax.naming.AuthenticationException;
 

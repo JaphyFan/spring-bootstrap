@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.core.io.support.ResourcePropertiesPersister</OriginalElement>
+  <nodes>
+    <node x="79.5" y="-274.0">org.springframework.util.PropertiesPersister</node>
+    <node x="44.5" y="-154.0">org.springframework.util.DefaultPropertiesPersister</node>
+    <node x="36.0" y="-34.0">org.springframework.core.io.support.ResourcePropertiesPersister</node>
+  </nodes>
+  <notes>
+    <note x="117.0" y="-82.0">
+      <node>org.springframework.core.io.support.ResourcePropertiesPersister</node>
+      <value>xml 属性读取实现</value>
+      <edge>
+        <point x="0.0" y="0.0" />
+        <point x="0.0" y="0.0" />
+      </edge>
+    </note>
+  </notes>
+  <edges>
+    <edge source="org.springframework.util.DefaultPropertiesPersister" target="org.springframework.util.PropertiesPersister" relationship="REALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.core.io.support.ResourcePropertiesPersister" target="org.springframework.util.DefaultPropertiesPersister" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="1.0" showDependencies="false" x="180.0" y="-140.0" />
+  <SelectedNodes>
+    <node>org.springframework.core.io.support.ResourcePropertiesPersister</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

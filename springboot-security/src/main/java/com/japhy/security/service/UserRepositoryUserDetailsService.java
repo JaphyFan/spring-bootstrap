@@ -1,7 +1,7 @@
-package com.japhy.springsecurity.service;
+package com.japhy.security.service;
 
-import com.japhy.springsecurity.model.User;
-import com.japhy.springsecurity.repository.UserRepository;
+import com.japhy.security.model.User;
+import com.japhy.security.repository.UserRepository;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;

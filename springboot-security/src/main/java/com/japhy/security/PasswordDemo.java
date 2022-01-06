@@ -1,4 +1,4 @@
-package com.japhy.springsecurity;
+package com.japhy.security;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
