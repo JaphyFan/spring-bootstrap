@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
+ * User Authentication api.
+ * <p> use jwt to authorize users.
  * @author Japhy
  * @since 2021/1/30 14:48
  */

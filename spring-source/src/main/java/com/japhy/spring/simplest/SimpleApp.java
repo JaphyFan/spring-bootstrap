@@ -3,6 +3,8 @@ package com.japhy.spring.simplest;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.aop.framework.AopContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -16,10 +18,10 @@ public class SimpleApp {
     private static Logger logger = LoggerFactory.getLogger(SimpleApp.class);
 
     public static void main(String[] args) {
+
         ApplicationContext context =
                 new AnnotationConfigApplicationContext(SimpleConfig.class);
         for (String beanDefinitionName : context.getBeanDefinitionNames()) {
-
             logger.info("bean name : " + beanDefinitionName);
         }
         System.out.println(context.getBeanDefinitionCount());

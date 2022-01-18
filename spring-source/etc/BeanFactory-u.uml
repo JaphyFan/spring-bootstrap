@@ -17,7 +17,18 @@
     <node x="355.5" y="-494.0">org.springframework.beans.factory.config.ConfigurableBeanFactory</node>
     <node x="955.0" y="-494.0">org.springframework.beans.factory.ListableBeanFactory</node>
   </nodes>
-  <notes />
+  <notes>
+    <note x="728.0" y="-191.0">
+      <node>org.springframework.beans.factory.config.ConfigurableListableBeanFactory</node>
+      <value>集成了Beanfactory主要接口</value>
+      <edge>
+        <point x="0.0" y="0.0" />
+        <point x="700.0" y="-304.0" />
+        <point x="822.0" y="-304.0" />
+        <point x="0.0" y="0.0" />
+      </edge>
+    </note>
+  </notes>
   <edges>
     <edge source="org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory" target="org.springframework.beans.factory.support.AbstractBeanFactory" relationship="GENERALIZATION">
       <point x="-80.0" y="-14.0" />
@@ -61,15 +72,15 @@
       <point x="1000.0" y="-420.0" />
       <point x="-60.0" y="14.0" />
     </edge>
+    <edge source="org.springframework.beans.factory.support.StaticListableBeanFactory" target="org.springframework.beans.factory.ListableBeanFactory" relationship="REALIZATION">
+      <point x="20.0" y="-14.0" />
+      <point x="-20.0" y="14.0" />
+    </edge>
     <edge source="org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory" target="org.springframework.beans.factory.config.AutowireCapableBeanFactory" relationship="REALIZATION">
       <point x="80.0" y="-14.0" />
       <point x="520.0" y="-360.0" />
       <point x="700.0" y="-360.0" />
       <point x="-80.0" y="14.0" />
-    </edge>
-    <edge source="org.springframework.beans.factory.support.StaticListableBeanFactory" target="org.springframework.beans.factory.ListableBeanFactory" relationship="REALIZATION">
-      <point x="20.0" y="-14.0" />
-      <point x="-20.0" y="14.0" />
     </edge>
     <edge source="org.springframework.beans.factory.config.ConfigurableListableBeanFactory" target="org.springframework.beans.factory.config.ConfigurableBeanFactory" relationship="INTERFACE_GENERALIZATION">
       <point x="0.0" y="-14.0" />
@@ -108,12 +119,10 @@
       <point x="-60.0" y="14.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Compact" zoom="1.0" showDependencies="false" x="603.0" y="-390.0" />
-  <SelectedNodes>
-    <node>org.springframework.beans.factory.support.FactoryBeanRegistrySupport</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic Compact" zoom="1.0" showDependencies="false" x="647.0" y="-390.0" />
+  <SelectedNodes />
   <Categories />
   <SCOPE>All</SCOPE>
-  <VISIBILITY>public</VISIBILITY>
+  <VISIBILITY>private</VISIBILITY>
 </Diagram>
 
