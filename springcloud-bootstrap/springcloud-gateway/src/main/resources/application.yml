@@ -1,0 +1,67 @@
+server:
+  port: 9002
+#  TODO didn't achieve this because ssl handshake failure
+  ssl:
+    key-store: classpath:keystore/edge.p12
+    key-password: localhost
+    key-store-type: PKCS12
+    key-alias: test
+#    trust-store-type: PKCS12
+#    trust-store: classpath:keystore/edge.p12
+#    trust-store-password: localhost
+    enabled: false
+logging:
+  level:
+    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
+    org.springframework.cloud.gateway: TRACE
+
+app.eureka-server: localhost
+app.config-server: localhost
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    initial-instance-info-replication-interval-seconds: 5
+    registry-fetch-interval-seconds: 5
+  instance:
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 5
+
+spring:
+  application:
+    name: springcloud-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: order-router
+          uri: lb://order-service
+          predicates:
+            - Path=/order/**
+            - Path=/openapi/**
+        - id: eureka-router
+          uri: lb://${app.eureka-server}:8761
+          predicates:
+            - Path=/eureka/api/{segment}
+          filters:
+            - SetPath=/eureka/{segment}
+        - id: eureka-web-start
+          uri: http://${app.eureka-server}:8761
+          predicates:
+            - Path=/eureka/web
+          filters:
+            - SetPath=/
+        - id: eureka-web-other
+          uri: http://${app.eureka-server}:8761
+          predicates:
+            - Path=/eureka/**
+        - id: config-server
+          uri: http://${app.config-server}:8888
+          predicates:
+            - Path=/config/**
+          filers:
+            - RewritePath=/config/(?<segment>.*), /$\{segment}
+  security:
+    user:
+      password: hello
+

@@ -1,0 +1,37 @@
+server:
+  port: 8889
+
+
+management:
+  endpoint:
+    health:
+      show-details: "ALWAYS"
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+debug: true
+
+spring:
+  profiles:
+    active: native
+  #  security:
+#    user:
+#      name: hello
+#      password: hello
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: /Users/japhy/Documents/code/bootstrap/springcloud-bootstrap/config-repo
+    #      server:
+        #        git:
+#          uri: https://github.com/spring-cloud-samples/config-repo
+#          clone-on-start: true
+logging:
+  level:
+    root: debug
+#    添加密码加密
+encrypt:
+  key: imjaphy
+

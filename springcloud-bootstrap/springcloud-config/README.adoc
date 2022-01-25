@@ -1,0 +1,7 @@
+## info used for testing
+curl hello:hello@localhost:8888
+
+curl -k http://user:hello@localhost:8889/encrypt  --data-urlencode "hello"
+
+curl -k http://user:hello@localhost:8889/decrypt -d b02c85ccaf00b6922c297815007eebc032909d2428a4074410a69c1ccc8d8606
+

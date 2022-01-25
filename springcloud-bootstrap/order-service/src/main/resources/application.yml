@@ -1,0 +1,93 @@
+spring.config.import: "configserver:"
+server:
+  port: 9001
+spring:
+  application:
+    name: order-service
+  cloud:
+    config:
+      fail-fast: true
+      retry:
+        initial-interval: 3000
+        multiplier: 1.3
+        max-interval: 10000
+        max-attempts: 20
+      uri: http://localhost:8889
+#      username: ${CONFIG_SERVER_USER}
+#      password: ${CONFIG_SERVER_PWD}
+      username: user
+      password: hello
+
+custom.name: custom
+project.basedir: @project.basedir@
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+resilience4j:
+#  timelimiter:
+#  只支持reactor模式
+#    instances:
+#      user:
+#        timeoutDuration: 20s
+
+  circuitbreaker:
+    instances:
+      user:
+        allowHealthIndicatorToFail: false
+        registerHealthIndicator: true
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10000
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        ignoreExceptions:
+          - com.japhy.cloud.common.exceptions.InvalidInputException
+          - com.japhy.cloud.common.exceptions.NotFoundException
+
+  retry:
+    instances:
+      user:
+        maxAttempts: 3
+        waitDuration: 1000
+        retryExceptions:
+          - feign.FeignException
+  timelimiter:
+    configs:
+      default:
+        timeoutDuration: 10s
+
+feign:
+  circuitbreaker:
+    enabled: true
+
+logging:
+  level.com.japhy.cloud.order.application.service.impl.FeignFeatureServcie: debug
+
+---
+spring:
+  config:
+    activate:
+      on-profile: kafka
+  cloud:
+    stream:
+      default-binder: kafka
+      kafka:
+        binder:
+          replication-factor: 1
+  zipkin:
+    sender:
+      type: kafka
+  sleuth:
+    sampler:
+      probability: 1.0
+  kafka:
+    bootstrap-servers: localhost:9092
