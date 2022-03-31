@@ -32,7 +32,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <hibernate.version>5.2.18.Final</hibernate.version>
-    <spring.version>5.2.7.RELEASE</spring.version>
+    <spring.version>5.3.18</spring.version>
     <h2.version>1.4.190</h2.version>
     <junit.version>4.12</junit.version>
     <junit-jupiter.version>5.5.2</junit-jupiter.version>
