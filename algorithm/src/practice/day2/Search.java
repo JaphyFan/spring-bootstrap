@@ -1,4 +1,4 @@
-package day2;
+package practice.day2;
 
 /**
  * @author Japhy

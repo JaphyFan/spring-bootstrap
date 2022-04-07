@@ -20,6 +20,7 @@ public class WebBaseApplication {
         System.out.println(UriComponentsBuilder.fromHttpUrl("http://catfact.ninja/fact")
                 .encode()
                 .toUriString());
+
     }
 
 }

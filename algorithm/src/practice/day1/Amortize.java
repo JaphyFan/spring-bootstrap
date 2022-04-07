@@ -1,4 +1,4 @@
-package day1;
+package practice.day1;
 
 import com.google.common.collect.Lists;
 import java.util.Arrays;

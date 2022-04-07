@@ -1,0 +1,6 @@
+datasource:
+  url: jdbc:mysql://localhost:3306/web_base?useUnicode=true&characterEncoding=utf-8
+  username: root
+  password: mysql
+thymeleaf:
+  cache: false

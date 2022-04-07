@@ -1,4 +1,5 @@
-package queue;
+package structure.queue;
+
 
 /**
  * 基本 实现queue 结构.
@@ -14,9 +15,5 @@ public class QueueDemo {
         private int[] data;
         private int headIndex;
 
-
     }
-
-
-
 }
