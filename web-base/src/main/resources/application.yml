@@ -1,7 +1,6 @@
 server:
   port: 9999
 
-spring:
   application:
     name: web-base
   devtools:

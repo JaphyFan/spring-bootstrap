@@ -1,5 +1,6 @@
 package com.japhy.springbootjpa.domain.user.entity;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.StringJoiner;
 import javax.persistence.Column;
@@ -25,19 +26,22 @@ import org.hibernate.annotations.Where;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
+@AllArgsConstructor
 @Table(name = "address")
 @ToString(callSuper = true)
 @SQLDelete(sql = "update address set deleted = 1 where id = ?")
 @Where(clause = "deleted = 0")
-public class Address extends AbstractEntity{
+public class Address extends AbstractEntity {
 
     private String city;
 
     @Column(name = "user_id")
     private Long userId;
+
+    public Address() {
+        super();
+    }
 
     @Override
     public boolean equals(Object o) {

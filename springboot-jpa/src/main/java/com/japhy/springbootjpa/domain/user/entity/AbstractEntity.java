@@ -31,6 +31,12 @@ public class AbstractEntity implements Serializable {
 
     private static final long serialVersionUID = -5469016757179436385L;
 
+    public AbstractEntity() {
+        LocalDateTime now = LocalDateTime.now();
+        this.creatTime = now;
+        this.updateTime = now;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(updatable = false)

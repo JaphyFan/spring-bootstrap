@@ -25,7 +25,6 @@ import org.hibernate.annotations.Where;
  * @author Japhy
  * @date 2019/12/19 10:59
  */
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 /**
@@ -39,6 +38,10 @@ import org.hibernate.annotations.Where;
 @SQLDelete(sql = "update user set deleted = 1 where id = ? and version = ?")
 @Where(clause = "deleted = 0")
 public class User extends AbstractEntity {
+
+    public User() {
+        super();
+    }
 
     @ToString.Include
     private String name;
