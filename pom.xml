@@ -8,7 +8,7 @@
   <parent>
     <artifactId>spring-boot-starter-parent</artifactId>
     <groupId>org.springframework.boot</groupId>
-    <version>2.7.3</version>
+    <version>2.4.4</version>
   </parent>
 
   <groupId>com.japhy.bootstrap</groupId>
@@ -67,13 +67,11 @@
     <module>springcloud-bill</module>
     <module>springboot-sharding</module>
     <module>springcloud-bootstrap</module>
-    <module>sql-executor</module>
-    <module>springboot-neo4j</module>
   </modules>
 
   <!--  配置依赖的版本-->
   <properties>
-    <revision>0.0.3</revision>
+    <revision>0.0.2</revision>
     <changelist>-RELEASE</changelist>
     <java.version>17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -85,7 +83,7 @@
     <docker.image.prefix>demo-japhy</docker.image.prefix>
     <gson.version>2.8.6</gson.version>
     <spring-cloud.version>2020.0.5</spring-cloud.version>
-    <spring.boot.version>2.7.3</spring.boot.version>
+    <spring.boot.version>2.4.4</spring.boot.version>
     <checkstyle.config.location>codestyle/checkstyle.xml</checkstyle.config.location>
     <maven_checkstyle_version>3.1.1</maven_checkstyle_version>
     <argLine>-Xms256m -Xmx256m -Dfile.encoding=UTF-8

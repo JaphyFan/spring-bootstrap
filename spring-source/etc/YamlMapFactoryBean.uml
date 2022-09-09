@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.beans.factory.config.YamlMapFactoryBean</OriginalElement>
+  <nodes>
+    <node x="620.0" y="-34.0">org.springframework.beans.factory.config.YamlPropertiesFactoryBean</node>
+    <node x="710.0" y="-214.0">org.springframework.beans.factory.FactoryBean</node>
+    <node x="346.0" y="-34.0">org.springframework.beans.factory.config.YamlMapFactoryBean</node>
+    <node x="97.0" y="-214.0">org.springframework.beans.factory.config.YamlProcessor</node>
+    <node x="435.5" y="-214.0">org.springframework.beans.factory.InitializingBean</node>
+    <node x="50.0" y="-34.0">org.springframework.boot.env.OriginTrackedYamlLoader</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.boot.env.OriginTrackedYamlLoader" target="org.springframework.beans.factory.config.YamlProcessor" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.YamlPropertiesFactoryBean" target="org.springframework.beans.factory.InitializingBean" relationship="REALIZATION">
+      <point x="40.0" y="-14.0" />
+      <point x="800.0" y="-120.0" />
+      <point x="520.0" y="-120.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.YamlMapFactoryBean" target="org.springframework.beans.factory.config.YamlProcessor" relationship="GENERALIZATION">
+      <point x="-60.0" y="-14.0" />
+      <point x="400.0" y="-80.0" />
+      <point x="180.0" y="-80.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.YamlMapFactoryBean" target="org.springframework.beans.factory.FactoryBean" relationship="REALIZATION">
+      <point x="60.0" y="-14.0" />
+      <point x="520.0" y="-100.0" />
+      <point x="800.0" y="-100.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.YamlPropertiesFactoryBean" target="org.springframework.beans.factory.config.YamlProcessor" relationship="GENERALIZATION">
+      <point x="-80.0" y="-14.0" />
+      <point x="680.0" y="-80.0" />
+      <point x="180.0" y="-80.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.YamlPropertiesFactoryBean" target="org.springframework.beans.factory.FactoryBean" relationship="REALIZATION">
+      <point x="40.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.YamlMapFactoryBean" target="org.springframework.beans.factory.InitializingBean" relationship="REALIZATION">
+      <point x="60.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="1.0" showDependencies="false" x="475.0" y="-110.0" />
+  <SelectedNodes>
+    <node>org.springframework.boot.env.OriginTrackedYamlLoader</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
