@@ -8,7 +8,7 @@
   <parent>
     <artifactId>spring-boot-starter-parent</artifactId>
     <groupId>org.springframework.boot</groupId>
-    <version>2.4.4</version>
+    <version>2.7.3</version>
   </parent>
 
   <groupId>com.japhy.bootstrap</groupId>
@@ -58,7 +58,6 @@
     <module>springboot-redis</module>
     <module>springboot-servlet</module>
     <module>springboot-hbase</module>
-    <module>springboot-solr</module>
     <module>springboot-security</module>
     <module>springboot-rabbitmq</module>
     <module>structure</module>
@@ -83,7 +82,7 @@
     <docker.image.prefix>demo-japhy</docker.image.prefix>
     <gson.version>2.8.6</gson.version>
     <spring-cloud.version>2020.0.5</spring-cloud.version>
-    <spring.boot.version>2.4.4</spring.boot.version>
+    <spring.boot.version>2.7.3</spring.boot.version>
     <checkstyle.config.location>codestyle/checkstyle.xml</checkstyle.config.location>
     <maven_checkstyle_version>3.1.1</maven_checkstyle_version>
     <argLine>-Xms256m -Xmx256m -Dfile.encoding=UTF-8
