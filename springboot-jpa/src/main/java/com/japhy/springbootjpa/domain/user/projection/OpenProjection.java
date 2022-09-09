@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
  * @author Japhy
  * @since 2021/3/19 10:40
  */
-public interface OpenProjection {
+public interface OpenProjection extends ProjectionRoot{
 
     @Value("#{target.id + '' + target.name}")
     String combinedIdAndName();
@@ -14,4 +14,9 @@ public interface OpenProjection {
     String getId();
 
     String getName();
+
+    @Override
+    default String getDescription() {
+        return this.getId() + "," + this.getName();
+    }
 }

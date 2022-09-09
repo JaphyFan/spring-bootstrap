@@ -13,14 +13,9 @@ public class SpringbootConfigApplication {
         SpringApplication.run(SpringbootConfigApplication.class, args);
     }
 
-    /**
-     *
-     * TODO: why must call this name? japhy 2020/1/16
-     */
     @Bean
     public static Validator configurationPropertiesValidator() {
         return new CustomConfigValidator();
     }
-
 
 }

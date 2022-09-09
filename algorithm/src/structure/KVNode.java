@@ -1,6 +1,5 @@
 package structure;
 
-import com.google.common.base.Objects;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -8,18 +7,21 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
+ * K,v对node.
+ *
  * @author Japhy
- * @since 2022/3/3 17:34
+ * @since 2022/5/12 17:22
  */
+@ToString
 @Getter
 @Setter
 @AllArgsConstructor
-@ToString
 @EqualsAndHashCode
-public class Node {
+public class KVNode<K, V> {
 
-    private Item item;
+    private K key;
 
-    private Node node;
+    private V value;
 
+    private KVNode<K, V> next;
 }

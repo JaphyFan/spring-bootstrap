@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,12 +19,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Getter
-@Setter
+
 @ApiModel(description = "order dto")
+@Data
 public class OrderDto {
 
-    public Long id;
+    public  Long id;
 
     private String orderNo;
 

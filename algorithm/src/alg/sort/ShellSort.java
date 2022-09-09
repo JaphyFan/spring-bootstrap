@@ -38,6 +38,29 @@ public class ShellSort {
         }
     }
 
+    private static void sort2(int[] arr) {
+        int n = arr.length;
+        int h = 1;
+        // 递增序列设置为3h+1
+        while (h < n / 3) {
+            h = h * 3 + 1;
+        }
+        while (h >= 1) {
+            for (int i = 0; i < h; i++) {
+                for (int j = i + h; j < n; j += h) {
+                    for (int k = j; k >= h; k = k - h) {
+                        if (arr[k - h] > arr[k]) {
+                            int mid = arr[k - h];
+                            arr[k - h] = arr[k];
+                            arr[k] = mid;
+                        }
+                    }
+                }
+            }
+            h = h / 3;
+        }
+    }
+
     public static void main(String[] args) {
         int[] nums = new int[] {2, 5, 1, 6, 4, 3};
         sort(nums);

@@ -3,6 +3,7 @@ package com.japhy.bootstrap.web.interfaces.http;
 import com.japhy.bootstrap.web.application.event.publisher.OrderCreatedEventPublisher;
 import com.japhy.bootstrap.web.domain.order.model.entity.Order;
 import com.japhy.bootstrap.web.infrastructure.annotations.LogExecutionTime;
+import com.japhy.bootstrap.web.interfaces.dto.UserVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -51,6 +52,7 @@ public class FeatureApi {
     @ApiOperation(value = "test get array param", notes = "@RequestParam will automatically split dot separated string")
     @GetMapping("/testArray")
     ResponseEntity<List<String>> testArray(@ApiParam @RequestParam List<String> orderNos) {
+        UserVo.builder().jwtToken("d").build();
         return ResponseEntity.ok(orderNos);
     }
 

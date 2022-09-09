@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +32,7 @@ public class PermissionLockJob {
 
     @Async
     @Scheduled(cron = "0/5 * * * * ?")
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public void sumOrder() {
         try {
             // 使用jpa无法获取到mysql返回的值0，1，2
@@ -58,7 +59,7 @@ public class PermissionLockJob {
 
     @Async
     @Scheduled(cron = "0/5 * * * * ?")
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public void sumOrder2() {
         try {
             int update = jdbcTemplate.update(

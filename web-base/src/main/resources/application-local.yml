@@ -25,6 +25,7 @@ spring:
   security:
     user:
       password: user
+      name: user
     oauth2:
       client:
         provider:

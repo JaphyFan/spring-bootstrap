@@ -21,7 +21,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 public enum DateRangeEnum {
-
     LAST_DAY(1, "昨天") {
         @Override
         public LocalDateTime getStartDate() {
@@ -107,3 +106,4 @@ public enum DateRangeEnum {
     }
 
 }
+
