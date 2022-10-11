@@ -1,11 +1,14 @@
 package com.japhy.springbootjpa.domain.user.entity;
 
+import com.japhy.springbootjpa.domain.user.event.UserCreatedEvent;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.StringJoiner;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -16,10 +19,12 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.Singular;
 import lombok.ToString;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+import org.springframework.data.domain.DomainEvents;
 
 /**
  * @author Japhy
@@ -37,11 +42,8 @@ import org.hibernate.annotations.Where;
 @ToString(callSuper = true)
 @SQLDelete(sql = "update user set deleted = 1 where id = ? and version = ?")
 @Where(clause = "deleted = 0")
+@NoArgsConstructor
 public class User extends AbstractEntity {
-
-    public User() {
-        super();
-    }
 
     @ToString.Include
     private String name;
@@ -51,9 +53,10 @@ public class User extends AbstractEntity {
     private String phone;
 
     private String avatar;
-//
-//    @ToString.Exclude
-//    private Set<Address> addressSet;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
+    @ToString.Exclude
+    private List<Address> addresses;
 
     @Column(columnDefinition = "TIME")
     private LocalTime localTime;
@@ -62,7 +65,6 @@ public class User extends AbstractEntity {
     private LocalDate localDate;
 
     @Column(columnDefinition = "TIMESTAMP")
-    @OneToMany
     private LocalDateTime localDateTime;
 
     @Override
@@ -81,6 +83,21 @@ public class User extends AbstractEntity {
     @Override
     public int hashCode() {
         return getClass().hashCode();
+    }
+
+    @DomainEvents
+    public void registerAddressEvent() {
+        registerEvent(new UserCreatedEvent(this));
+    }
+
+    public void addAddress(Address address) {
+        this.addresses.add(address);
+        address.setUser(this);
+    }
+
+    public void removeAddress(Address address) {
+        address.setUser(null);
+        this.addresses.remove(address);
     }
 
 

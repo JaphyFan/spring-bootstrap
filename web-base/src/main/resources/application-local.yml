@@ -13,8 +13,6 @@ spring:
     username: sa
     password:
     driver-class-name: org.h2.Driver
-    continue-on-error: false
-    platform: h2
     hikari:
       maximum-pool-size: 5
       connection-test-query: "SELECT 1"
@@ -30,6 +28,10 @@ spring:
       client:
         provider:
           jwt
+  sql:
+    init:
+      platform: h2
+      continue-on-error: false
 logging:
 #  file:
 #    name: web-base.log

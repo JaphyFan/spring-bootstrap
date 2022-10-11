@@ -7,9 +7,8 @@ import com.japhy.bootstrap.web.infrastructure.util.JwtUtil;
 import com.japhy.bootstrap.web.infrastructure.util.WebUserDetailsService;
 import com.japhy.bootstrap.web.interfaces.dto.AuthenticationRequest;
 import com.japhy.bootstrap.web.interfaces.dto.CreateUserRequest;
-import com.japhy.bootstrap.web.interfaces.dto.UserVo;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.http.HttpHeaders;
@@ -33,7 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/public")
 @RequiredArgsConstructor
-@Api("认证")
+@Tag(name = "认证")
 @ConditionalOnBean(value = WebSecureConfig.class)
 public class AuthApi {
 
@@ -45,7 +44,7 @@ public class AuthApi {
 
     private final UserService userService;
 
-    @ApiOperation("登录认证")
+    @Operation(description = "登录认证")
     @PostMapping("/authenticate")
     public ResponseEntity<User> login(@RequestBody AuthenticationRequest authRequest) {
         try {
@@ -62,7 +61,7 @@ public class AuthApi {
         }
     }
 
-    @ApiOperation("注册")
+    @Operation(description = "注册")
     @PostMapping("/register")
     public ResponseEntity<User> register(@RequestBody CreateUserRequest user) {
         User user1 = userService.createUser(user);

@@ -5,8 +5,8 @@ import com.japhy.bootstrap.web.domain.order.model.entity.Order;
 import com.japhy.bootstrap.web.domain.order.model.vo.OrderParam;
 import com.japhy.bootstrap.web.domain.order.service.OrderService;
 import com.japhy.bootstrap.web.interfaces.dto.OrderDto;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -32,12 +32,12 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/orders")
-@Api("订单")
+@Tag(name = "订单")
 public class OrderApi {
 
     private final OrderService orderService;
 
-    @ApiOperation(value = "find order by id ", notes = "http get method to find order by id, if not found, return http status code 404.")
+    @Operation(summary = "find order by id ", description = "http get method to find order by id, if not found, return http status code 404.")
     @GetMapping("{id}")
     public ResponseEntity<OrderDto> findById(@PathVariable("id") Long id) {
         Optional<Order> order = orderService.queryOrderById(id);
@@ -45,35 +45,35 @@ public class OrderApi {
             .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @ApiOperation(value = "query order")
+    @Operation(summary = "query order")
     @GetMapping
     public ResponseEntity<List<OrderDto>> queryOrder(OrderParam orderParam) {
         orderService.queryOrder(orderParam);
         return ResponseEntity.ok().build();
     }
 
-    @ApiOperation(value = "delete order")
+    @Operation(summary = "delete order")
     @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
         orderService.deleteOrder(id);
         return ResponseEntity.noContent().build();
     }
 
-    @ApiOperation(value = "update order")
+    @Operation(summary = "update order")
     @PutMapping("{id}")
     public ResponseEntity<Order> updateOrder(@RequestBody Order order, @PathVariable Long id) {
         orderService.updateOrder(order);
         return ResponseEntity.ok(order);
     }
 
-    @ApiOperation(value = "update order")
+    @Operation(summary = "update order")
     @PatchMapping("{id}")
     public ResponseEntity<Order> patchOrder(@RequestBody Order order, @PathVariable Long id) {
         orderService.updateOrder(order);
         return ResponseEntity.ok(order);
     }
 
-    @ApiOperation(value = "create order")
+    @Operation(summary = "create order")
     @PostMapping
     public ResponseEntity<Order> createOrder(@RequestBody OrderDto order) {
         OrderMapper orderMapper = OrderMapper.INSTANCE;
@@ -81,7 +81,7 @@ public class OrderApi {
         return ResponseEntity.created(URI.create("/api/v1/orders/" + order1.getId())).body(order1);
     }
 
-    @ApiOperation(value = "get order ")
+    @Operation(summary = "get order ")
     @GetMapping("/name")
     public ResponseEntity<String> getOrder(@RequestParam String name) {
         return ResponseEntity.ok(name);

@@ -3,7 +3,7 @@ package com.japhy.bootstrap.web.interfaces.http;
 import com.japhy.bootstrap.web.application.converter.OrderMapper;
 import com.japhy.bootstrap.web.domain.order.model.entity.Order;
 import com.japhy.bootstrap.web.interfaces.dto.OrderDto;
-import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.time.LocalDateTime;
 import java.util.Date;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/api/public/v1/features")
-@Api("demonstrate some public features")
+@Tag(name = "demonstrate some public features")
 public class PublicApi {
 
     @GetMapping("/mapper")

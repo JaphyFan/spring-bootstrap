@@ -4,9 +4,9 @@ import com.japhy.bootstrap.web.application.event.publisher.OrderCreatedEventPubl
 import com.japhy.bootstrap.web.domain.order.model.entity.Order;
 import com.japhy.bootstrap.web.infrastructure.annotations.LogExecutionTime;
 import com.japhy.bootstrap.web.interfaces.dto.UserVo;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/features")
-@Api("demonstrate some features")
+@Tag(name = "demonstrate some features")
 public class FeatureApi {
 
     @Setter
@@ -49,9 +49,9 @@ public class FeatureApi {
     }
 
     @LogExecutionTime
-    @ApiOperation(value = "test get array param", notes = "@RequestParam will automatically split dot separated string")
+    @Operation(summary = "test get array param", description = "@RequestParam will automatically split dot separated string")
     @GetMapping("/testArray")
-    ResponseEntity<List<String>> testArray(@ApiParam @RequestParam List<String> orderNos) {
+    ResponseEntity<List<String>> testArray(@Parameter @RequestParam List<String> orderNos) {
         UserVo.builder().jwtToken("d").build();
         return ResponseEntity.ok(orderNos);
     }
@@ -63,7 +63,7 @@ public class FeatureApi {
     }
 
     @GetMapping("/optional")
-    public ResponseEntity<String> optional(@ApiParam @RequestParam(required = false) String test) {
+    public ResponseEntity<String> optional(@Parameter @RequestParam(required = false) String test) {
         return ResponseEntity.ok(test);
     }
 }

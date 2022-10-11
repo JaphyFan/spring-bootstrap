@@ -16,6 +16,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.domain.AbstractAggregateRoot;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 /**
@@ -27,15 +28,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Setter
 @ToString
 @EntityListeners(AuditingEntityListener.class)
-public class AbstractEntity implements Serializable {
-
-    private static final long serialVersionUID = -5469016757179436385L;
-
-    public AbstractEntity() {
-        LocalDateTime now = LocalDateTime.now();
-        this.creatTime = now;
-        this.updateTime = now;
-    }
+public class AbstractEntity extends AbstractAggregateRoot<AbstractEntity> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,7 +39,7 @@ public class AbstractEntity implements Serializable {
     protected int version;
 
     @Column(columnDefinition = "tinyint(1) default 0")
-    protected int deleted;
+    protected Boolean deleted;
 
     @Column(name = "creat_time", nullable = false, columnDefinition = "TIMESTAMP")
     @CreatedDate

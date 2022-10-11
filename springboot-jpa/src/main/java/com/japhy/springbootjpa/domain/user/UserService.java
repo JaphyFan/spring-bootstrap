@@ -2,12 +2,14 @@ package com.japhy.springbootjpa.domain.user;
 
 import com.japhy.springbootjpa.domain.user.entity.Address;
 import com.japhy.springbootjpa.domain.user.entity.User;
+import com.japhy.springbootjpa.domain.user.event.UserCreatedEvent;
 import com.japhy.springbootjpa.domain.user.repository.datajpa.AddressRepository;
 import com.japhy.springbootjpa.domain.user.repository.datajpa.UserJpaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.event.TransactionalEventListener;
 
 /**
  * @author Japhy
@@ -32,8 +34,15 @@ public class UserService {
 
     @Transactional
     public void saveAddress(User user) {
-        Address build = Address.builder().userId(user.getId()).build();
+        Address build = Address.builder().user(user).build();
         addressRepository.save(build);
+    }
+
+    @TransactionalEventListener
+    public void handleUserCreatedEvent(UserCreatedEvent userCreatedEvent) {
+
+        log.info(userCreatedEvent.getUser().getName());
+
     }
 
 }
