@@ -19,6 +19,7 @@
     <testcontainers.version>1.15.1</testcontainers.version>
     <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
     <surefireArgLine/>
+    <argLine>--add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</argLine>
   </properties>
 
   <dependencies>
@@ -166,7 +167,6 @@
           <execution>
             <goals>
               <goal>build-info</goal>
-              <goal>repackage</goal>
             </goals>
           </execution>
         </executions>
