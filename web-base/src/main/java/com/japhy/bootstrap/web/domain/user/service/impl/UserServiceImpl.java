@@ -9,7 +9,7 @@ import com.japhy.bootstrap.web.infrastructure.config.WebSecureConfig;
 import com.japhy.bootstrap.web.interfaces.dto.CreateUserRequest;
 import java.util.Objects;
 import java.util.Optional;
-import javax.validation.ValidationException;
+import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

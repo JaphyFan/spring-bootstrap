@@ -2,7 +2,7 @@ package com.japhy.bootstrap.web.infrastructure.config;
 
 import com.japhy.bootstrap.web.domain.user.repository.UserRepository;
 import com.japhy.bootstrap.web.infrastructure.filter.JwtTokenFilter;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;

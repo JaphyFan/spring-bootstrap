@@ -1,23 +1,20 @@
 package com.japhy.basic.annotation;
 
 import com.google.auto.service.AutoService;
-import java.io.FileWriter;
 import java.nio.file.Files;
-import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Collections;
 import java.util.Set;
-import javax.annotation.processing.AbstractProcessor;
-import javax.annotation.processing.Filer;
-import javax.annotation.processing.Messager;
-import javax.annotation.processing.ProcessingEnvironment;
-import javax.annotation.processing.RoundEnvironment;
+import jakarta.annotation.processing.AbstractProcessor;
+import jakarta.annotation.processing.Filer;
+import jakarta.annotation.processing.Messager;
+import jakarta.annotation.processing.ProcessingEnvironment;
+import jakarta.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
-import javax.tools.Diagnostic;
 import javax.tools.Diagnostic.Kind;
 import lombok.SneakyThrows;
 

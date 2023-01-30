@@ -2,8 +2,8 @@ package com.japhy.springbootjpa.domain.user.repository.jpa;
 
 import com.japhy.springbootjpa.domain.user.entity.User;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 /**

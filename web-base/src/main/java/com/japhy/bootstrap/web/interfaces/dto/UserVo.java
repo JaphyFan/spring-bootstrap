@@ -1,12 +1,8 @@
 package com.japhy.bootstrap.web.interfaces.dto;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.google.gson.JsonParser;
 import java.util.List;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.Singular;
 
 /**
@@ -15,7 +11,6 @@ import lombok.Singular;
  */
 @Data
 @Builder
-@JsonDeserialize()
 public class UserVo {
 
     private String jwtToken;

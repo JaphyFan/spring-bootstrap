@@ -3,8 +3,8 @@ package com.japhy.springbootjpa.infrastructure.jpa;
 import com.japhy.springbootjpa.infrastructure.enums.Role;
 import java.util.Arrays;
 import java.util.Objects;
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 /**
  * @author Japhy

@@ -27,7 +27,7 @@ public class OrderDto {
 
     private Long userId;
 
-    @JsonFormat(pattern = "yyyy-MM-dd hh:MM:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Schema(name = "创建时间", example = "2021-09-01 11:00:00")
     private LocalDateTime createTime;
 

@@ -1,10 +1,8 @@
 package com.japhy.servlet.web.api;
 
 import com.japhy.servlet.web.dto.ValidationDto;
-import javax.validation.Valid;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.http.ResponseEntity;
