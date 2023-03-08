@@ -31,6 +31,7 @@ public class OrderSumTask {
     public void sumOrder() {
         try {
             Optional<Order> byId = orderRepository.findById(1L);
+
             if (byId.isPresent()) {
                 log.info("sum order get lock -----");
             } else {
@@ -43,8 +44,6 @@ public class OrderSumTask {
         } catch (Exception e) {
 
         }
-
-
     }
 
     @Async

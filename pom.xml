@@ -67,6 +67,7 @@
     <module>springcloud-bill</module>
     <module>springboot-sharding</module>
     <module>springcloud-bootstrap</module>
+    <module>cloudwork-server</module>
   </modules>
 
   <!--  配置依赖的版本-->

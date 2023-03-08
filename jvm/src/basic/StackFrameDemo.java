@@ -1,9 +1,9 @@
 package basic;
 
 /**
- * -verbose: gc
- * 获取当前classpath System.out.println(ClassLoader.getSystemResource(""));
+ * -verbose: gc 获取当前classpath System.out.println(ClassLoader.getSystemResource(""));
  * System.getProperties()获取所有参数.
+ *
  * @author Japhy
  * @since 2021/4/19 15:04
  */

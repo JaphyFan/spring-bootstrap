@@ -62,7 +62,6 @@ public class User extends AbstractEntity {
     private LocalDate localDate;
 
     @Column(columnDefinition = "TIMESTAMP")
-    @OneToMany
     private LocalDateTime localDateTime;
 
     @Override

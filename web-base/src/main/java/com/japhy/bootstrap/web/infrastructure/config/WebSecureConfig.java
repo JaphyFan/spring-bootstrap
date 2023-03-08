@@ -44,7 +44,6 @@ public class WebSecureConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // 关闭cross site request forgery，开启cross origin resource share
         http.cors().and().csrf().disable();
-
         // 关闭session 使用jwt
         http.sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
