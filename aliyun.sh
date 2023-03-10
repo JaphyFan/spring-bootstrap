@@ -22,4 +22,4 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 #install mysql
-docker run --name mysql -e MYSQL_ROOT_PASSWORD=fanjiahui -d mysql:latest
+docker run --name mysql -e MYSQL_ROOT_PASSWORD=xxx -d mysql:latest
