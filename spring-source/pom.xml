@@ -11,11 +11,6 @@
 
   <artifactId>spring-source</artifactId>
 
-  <properties>
-    <maven.compiler.source>8</maven.compiler.source>
-    <maven.compiler.target>8</maven.compiler.target>
-    <surefireArgline/>
-  </properties>
   <dependencies>
     <dependency>
       <groupId>org.springframework</groupId>

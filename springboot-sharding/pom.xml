@@ -12,8 +12,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>springboot-sharding</name>
   <description>springboot-sharding</description>
-  <properties>
-  </properties>
+
   <dependencies>
 
     <!--添加分库分表方案-->

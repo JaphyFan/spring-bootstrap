@@ -8,6 +8,7 @@
     <groupId>com.japhy.bootstrap</groupId>
     <version>${revision}${changelist}</version>
   </parent>
+
   <artifactId>springboot-kafka</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>springboot-kafka</name>
@@ -19,6 +20,10 @@
 
   <dependencies>
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.apache.kafka</groupId>
       <artifactId>kafka-streams</artifactId>
     </dependency>
@@ -27,14 +32,10 @@
       <artifactId>spring-kafka</artifactId>
     </dependency>
 
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-configuration-processor</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
       <optional>true</optional>
     </dependency>
     <dependency>

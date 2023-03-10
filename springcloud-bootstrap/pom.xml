@@ -24,7 +24,7 @@
   <packaging>pom</packaging>
 
   <properties>
-    <java.version>1.8</java.version>
+    <java.version>17</java.version>
   </properties>
 
   <modules>
@@ -32,6 +32,7 @@
     <module>springcloud-eureka</module>
     <module>bill-service</module>
     <module>user-service</module>
+    <module>auth-service</module>
     <module>common</module>
     <module>springcloud-gateway</module>
     <module>springcloud-config</module>

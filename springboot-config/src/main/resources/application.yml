@@ -10,15 +10,17 @@ logging:
   level:
     root: trace
 ---
-spring.profiles: dev
 japhy.name: japhy
 japhy.age: ${random.long(10)}
 japhy.enabled: true
 japhy.phone: ddd
 japhy.mavenProject: @maven.project@
 japhy.yamlProperty: ${yaml-property}
+spring:
+  config:
+    activate:
+      on-profile: dev
 ---
-spring.profiles: test
 japhy.age: ${random.long(20)}
 japhy.phone: test
 japhy.enabled: true
@@ -26,4 +28,7 @@ spring:
   cloud:
     refresh:
       extra-refreshable:
+  config:
+    activate:
+      on-profile: test
 

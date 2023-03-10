@@ -49,7 +49,6 @@
     <module>jmeter</module>
     <module>springboot-config</module>
     <module>springboot-elasticsearch</module>
-    <module>springboot-es-high-level-rest</module>
     <module>springboot-hateoas</module>
     <module>springboot-jpa</module>
     <module>springboot-kafka</module>
@@ -88,7 +87,7 @@
     <sonar.jacoco.reportPaths>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPaths>
     <surefireArgLine/>
     <testcontainers.version>1.15.3</testcontainers.version>
-    <maven-pmd-plugin.version>3.13.0</maven-pmd-plugin.version>
+    <maven-pmd-plugin.version>3.17.0</maven-pmd-plugin.version>
     <p3c-pmd.version>2.1.1</p3c-pmd.version>
   </properties>
 
@@ -158,7 +157,6 @@
         <groupId>io.qameta.allure</groupId>
         <artifactId>allure-junit5</artifactId>
         <version>2.15.0</version>
-        <scope>test</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -261,40 +259,6 @@
 
     <pluginManagement>
       <plugins>
-        <plugin>
-          <groupId>io.qameta.allure</groupId>
-          <artifactId>allure-maven</artifactId>
-          <version>2.10.0</version>
-          <configuration>
-            <reportVersion>2.15.0</reportVersion>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>flatten-maven-plugin</artifactId>
-          <version>1.1.0</version>
-          <configuration>
-            <updatePomFile>true</updatePomFile>
-            <flattenMode>resolveCiFriendliesOnly</flattenMode>
-          </configuration>
-          <executions>
-            <execution>
-              <id>flatten</id>
-              <phase>process-resources</phase>
-              <goals>
-                <goal>flatten</goal>
-              </goals>
-            </execution>
-            <execution>
-              <id>flatten.clean</id>
-              <phase>clean</phase>
-              <goals>
-                <goal>clean</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-release-plugin</artifactId>
@@ -532,6 +496,52 @@
   <profiles>
 
     <!-- Enable JaCoCo Test. using idea show coverage data to open the exec file-->
+    <profile>
+      <id>test</id>
+      <activation>
+        <property>
+          <name>active</name>
+          <value>test</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-maven</artifactId>
+            <version>2.10.0</version>
+            <configuration>
+              <reportVersion>2.15.0</reportVersion>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>flatten-maven-plugin</artifactId>
+            <version>1.1.0</version>
+            <configuration>
+              <updatePomFile>true</updatePomFile>
+              <flattenMode>resolveCiFriendliesOnly</flattenMode>
+            </configuration>
+            <executions>
+              <execution>
+                <id>flatten</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>flatten</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>flatten.clean</id>
+                <phase>clean</phase>
+                <goals>
+                  <goal>clean</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
     <profile>
       <id>jacoco</id>
       <activation>
