@@ -6,7 +6,7 @@
   <parent>
     <groupId>com.japhy.cloud</groupId>
     <artifactId>springcloud-bootstrap</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
   </parent>
 
   <artifactId>order-service</artifactId>
@@ -14,7 +14,6 @@
   <name>order-service</name>
   <description>order-service</description>
   <properties>
-    <java.version>1.8</java.version>
     <testcontainers.version>1.15.1</testcontainers.version>
   </properties>
   <dependencies>
@@ -30,7 +29,7 @@
     <dependency>
       <groupId>com.japhy.cloud</groupId>
       <artifactId>common</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>0.0.8</version>
     </dependency>
     <dependency>
       <groupId>org.testcontainers</groupId>
@@ -74,14 +73,19 @@
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-zipkin</artifactId>
-      <version>2.2.5.RELEASE</version>
-    </dependency>
+    <!--<dependency>-->
+    <!--  <groupId>org.springframework.cloud</groupId>-->
+    <!--  <artifactId>spring-cloud-starter-zipkin</artifactId>-->
+    <!--  <version>2.2.5.RELEASE</version>-->
+    <!--</dependency>-->
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-stream-kafka</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>spring-boot-springdoc</artifactId>
+      <version>3.1.2</version>
     </dependency>
   </dependencies>
 
@@ -92,8 +96,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
           <annotationProcessorPaths>
             <path>
               <groupId>org.mapstruct</groupId>
@@ -103,7 +107,7 @@
             <path>
               <groupId>org.projectlombok</groupId>
               <artifactId>lombok</artifactId>
-              <version>1.18.16</version>
+              <version>${lombok.version}</version>
             </path>
             <!-- additional annotation processor required as of Lombok
     1.18.16 -->

@@ -1,22 +1,17 @@
 package com.japhy.bootstrap.web.infrastructure.config;
 
 import com.japhy.bootstrap.web.domain.user.repository.UserRepository;
-import com.japhy.bootstrap.web.infrastructure.filter.JwtTokenFilter;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.SecurityFilterChain;
 
 /**
  * @author Japhy
@@ -29,19 +24,18 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class WebSecureConfig {
 
     private final UserRepository userRepository;
-    private final JwtTokenFilter jwtTokenFilter;
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(username -> userRepository.findByUserName(username)
-            .orElseThrow(
-                () -> new UsernameNotFoundException(
-                    String.format("User: %s, not found !", username))));
-        super.configure(auth);
-    }
+    // @Override
+    // protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    //     auth.userDetailsService(username -> userRepository.findByUserName(username)
+    //         .orElseThrow(
+    //             () -> new UsernameNotFoundException(
+    //                 String.format("User: %s, not found !", username))));
+    //     super.configure(auth);
+    // }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    protected SecurityFilterChain SecurityFilterChain(HttpSecurity http) throws Exception {
         // 关闭cross site request forgery，开启cross origin resource share
         http.cors().and().csrf().disable();
 
@@ -54,15 +48,16 @@ public class WebSecureConfig {
         http.exceptionHandling()
             .authenticationEntryPoint((request, response, authException) -> {
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());
-            })
-            .and();
+            }).and();
 
-        http.authorizeRequests()
-            .antMatchers("/api/v1/features/**", "/api/public/**", "/v3/api-docs", "/configuration/**", "/swagger*/**",
-                "/webjars/**").permitAll()
-            .anyRequest().authenticated();
+        http.authorizeHttpRequests()
+                .requestMatchers("/api/v1/features/**", "/api/public/**", "/v3/api-docs",
+                        "/configuration/**", "/swagger*/**",
+                        "/webjars/**").permitAll()
+                .anyRequest().authenticated();
 
-        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        // http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        return http.build();
     }
 
     @Bean
@@ -72,10 +67,10 @@ public class WebSecureConfig {
 
 
     // Expose authentication manager bean
-    @Override @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
+    // @Bean
+    // public AuthenticationManager authenticationManagerBean() throws Exception {
+    //     return super.authenticationManagerBean();
+    // }
 
 
 }

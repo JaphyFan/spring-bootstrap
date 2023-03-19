@@ -8,6 +8,10 @@ logging:
     level.org.hibernate.SQL: DEBUG
     level.org.hibernate.type: TRACE
 
+server:
+  port: 9001
+  compression:
+      enabled: true
 eureka:
   client:
     service-url:

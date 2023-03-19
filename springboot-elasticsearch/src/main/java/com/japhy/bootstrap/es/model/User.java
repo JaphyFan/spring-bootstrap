@@ -19,7 +19,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
  * @author Japhy
  * @since 2020/7/16 14:54
  */
-@Document(indexName = "user2", shards = 2, replicas = 1)
+@Document(indexName = "user2")
 @Data
 @NoArgsConstructor
 @Builder

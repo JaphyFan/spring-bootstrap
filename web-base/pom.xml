@@ -129,7 +129,12 @@
     <dependency>
       <groupId>io.qameta.allure</groupId>
       <artifactId>allure-junit5</artifactId>
-      <scope>test</scope>
+      <version>2.21.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>spring-boot-springdoc</artifactId>
+      <version>3.1.2</version>
     </dependency>
   </dependencies>
 
@@ -217,6 +222,7 @@
       <plugin>
         <groupId>io.qameta.allure</groupId>
         <artifactId>allure-maven</artifactId>
+        <version>2.10.0</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

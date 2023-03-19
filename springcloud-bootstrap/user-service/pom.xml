@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.japhy.cloud</groupId>
 		<artifactId>springcloud-bootstrap</artifactId>
-		<version>1.0.0</version>
+		<version>1.0.1</version>
 	</parent>
 
 	<artifactId>user-service</artifactId>
@@ -13,7 +13,6 @@
 	<name>user-service</name>
 	<description>user-service</description>
 	<properties>
-		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -28,7 +27,7 @@
 		<dependency>
 			<groupId>com.japhy.cloud</groupId>
 			<artifactId>common</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.8</version>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -73,7 +72,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -83,8 +81,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.mapstruct</groupId>
@@ -94,7 +92,7 @@
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
-							<version>1.18.16</version>
+							<version>${lombok.version}</version>
 						</path>
 						<!-- additional annotation processor required as of Lombok
     1.18.16 -->

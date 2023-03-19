@@ -4,15 +4,16 @@ import com.japhy.security.filter.VerificationCodeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
@@ -20,29 +21,25 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * @since 2020/4/14 16:35
  */
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+@Configuration
+public class WebSecurityConfig {
 
     @Autowired
     @Lazy
     @Qualifier("userRepositoryUserDetailsService")
     private UserDetailsService userDetailsService;
 
-//    public WebSecurityConfig(
-//        @Lazy @NonNull @Qualifier("userRepositoryUserDetailsService")
-//            UserDetailsService userDetailsService) {
-//        this.userDetailsService = userDetailsService;
-//    }
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests(registry -> {
-            registry.antMatchers("/admin/**").hasRole("ADMIN");
-            registry.antMatchers("/app/**").permitAll();
-            registry.antMatchers("/api/v1/users/**").hasRole("USER");
+            registry.requestMatchers("/admin/**").hasRole("ADMIN");
+            registry.requestMatchers("/app/**").permitAll();
+            registry.requestMatchers("/api/v1/users/**").hasRole("USER");
 
-            registry.antMatchers("/user/**").hasRole("USER");
-            registry.antMatchers("/css/**", "/index").permitAll();
-            registry.antMatchers("/captcha/captcha.jpg").permitAll();
+            registry.requestMatchers("/user/**").hasRole("USER");
+            registry.requestMatchers("/css/**", "/index").permitAll();
+            registry.requestMatchers("/captcha/captcha.jpg").permitAll();
         }).formLogin(
             configurer -> configurer.loginPage("/login").loginProcessingUrl("/auth/form")
                 .failureForwardUrl("/login-error")
@@ -58,15 +55,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .sessionManagement().maximumSessions(1);
 
         http.addFilterBefore(new VerificationCodeFilter(), UsernamePasswordAuthenticationFilter.class);
+        return http.build();
 
     }
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/resources/**", "/images/**", "/styles/**");
+
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().requestMatchers("/resources/**", "/images/**", "/styles/**");
     }
 
-    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
     }

@@ -67,6 +67,11 @@
       <artifactId>awaitility</artifactId>
       <version>4.0.1</version>
     </dependency>
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>spring-boot-springdoc</artifactId>
+      <version>3.1.2</version>
+    </dependency>
   </dependencies>
 
   <build>

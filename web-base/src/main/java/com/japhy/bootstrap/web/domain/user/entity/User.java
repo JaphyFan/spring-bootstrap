@@ -31,7 +31,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User implements UserDetails {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,31 +68,5 @@ public class User implements UserDetails {
     @LastModifiedBy
     private Long modifierId;
 
-    @Transient
-    private List<GrantedAuthority> grantedAuthorityList;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.grantedAuthorityList;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.userName;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
 }

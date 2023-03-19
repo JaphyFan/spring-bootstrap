@@ -16,6 +16,11 @@
       <artifactId>junit-jupiter-engine</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>spring-boot-springdoc</artifactId>
+      <version>3.1.2</version>
+    </dependency>
   </dependencies>
 
 </project>

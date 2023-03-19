@@ -1,6 +1,5 @@
 package com.japhy.cloud.user.application.service.impl;
 
-import com.japhy.cloud.common.exceptions.NotFoundException;
 import com.japhy.cloud.user.application.dto.UserDto;
 import com.japhy.cloud.user.application.mapper.UserDtoMapper;
 import com.japhy.cloud.user.application.service.UserFacade;
@@ -29,7 +28,7 @@ public class UserFacadeImpl implements UserFacade {
         Optional<User> byId = userRepository.findById(userId);
 
         return byId.map(userDtoMapper::entityToDto)
-                .orElseThrow(() -> new NotFoundException("No found user. user id is " + userId));
+                .orElseThrow(() -> new IllegalArgumentException("No found user. user id is " + userId));
     }
 
 }

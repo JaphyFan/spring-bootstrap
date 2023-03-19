@@ -1,5 +1,8 @@
 package com.japhy.cloud.common.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,6 +24,7 @@ public class ApiError {
     /**
      * http 状态码
      */
+    @Schema(description = "http 状态码")
     private HttpStatus status;
 
     /**
@@ -31,7 +35,14 @@ public class ApiError {
     /**
      * zipkin 使用的traceId
      */
+    @Schema(description = "zipkin 使用的traceId")
     private String traceId;
+
+    /**
+     * 时间
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
+    private LocalDateTime timestamp = LocalDateTime.now();
 
     /**
      * 开发查看的错误信息

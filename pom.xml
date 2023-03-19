@@ -60,14 +60,14 @@
     <module>structure</module>
     <module>web-base</module>
     <module>spring-source</module>
-    <module>springcloud-bill</module>
     <module>springboot-sharding</module>
     <module>springcloud-bootstrap</module>
+    <module>cloudwork-server</module>
   </modules>
 
   <!--  配置依赖的版本-->
   <properties>
-    <revision>0.0.3</revision>
+    <revision>0.0.4</revision>
     <changelist>-RELEASE</changelist>
     <java.version>17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -124,7 +124,7 @@
       <dependency>
         <groupId>org.springdoc</groupId>
         <artifactId>springdoc-openapi-ui</artifactId>
-        <version>1.6.14</version>
+        <version>1.6.15</version>
       </dependency>
 
       <dependency>
@@ -218,6 +218,11 @@
       <artifactId>lombok</artifactId>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>spring-boot-springdoc</artifactId>
+      <version>3.1.2</version>
+    </dependency>
 
   </dependencies>
 
@@ -301,20 +306,10 @@
           <version>3.2.0</version>
         </plugin>
 
-        <!--          提供代码和javadoc的交叉浏览         -->
-        <plugin>
-          <artifactId>maven-jxr-plugin</artifactId>
-          <version>3.0.0</version>
-        </plugin>
         <!-- keep surefire and failsafe in sync -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-failsafe-plugin</artifactId>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-site-plugin</artifactId>
-          <version>3.9.0</version>
         </plugin>
 
         <plugin>
@@ -329,38 +324,6 @@
             <argLine>${argLine} ${surefireArgLine}</argLine>
             <testFailureIgnore>false</testFailureIgnore>
           </configuration>
-        </plugin>
-
-        <!-- performance tests -->
-        <plugin>
-          <groupId>com.lazerycode.jmeter</groupId>
-          <artifactId>jmeter-maven-plugin</artifactId>
-          <version>3.0.0</version>
-          <configuration>
-            <testResultsTimestamp>false</testResultsTimestamp>
-            <propertiesUser>
-              <host>localhost</host>
-              <port>9000</port>
-              <root>/</root>
-            </propertiesUser>
-          </configuration>
-          <executions>
-            <execution>
-              <id>configuration</id>
-              <goals>
-                <goal>configure</goal>
-              </goals>
-            </execution>
-            <!-- if activated, jmeter will run automatically on integration-test and verify goals -->
-            <!--<execution>
-                <phase>integration-test</phase>
-                <goals>
-                    <goal>configure</goal>
-                    <goal>jmeter</goal>
-                    <goal>results</goal>
-                </goals>
-            </execution>-->
-          </executions>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -476,7 +439,7 @@
   <repositories>
     <repository>
       <id>aliyun-repos</id>
-      <url>https://maven.aliyun.com/repository/public/</url>
+      <url>https://maven.aliyun.com/repository/public</url>
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
@@ -486,7 +449,7 @@
   <pluginRepositories>
     <pluginRepository>
       <id>aliyun-plugin</id>
-      <url>https://maven.aliyun.com/repository/public/</url>
+      <url>https://maven.aliyun.com/repository/public</url>
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
@@ -782,6 +745,7 @@
             <configuration>
               <showLogs>true</showLogs>
               <verbose>true</verbose>
+              <imagePullPolicy>IfNotPresent</imagePullPolicy>
             </configuration>
             <executions>
               <execution>

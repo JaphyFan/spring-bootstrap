@@ -3,22 +3,16 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <!--<parent>-->
-  <!--  <groupId>com.japhy.bootstrap</groupId>-->
-  <!--  <artifactId>bootstrap-parent</artifactId>-->
-  <!--  <version>${revision}${changelist}</version>-->
-  <!--</parent>-->
-  <!--2.4.4在配置config时无法读取配置，在配置gateway时ssl失败-->
   <parent>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <groupId>org.springframework.boot</groupId>
-    <version>3.0.1</version>
-    <relativePath/>
+    <groupId>com.japhy.bootstrap</groupId>
+    <artifactId>bootstrap-parent</artifactId>
+    <version>${revision}${changelist}</version>
   </parent>
+  <!--2.4.4在配置config时无法读取配置，在配置gateway时ssl失败-->
 
   <groupId>com.japhy.cloud</groupId>
   <artifactId>springcloud-bootstrap</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <name>springcloud-bootstrap</name>
   <description>springcloud-bootstrap</description>
   <packaging>pom</packaging>
@@ -36,13 +30,14 @@
     <module>common</module>
     <module>springcloud-gateway</module>
     <module>springcloud-config</module>
+    <module>micro-test</module>
   </modules>
 
   <dependencies>
     <dependency>
       <groupId>org.springdoc</groupId>
       <artifactId>springdoc-openapi-ui</artifactId>
-      <version>1.6.3</version>
+      <version>1.6.15</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -61,6 +56,11 @@
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>spring-boot-springdoc</artifactId>
+      <version>3.1.2</version>
     </dependency>
   </dependencies>
   <dependencyManagement>

@@ -1,6 +1,6 @@
 logging:
-  level.org.springframework.data.elasticsearch.client.WIRE: trace
+  level:
+    root: INFO
   file:
     path: ../logs/
     name: es.log
-
