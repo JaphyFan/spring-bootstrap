@@ -4,6 +4,7 @@ import com.japhy.cloud.common.dto.ApiError;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -37,7 +38,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(InvalidInputException.class)
     public @ResponseBody
     ApiError handleInvalidInput(HttpServletRequest request, RuntimeException ex) {
-
         return createApiError(HttpStatus.UNPROCESSABLE_ENTITY, request, ex);
     }
 

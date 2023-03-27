@@ -3,3 +3,21 @@ logging:
   level:
     org.mongodb: debug
     org.springframework.boot.autoconfigure.mongo.embedded: debug
+spring:
+  data:
+    mongodb:
+#      spring.data.mongodb.uri = mongodb + srv ://<username>:<pwd>@<cluster>.mongodb.net/<dbname>
+      uri: mongodb://localhost:27017/test
+---
+spring:
+  config:
+    activate:
+      on-profile: cloud
+
+mongo:
+  primary:
+    uri: mongodb://localhost:27017/test
+  secondary:
+    uri: mongodb://localhost:27017/test2
+
+

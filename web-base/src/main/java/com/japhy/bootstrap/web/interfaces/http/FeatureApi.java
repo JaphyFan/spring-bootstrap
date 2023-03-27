@@ -64,6 +64,6 @@ public class FeatureApi {
 
     @GetMapping("/optional")
     public ResponseEntity<String> optional(@Parameter @RequestParam(required = false) String test) {
-        return ResponseEntity.ok(test);
+        return ResponseEntity.notFound().build();
     }
 }

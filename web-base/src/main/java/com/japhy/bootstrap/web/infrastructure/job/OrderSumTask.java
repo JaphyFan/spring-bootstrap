@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-@ConfigurationProperties(prefix = "cron")
+// @ConfigurationProperties(prefix = "cron")
 public class OrderSumTask {
 
     private final OrderRepository orderRepository;

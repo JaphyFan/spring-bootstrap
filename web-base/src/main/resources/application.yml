@@ -24,4 +24,7 @@ management:
 
 custom:
   word: hello
-
+spring:
+  mvc:
+    problemdetails:
+      enabled: true

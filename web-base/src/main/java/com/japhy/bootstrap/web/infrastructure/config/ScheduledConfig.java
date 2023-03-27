@@ -20,6 +20,11 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 @EnableAsync
 public class ScheduledConfig implements AsyncConfigurer {
 
+    /**
+     * edit default async pool.
+     *
+     * @return
+     */
     @Override
     public Executor getAsyncExecutor() {
         ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
