@@ -19,7 +19,7 @@ public class KafkaService {
 
     public void sendMessage(String message) {
         User user = new User("japhy", 12L);
-        ListenableFuture send = kafkaTemplate.send("demo", message);
+        kafkaTemplate.send("demo", message);
     }
 
     public void recvMessage() {

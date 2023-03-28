@@ -23,7 +23,7 @@ public class ObjectService {
     private final KafkaTemplate<String, Object> kafkaTemplate;
 
     public void sendMessage(User user) {
-        ListenableFuture send = kafkaTemplate.send("object", user);
+        kafkaTemplate.send("object", user);
     }
 
     @KafkaListener(topics = "object")
