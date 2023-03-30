@@ -20,12 +20,18 @@ public class SpringbootJpaApplication implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         userService.saveUserAndAddress(1, 2);
     }
 
-    @Bean(initMethod = "start", destroyMethod = "stop")
-    public Server inMemoryH2DatabaseServer() throws SQLException {
-        return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9091");
-    }
+    /**
+     * 和springboot集成的h2数据库，用于在运行时挂住数据库，方便查看数据.
+     * 和test启动的库同端口，平时注视掉
+     * @return
+     * @throws SQLException
+     */
+    // @Bean(initMethod = "start", destroyMethod = "stop")
+    // public Server inMemoryH2DatabaseServer() throws SQLException {
+    //     return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9091");
+    // }
 }

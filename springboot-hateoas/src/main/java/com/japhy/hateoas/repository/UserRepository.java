@@ -1,6 +1,7 @@
 package com.japhy.hateoas.repository;
 
 import com.japhy.hateoas.model.entity.User;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -8,5 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @since 2021/1/12 11:29
  */
 public interface UserRepository extends JpaRepository<User, Long> {
+
 
 }
