@@ -6,10 +6,8 @@ import com.japhy.springbootjpa.interfaces.dto.UserDto;
 import com.japhy.springbootjpa.interfaces.dto.UserVo;
 import java.time.LocalDate;
 import java.util.List;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 
 /**
  * @author Japhy

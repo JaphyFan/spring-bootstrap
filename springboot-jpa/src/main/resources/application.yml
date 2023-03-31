@@ -14,7 +14,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
-    database-platform: hibernate.
+    database-platform: org.hibernate.dialect.H2Dialect
     #    推迟schema.sql and data.sql的执行
     defer-datasource-initialization: true
 

@@ -1,5 +1,6 @@
 package com.japhy.springbootjpa.domain.user.entity;
 
+import jakarta.persistence.Converter;
 import java.time.LocalDateTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
@@ -8,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Version;
+import java.util.Objects;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -45,4 +47,22 @@ public class AbstractEntity extends AbstractAggregateRoot<AbstractEntity> {
     @Column(name = "update_time", nullable = false, columnDefinition = "TIMESTAMP")
     @LastModifiedDate
     protected LocalDateTime updateTime;
+
+    public AbstractEntity() {
+        this.deleted = false;
+        this.version = 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        AbstractEntity that = (AbstractEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
 }

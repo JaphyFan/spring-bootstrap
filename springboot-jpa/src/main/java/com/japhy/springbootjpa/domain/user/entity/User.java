@@ -26,13 +26,12 @@ import org.springframework.data.domain.DomainEvents;
  * @author Japhy
  * @date 2019/12/19 10:59
  */
-@AllArgsConstructor
 @Entity
 /**
  * builder need a allArgsConstructor
  */
 @Builder
-@Table(name = "users")
+@Table(name = "user")
 @Getter
 @Setter
 @ToString(callSuper = true)
@@ -63,17 +62,17 @@ public class User extends AbstractEntity {
     @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime localDateTime;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(
-                o)) {
-            return false;
-        }
-        User user = (User) o;
-        return id != null && Objects.equals(id, user.id);
+    public User(String name, String nickName, String phone, String avatar, List<Address> addresses,
+            LocalTime localTime, LocalDate localDate, LocalDateTime localDateTime) {
+        super();
+        this.name = name;
+        this.nickName = nickName;
+        this.phone = phone;
+        this.avatar = avatar;
+        this.addresses = addresses;
+        this.localTime = localTime;
+        this.localDate = localDate;
+        this.localDateTime = localDateTime;
     }
 
     @Override

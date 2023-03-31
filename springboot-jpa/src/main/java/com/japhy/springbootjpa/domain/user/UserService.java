@@ -32,6 +32,12 @@ public class UserService {
         int i = a / b;
     }
 
+    public void saveUserAndAddress() {
+        User japhy = User.builder().name("testSave").build();
+        userJpaRepository.save(japhy);
+        saveAddress(japhy);
+    }
+
     @Transactional
     public void saveAddress(User user) {
         Address build = Address.builder().user(user).build();
