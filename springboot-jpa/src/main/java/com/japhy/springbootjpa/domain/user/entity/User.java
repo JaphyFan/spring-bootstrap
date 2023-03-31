@@ -30,7 +30,6 @@ import org.springframework.data.domain.DomainEvents;
 /**
  * builder need a allArgsConstructor
  */
-@Builder
 @Table(name = "user")
 @Getter
 @Setter
@@ -62,6 +61,7 @@ public class User extends AbstractEntity {
     @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime localDateTime;
 
+    @Builder
     public User(String name, String nickName, String phone, String avatar, List<Address> addresses,
             LocalTime localTime, LocalDate localDate, LocalDateTime localDateTime) {
         super();
