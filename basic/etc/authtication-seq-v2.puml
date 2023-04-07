@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+autoactivate on
+
+title Redash Authentication sequence diagram V2
+
+WebClient -> Redash
+
+Redash -> AuthServer
+AuthServer --> Redash: 返回登陆结果
+alt authServer 登陆成功
+    Redash -> Postgresql: 根据UserId在Postgresql查询是否存在账号
+    alt 账号不存在
+        Redash -> OAServer: 根据UserId到OA查询，获取账号信息
+        Redash -> Postgresql: 将信息存入
+    else 账号已存在
+        Redash --> WebClient: 登陆跳转
+    end
+else authServer 登陆失败
+    Redash -> Postgresql: 走报表登陆逻辑
+end
+@enduml

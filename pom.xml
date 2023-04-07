@@ -77,7 +77,7 @@
     <docker.image.prefix>demo-japhy</docker.image.prefix>
     <gson.version>2.10</gson.version>
     <spring-cloud.version>2022.0.0</spring-cloud.version>
-    <spring.boot.version>3.0.1</spring.boot.version>
+    <spring.boot.version>3.0.4</spring.boot.version>
     <argLine>-Xms256m -Xmx256m -Dfile.encoding=UTF-8
       -XX:MetaspaceSize=64m -XX:MaxMetaspaceSize=128m</argLine>
     <surefireArgLine/>
@@ -116,10 +116,9 @@
 
       <dependency>
         <groupId>org.springdoc</groupId>
-        <artifactId>springdoc-openapi-ui</artifactId>
-        <version>1.6.15</version>
+        <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        <version>2.1.0</version>
       </dependency>
-
       <dependency>
         <groupId>com.github.kstyrc</groupId>
         <artifactId>embedded-redis</artifactId>
@@ -161,6 +160,10 @@
   </dependencyManagement>
 
   <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
@@ -312,15 +315,15 @@
         <!-- *NOTE*: The default phase of revision is initialize, but in case you want to
                         change it, you can do so by adding the phase here -->
         <!--官网添加，但添加后会执行两次revision-->
-        <!--<executions>-->
-        <!--  <execution>-->
-        <!--    <id>get-the-git-infos</id>-->
-        <!--    <goals>-->
-        <!--      <goal>revision</goal>-->
-        <!--    </goals>-->
-        <!--    <phase>initialize</phase>-->
-        <!--  </execution>-->
-        <!--</executions>-->
+        <executions>
+          <execution>
+            <id>get-the-git-infos</id>
+            <goals>
+              <goal>revision</goal>
+            </goals>
+            <phase>initialize</phase>
+          </execution>
+        </executions>
         <configuration>
           <generateGitPropertiesFile>true</generateGitPropertiesFile>
           <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>

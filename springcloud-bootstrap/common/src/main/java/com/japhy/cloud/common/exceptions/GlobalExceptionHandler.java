@@ -48,6 +48,7 @@ public class GlobalExceptionHandler {
 
         log.debug("Returning HTTP status: {} for path: {}, message: {}", httpStatus, path, message);
 
-        return ApiError.builder().status(httpStatus).msg(message).description(path).build();
+        return ApiError.builder().status(String.valueOf(httpStatus.value())).msg(message)
+                .description(path).build();
     }
 }

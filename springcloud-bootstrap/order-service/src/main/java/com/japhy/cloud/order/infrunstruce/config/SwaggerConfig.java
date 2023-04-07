@@ -6,7 +6,6 @@ import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
-import org.springdoc.core.GroupedOpenApi;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,17 +17,17 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SwaggerConfig {
 
-    @Bean
-    public GroupedOpenApi usersGroup(@Value("${springdoc.version:1.0.0}") String appVersion) {
-        return GroupedOpenApi.builder().group("users")
-                .addOperationCustomizer((operation, handlerMethod) -> {
-                    operation.addSecurityItem(new SecurityRequirement().addList("basicScheme"));
-                    return operation;
-                })
-                .addOpenApiCustomiser(openApi -> openApi.info(new Info().title("Order API").version(appVersion)))
-                .packagesToScan("org.japhy.cloud.order")
-                .build();
-    }
+    // @Bean
+    // public GroupedOpenApi usersGroup(@Value("${springdoc.version:1.0.0}") String appVersion) {
+    //     return GroupedOpenApi.builder().group("users")
+    //             .addOperationCustomizer((operation, handlerMethod) -> {
+    //                 operation.addSecurityItem(new SecurityRequirement().addList("basicScheme"));
+    //                 return operation;
+    //             })
+    //             .addOpenApiCustomiser(openApi -> openApi.info(new Info().title("Order API").version(appVersion)))
+    //             .packagesToScan("org.japhy.cloud.order")
+    //             .build();
+    // }
 
 
 }

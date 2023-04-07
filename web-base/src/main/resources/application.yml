@@ -1,6 +1,5 @@
 server:
   port: 9999
-
   application:
     name: web-base
   devtools:
@@ -8,6 +7,7 @@ server:
       secret: secret
   jackson:
     time-zone: Asia/Shanghai
+
 management:
   info:
     git:
@@ -21,10 +21,19 @@ management:
     health:
       show-details: always
 
-
 custom:
   word: hello
 spring:
   mvc:
     problemdetails:
       enabled: true
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: false
+springdoc:
+  version: '@project.version@'
+  swagger-ui:
+    use-root-path: true
+
+

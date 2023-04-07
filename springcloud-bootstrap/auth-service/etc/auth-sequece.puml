@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title Jwt Authentication Sequence Diagram
+autonumber
+
+Client -> AuthService: Authentication Request,uesing name and password
+AuthService --> Client: return Jwt token
+
+Client -> WebBase: request with jwtToken
+WebBase --> AuthService: according to issure uri, authenticate jwt token
+AuthService --> WebBase: return auth response with claims
+alt authenticate success
+    WebBase -> WebBase: auto config security context,authorize request
+    WebBase -> Client: response
+else authenticate fail
+    WebBase -> Client: return 401
+end
+
+@enduml

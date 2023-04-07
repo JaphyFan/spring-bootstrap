@@ -1,0 +1,57 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+autoactivate on
+
+title Redash Authentication sequence diagram
+
+WebClient -> RedashServer: login
+
+RedashServer -> AuthServer: 根据登陆名查找学海用户 xh_user
+
+AuthServer --> RedashServer: return 对应用户信息
+
+RedashServer -> Postgresql: 根据 登陆名 + "@default.com" 邮箱 查询redash 元库用户
+Postgresql --> RedashServer: 返回user_already_created_with_xh
+
+== 报表已存在学海用户 ==
+alt xh_user 存在 and user_already_created_with_xh存在
+note left: 如果是已经拥有的学海用户，直接登陆校验，成功直接跳转
+    RedashServer -> AuthServer: 验证用户名密码
+    AuthServer --> RedashServer: 返回验证结果 is_login_succeed
+    alt user_already_created_with_xh 被禁用
+        RedashServer --> WebClient: 提示该用户被禁用
+    end
+    alt 验证成功
+       RedashServer --> WebClient: 登陆成功跳转首页
+    else 验证失败
+       RedashServer --> WebClient: 密码错误提示
+    end
+end
+
+== 第一次登陆报表的学海用户 ==
+alt xh_user存在 and user_already_created_with_xh 不存在
+    RedashServer -> AuthServer: 验证用户名密码
+    AuthServer --> RedashServer: 返回验证结果 is_login_succeed
+    alt is_login_succeed 验证成功
+        RedashServer -> UserServer: 根据用户id在用户服务查询用户信息
+        UserServer --> RedashServer: 返回用户信息user_res
+
+        RedashServer -> OAServer: 根据用户id在OA服务查询用户信息
+        OAServer --> RedashServer: 返回用户信息oa_res
+
+        RedashServer -> Postgresql: 根据用户信息属性确定用户角色，保存用户信息
+        deactivate Postgresql
+    else 验证失败
+        RedashServer --> WebClient: 密码错误提示
+    end
+else 不满足xh用户条件
+    RedashServer -> RedashServer: 按照报表原逻辑登陆
+end
+
+RedashServer -> WebClient: 登陆成功进入主页面
+
+
+
+@enduml

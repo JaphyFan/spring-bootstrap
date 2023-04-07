@@ -25,11 +25,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-    <dependency>
-      <groupId>org.springdoc</groupId>
-      <artifactId>spring-boot-springdoc</artifactId>
-      <version>3.1.2</version>
-    </dependency>
+		<!--The JAXB modules which the Eureka server depends upon were removed in JDK 11.
+		 If you intend to use JDK 11 when running a Eureka server you must include these dependencies
+		 in your POM or Gradle file.-->
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+		</dependency>
+
   </dependencies>
 	<build>
 		<plugins>

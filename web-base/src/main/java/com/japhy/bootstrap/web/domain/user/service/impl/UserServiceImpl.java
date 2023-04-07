@@ -24,36 +24,6 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-@ConditionalOnBean(value = WebSecureConfig.class)
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl {
 
-    private final UserRepository userRepository;
-
-    private final PasswordEncoder passwordEncoder;
-
-    @Override
-    public User createUser(CreateUserRequest userRequest) {
-        Optional<User> byUserName = userRepository.findByUserName(userRequest.getUserName());
-        if (byUserName.isPresent()) {
-            throw new ValidationException("username already exists");
-        }
-
-        if (!userRequest.getPassword().equals(userRequest.getRePassword())) {
-            throw new ValidationException("passwords dont match!");
-        }
-
-        if (userRequest.getAuthorities() == null) {
-            userRequest.setAuthorities(Sets.newHashSet());
-        }
-        User user =
-            User.builder().userName(userRequest.getUserName()).fullName(userRequest.getFullName())
-                .password(passwordEncoder.encode(userRequest.getPassword()))
-                .roles(userRequest.getAuthorities().stream().map(Role::valueOf).map(Enum::toString)
-                    .reduce("", (s, s2) -> StringUtils.join(s, ",", s2), Objects::toString))
-                .enabled(true)
-                .build();
-
-        User save = userRepository.save(user);
-        return save;
-    }
 }

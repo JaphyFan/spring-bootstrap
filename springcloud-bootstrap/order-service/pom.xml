@@ -14,7 +14,7 @@
   <name>order-service</name>
   <description>order-service</description>
   <properties>
-    <testcontainers.version>1.15.1</testcontainers.version>
+
   </properties>
   <dependencies>
     <dependency>
@@ -82,11 +82,7 @@
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-stream-kafka</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.springdoc</groupId>
-      <artifactId>spring-boot-springdoc</artifactId>
-      <version>3.1.2</version>
-    </dependency>
+
   </dependencies>
 
   <build>

@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.http.HttpStatus;
 
 /**
  * 程序异常时返回的信息.
@@ -24,8 +23,8 @@ public class ApiError {
     /**
      * http 状态码
      */
-    @Schema(description = "http 状态码")
-    private HttpStatus status;
+    @Schema(description = "状态码，可自定义，与Http有重合部分")
+    private String status;
 
     /**
      * 返回前端用户的错误信息

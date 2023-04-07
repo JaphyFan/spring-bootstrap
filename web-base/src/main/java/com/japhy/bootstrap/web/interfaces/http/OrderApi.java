@@ -6,6 +6,7 @@ import com.japhy.bootstrap.web.domain.order.model.vo.OrderParam;
 import com.japhy.bootstrap.web.domain.order.service.OrderService;
 import com.japhy.bootstrap.web.interfaces.dto.OrderDto;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.net.URI;
 import java.util.List;
@@ -39,6 +40,7 @@ public class OrderApi {
 
     @Operation(summary = "find order by id ", description = "http get method to find order by id, if not found, return http status code 404.")
     @GetMapping("{id}")
+    @SecurityRequirement(name = "bearer-key")
     public ResponseEntity<OrderDto> findById(@PathVariable("id") Long id) {
         Optional<Order> order = orderService.queryOrderById(id);
         return order.map(value -> ResponseEntity.ok(OrderMapper.INSTANCE.orderToOrderDto(value)))
