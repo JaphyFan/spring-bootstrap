@@ -28,7 +28,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
 
     @Override
-    @RolesAllowed("USER_ADMIN")
+    @RolesAllowed("ADMIN")
     public Optional<Order> queryOrderById(Long id) {
         return orderRepository.findById(id);
     }

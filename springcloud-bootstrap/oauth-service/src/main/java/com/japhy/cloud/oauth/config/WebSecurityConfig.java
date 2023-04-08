@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -36,13 +35,14 @@ public class WebSecurityConfig {
     private UserDetailsManager userDetailsManager;
 
     @Autowired
-    @Qualifier("jwtRefreshTokenDecoder")
-    private JwtDecoder jwtRefreshTokenDecoder;
+    private JwtDecoder jwtDecoder;
 
     @Bean
     @Order(1)
     public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http) throws Exception {
         OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
+        http.getConfigurer(OAuth2AuthorizationServerConfigurer.class)
+                .oidc(Customizer.withDefaults());
         return http.formLogin(Customizer.withDefaults()).build();
     }
 
@@ -72,9 +72,8 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    @Qualifier("jwtRefreshTokenAuthProvider")
-    JwtAuthenticationProvider jwtRefreshTokenAuthProvider() {
-        JwtAuthenticationProvider provider = new JwtAuthenticationProvider(jwtRefreshTokenDecoder);
+    JwtAuthenticationProvider jwtAuthProvider() {
+        JwtAuthenticationProvider provider = new JwtAuthenticationProvider(jwtDecoder);
         provider.setJwtAuthenticationConverter(jwtToUserConverter);
         return provider;
     }

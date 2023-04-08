@@ -1,7 +1,6 @@
 package com.japhy.cloud.auth.config;
 
 
-import com.nimbusds.jose.Algorithm;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;

@@ -1,7 +1,6 @@
 package com.japhy.cloud.auth.infrastructure;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.japhy.cloud.auth.entity.User;
 import com.japhy.cloud.auth.interfaces.dto.TokenDto;
 import java.text.MessageFormat;
@@ -11,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
@@ -40,6 +40,10 @@ public class TokenProvider {
                 .expiresAt(now.plusSeconds(expiry))
                 .subject("subject")
                 .claim("email", user.getEmail())
+                .claim("authorities",
+                        user.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList())
+                .claim("scp",
+                        user.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList())
                 .build();
 
         return jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();

@@ -344,7 +344,31 @@
           <finalName>${project.build.finalName}</finalName>
         </configuration>
       </plugin>
-
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>flatten-maven-plugin</artifactId>
+        <version>1.1.0</version>
+        <configuration>
+          <updatePomFile>true</updatePomFile>
+          <flattenMode>resolveCiFriendliesOnly</flattenMode>
+        </configuration>
+        <executions>
+          <execution>
+            <id>flatten</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>flatten</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>flatten.clean</id>
+            <phase>clean</phase>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
@@ -418,31 +442,6 @@
             <configuration>
               <reportVersion>2.15.0</reportVersion>
             </configuration>
-          </plugin>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>flatten-maven-plugin</artifactId>
-            <version>1.1.0</version>
-            <configuration>
-              <updatePomFile>true</updatePomFile>
-              <flattenMode>resolveCiFriendliesOnly</flattenMode>
-            </configuration>
-            <executions>
-              <execution>
-                <id>flatten</id>
-                <phase>process-resources</phase>
-                <goals>
-                  <goal>flatten</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>flatten.clean</id>
-                <phase>clean</phase>
-                <goals>
-                  <goal>clean</goal>
-                </goals>
-              </execution>
-            </executions>
           </plugin>
         </plugins>
       </build>
