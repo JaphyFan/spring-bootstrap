@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Import;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
-@AutoConfigurationPackage
+// @AutoConfigurationPackage
 @Import(RestApiMarkerConfig.class)
 public @interface RestApi {
 

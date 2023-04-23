@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -42,8 +44,6 @@ public class OrderApi {
 
     @Operation(summary = "find order by id ", description = "http get method to find order by id, if not found, return http status code 404.")
     @GetMapping("{id}")
-    @SecurityRequirement(name = "bearer-key")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<OrderDto> findById(@PathVariable("id") Long id) {
         Optional<Order> order = orderService.queryOrderById(id);
         return order.map(value -> ResponseEntity.ok(OrderMapper.INSTANCE.orderToOrderDto(value)))
@@ -52,8 +52,6 @@ public class OrderApi {
 
     @Operation(summary = "query order")
     @GetMapping
-    @RolesAllowed("ADMIN")
-    @SecurityRequirement(name = "bearer-key")
     public ResponseEntity<List<OrderDto>> queryOrder(OrderParam orderParam) {
         orderService.queryOrder(orderParam);
         return ResponseEntity.ok().build();
@@ -61,8 +59,6 @@ public class OrderApi {
 
     @Operation(summary = "delete order")
     @DeleteMapping("{id}")
-    @SecurityRequirement(name = "bearer-key")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
         orderService.deleteOrder(id);
         return ResponseEntity.noContent().build();
@@ -70,8 +66,6 @@ public class OrderApi {
 
     @Operation(summary = "update order")
     @PutMapping("{id}")
-    @RolesAllowed("ROLE_ADMIN")
-    @SecurityRequirement(name = "bearer-key")
     public ResponseEntity<Order> updateOrder(@RequestBody Order order, @PathVariable Long id) {
         orderService.updateOrder(order);
         return ResponseEntity.ok(order);
@@ -94,7 +88,9 @@ public class OrderApi {
 
     @Operation(summary = "get order ")
     @GetMapping("/name")
-    public ResponseEntity<String> getOrder(@RequestParam String name) {
+    public ResponseEntity<String> getOrder(@RequestParam String name,
+            @ParameterObject Pageable pageable) {
+
         return ResponseEntity.ok(name);
     }
 

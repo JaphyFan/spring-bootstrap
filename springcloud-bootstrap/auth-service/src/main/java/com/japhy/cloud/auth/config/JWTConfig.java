@@ -10,7 +10,6 @@ import com.nimbusds.jose.proc.SecurityContext;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.UUID;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,16 +22,16 @@ import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 @Configuration
 public class JWTConfig {
 
-    @Value("${jwt.public.key}")
+    @Value("${jwt.access.public.key}")
     RSAPublicKey accessPubKey;
 
-    @Value("${jwt.private.key}")
+    @Value("${jwt.access.private.key}")
     RSAPrivateKey accessPriKey;
 
-    @Value("${jwt.public.key}")
+    @Value("${jwt.refresh.public.key}")
     RSAPublicKey refreshPubKey;
 
-    @Value("${jwt.private.key}")
+    @Value("${jwt.refresh.private.key}")
     RSAPrivateKey refreshPriKey;
 
     @Bean
@@ -49,14 +48,12 @@ public class JWTConfig {
         return new NimbusJwtEncoder(jwks);
     }
 
-    @Bean
-    @Qualifier("jwtRefreshTokenDecoder")
+    @Bean("jwtRefreshTokenDecoder")
     JwtDecoder jwtRefreshTokenDecoder() {
         return NimbusJwtDecoder.withPublicKey(this.refreshPubKey).build();
     }
 
-    @Bean
-    @Qualifier("jwtRefreshTokenEncoder")
+    @Bean("jwtRefreshTokenEncoder")
     JwtEncoder jwtRefreshTokenEncoder() {
         JWK jwk = new RSAKey
                 .Builder(this.refreshPubKey)

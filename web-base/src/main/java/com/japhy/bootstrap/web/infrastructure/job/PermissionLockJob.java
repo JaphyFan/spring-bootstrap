@@ -4,6 +4,7 @@ import com.japhy.bootstrap.web.domain.order.repository.OrderRepository;
 import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -19,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 @Slf4j
 @RequiredArgsConstructor
+@Profile("scheduled")
 public class PermissionLockJob {
 
     private final OrderRepository orderRepository;

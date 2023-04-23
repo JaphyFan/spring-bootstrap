@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -20,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-// @ConfigurationProperties(prefix = "cron")
+@Profile("scheduled")
 public class OrderSumTask {
 
     private final OrderRepository orderRepository;

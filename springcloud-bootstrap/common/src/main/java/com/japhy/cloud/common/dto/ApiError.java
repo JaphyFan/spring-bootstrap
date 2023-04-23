@@ -2,6 +2,8 @@ package com.japhy.cloud.common.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -18,18 +20,26 @@ import lombok.ToString;
 @ToString
 @Getter
 @Builder
-public class ApiError {
+public class ApiError implements Serializable {
+
+    private static final long serialVersionUID = -6450263528088986251L;
 
     /**
-     * http 状态码
+     * 状态码，可自定义
      */
-    @Schema(description = "状态码，可自定义，与Http有重合部分")
-    private String status;
+    @Schema(description = "状态码，可自定义")
+    private int errorCode;
 
     /**
      * 返回前端用户的错误信息
      */
+    @Schema(description = "返回前端用户的错误信息")
     private String msg;
+
+    /**
+     * http 状态码
+     */
+    private Integer statusCode;
 
     /**
      * zipkin 使用的traceId
@@ -60,7 +70,9 @@ public class ApiError {
     @Builder
     @ToString
     @AllArgsConstructor
-    public static class ErrorItem {
+    public static class ErrorItem implements Serializable {
+
+        private static final long serialVersionUID = -8913037090435188823L;
 
         /**
          * 业务码

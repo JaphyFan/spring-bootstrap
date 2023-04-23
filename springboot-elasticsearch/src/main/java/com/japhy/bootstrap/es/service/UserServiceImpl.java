@@ -37,8 +37,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<User> findByUser(String id) {
-//        User user = elasticsearchOperations.get(id, User.class);
-        User user = new User();
+       User user = elasticsearchOperations.get(id, User.class);
         return Optional.ofNullable(user);
     }
 

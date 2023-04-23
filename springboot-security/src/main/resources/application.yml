@@ -19,7 +19,9 @@ custom.test: 1
 
 ---
 spring:
-  profiles: basic
+  config:
+    activate:
+      on-profile: basic
 
 
 

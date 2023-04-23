@@ -8,11 +8,12 @@
 		<version>1.0.1</version>
 	</parent>
 	<artifactId>common</artifactId>
-	<version>0.0.8</version>
+	<version>0.0.9</version>
 	<name>common</name>
 	<description>common</description>
 	<properties>
 		<java.version>17</java.version>
+		<maven.install.skip>false</maven.install.skip>
 	</properties>
 
 	<dependencies>

@@ -1,6 +1,7 @@
 package com.japhy.cloud.auth.entity;
 
 
+import com.google.common.collect.Lists;
 import java.util.Collection;
 import java.util.Collections;
 import lombok.AllArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 
@@ -34,7 +36,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.EMPTY_LIST;
+        return Lists.newArrayList(new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
 
     @Override

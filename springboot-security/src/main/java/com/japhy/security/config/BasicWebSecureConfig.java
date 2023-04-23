@@ -28,6 +28,6 @@ public class BasicWebSecureConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/ignore1", "/ignore2");
+        return (web) -> web.ignoring().requestMatchers("/app/hello", "/ignore2");
     }
 }

@@ -82,6 +82,9 @@
       -XX:MetaspaceSize=64m -XX:MaxMetaspaceSize=128m</argLine>
     <surefireArgLine/>
     <testcontainers.version>1.17.6</testcontainers.version>
+    <!--设置每个模块的target为自己的target-->
+    <maven.compiler.outputdir>${project.build.directory}</maven.compiler.outputdir>
+    <springdoc.version>2.1.0</springdoc.version>
   </properties>
 
   <dependencyManagement>
@@ -117,7 +120,7 @@
       <dependency>
         <groupId>org.springdoc</groupId>
         <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-        <version>2.1.0</version>
+        <version>${springdoc.version}</version>
       </dependency>
       <dependency>
         <groupId>com.github.kstyrc</groupId>
@@ -133,12 +136,6 @@
         <scope>test</scope>
       </dependency>
       <!-- util -->
-      <dependency>
-        <groupId>io.jsonwebtoken</groupId>
-        <artifactId>jjwt</artifactId>
-        <version>0.9.1</version>
-      </dependency>
-
       <dependency>
         <groupId>org.awaitility</groupId>
         <artifactId>awaitility</artifactId>
@@ -229,7 +226,7 @@
   </dependencies>
 
   <build>
-    <!-- Used for packaging LICENSE to each sub-module jar-->
+    <!-- Used for packaging LICENSE to each submodule jar-->
     <resources>
       <resource>
         <directory>src/main/resources/</directory>
@@ -344,31 +341,31 @@
           <finalName>${project.build.finalName}</finalName>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>flatten-maven-plugin</artifactId>
-        <version>1.1.0</version>
-        <configuration>
-          <updatePomFile>true</updatePomFile>
-          <flattenMode>resolveCiFriendliesOnly</flattenMode>
-        </configuration>
-        <executions>
-          <execution>
-            <id>flatten</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>flatten</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>flatten.clean</id>
-            <phase>clean</phase>
-            <goals>
-              <goal>clean</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+      <!--<plugin>-->
+      <!--  <groupId>org.codehaus.mojo</groupId>-->
+      <!--  <artifactId>flatten-maven-plugin</artifactId>-->
+      <!--  <version>1.1.0</version>-->
+      <!--  <configuration>-->
+      <!--    <updatePomFile>true</updatePomFile>-->
+      <!--    <flattenMode>resolveCiFriendliesOnly</flattenMode>-->
+      <!--  </configuration>-->
+      <!--  <executions>-->
+      <!--    <execution>-->
+      <!--      <id>flatten</id>-->
+      <!--      <phase>process-resources</phase>-->
+      <!--      <goals>-->
+      <!--        <goal>flatten</goal>-->
+      <!--      </goals>-->
+      <!--    </execution>-->
+      <!--    <execution>-->
+      <!--      <id>flatten.clean</id>-->
+      <!--      <phase>clean</phase>-->
+      <!--      <goals>-->
+      <!--        <goal>clean</goal>-->
+      <!--      </goals>-->
+      <!--    </execution>-->
+      <!--  </executions>-->
+      <!--</plugin>-->
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>

@@ -4,7 +4,6 @@ import com.japhy.cloud.common.dto.ApiError;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -48,7 +47,7 @@ public class GlobalExceptionHandler {
 
         log.debug("Returning HTTP status: {} for path: {}, message: {}", httpStatus, path, message);
 
-        return ApiError.builder().status(String.valueOf(httpStatus.value())).msg(message)
+        return ApiError.builder().statusCode(httpStatus.value()).msg(message)
                 .description(path).build();
     }
 }

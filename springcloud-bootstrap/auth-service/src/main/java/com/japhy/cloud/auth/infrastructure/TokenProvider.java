@@ -7,6 +7,7 @@ import java.text.MessageFormat;
 import java.time.Duration;
 import java.time.Instant;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
@@ -17,15 +18,15 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Component;
 
-@RequiredArgsConstructor
 @Component
 public class TokenProvider {
 
-    private final JwtEncoder jwtEncoder;
-    private final JwtDecoder jwtDecoder;
+    @Autowired
+    private JwtEncoder jwtEncoder;
 
-    @Qualifier("jwtRefreshTokenDecoder")
-    private final JwtEncoder refreshTokenEncoder;
+    // @Autowired
+    // @Qualifier("jwtRefreshTokenEncoder")
+    // private JwtEncoder jwtRefreshTokenEncoder;
 
     private final long expiry = 36000L;
 
@@ -56,12 +57,7 @@ public class TokenProvider {
                 .claim("email", user.getEmail())
                 .build();
 
-        return refreshTokenEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
-    }
-
-    public String decode(String accessToken) {
-        var claims = jwtDecoder.decode(accessToken).getClaims();
-        return claims.get("email").toString();
+        return jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
     }
 
     public TokenDto generateToken(Authentication authentication) {

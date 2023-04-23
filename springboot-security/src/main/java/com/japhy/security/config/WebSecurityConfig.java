@@ -3,6 +3,7 @@ package com.japhy.security.config;
 import com.japhy.security.filter.VerificationCodeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -22,6 +23,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  */
 @EnableWebSecurity
 @Configuration
+@ConditionalOnMissingBean(BasicWebSecureConfig.class)
 public class WebSecurityConfig {
 
     @Autowired

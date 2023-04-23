@@ -15,7 +15,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configuration.OAuth2AuthorizationServerConfiguration;
+import org.springframework.security.oauth2.server.authorization.config.annotation.web.configurers.OAuth2AuthorizationServerConfigurer;
+import org.springframework.security.oauth2.server.authorization.token.JwtGenerator;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider;
 import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
 import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
@@ -23,7 +26,7 @@ import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableMethodSecurity(jsr250Enabled = true, securedEnabled = true)
+@EnableMethodSecurity(jsr250Enabled = true)
 public class WebSecurityConfig {
 
     @Autowired
@@ -33,24 +36,13 @@ public class WebSecurityConfig {
     @Lazy
     private UserDetailsManager userDetailsManager;
 
-    @Autowired
-    private JwtDecoder jwtRefreshTokenDecoder;
-
-    @Bean
-    @Order(1)
-    public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http) throws Exception {
-        OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
-        return http.formLogin(Customizer.withDefaults()).build();
-    }
-
     @Bean
     @Order(2)
     public SecurityFilterChain standardSecurityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/api/v1/auth/*").permitAll()
+                        .requestMatchers("/api/v1/auth/*", "/api/").permitAll()
                         .requestMatchers("/webjars/**", "/swagger*/**", "/v3/api-docs/**").permitAll()
-                        // .anyRequest().authenticated()
-                        .anyRequest().permitAll()
+                        .anyRequest().authenticated()
                 )
                 .csrf().disable()
                 .cors().disable()
@@ -65,14 +57,6 @@ public class WebSecurityConfig {
                         .accessDeniedHandler(new BearerTokenAccessDeniedHandler())
                 );
         return http.build();
-    }
-
-    @Bean
-    @Qualifier("jwtRefreshTokenAuthProvider")
-    JwtAuthenticationProvider jwtRefreshTokenAuthProvider() {
-        JwtAuthenticationProvider provider = new JwtAuthenticationProvider(jwtRefreshTokenDecoder);
-        provider.setJwtAuthenticationConverter(jwtToUserConverter);
-        return provider;
     }
 
     @Bean

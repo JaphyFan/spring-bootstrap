@@ -31,7 +31,6 @@
     <module>springcloud-gateway</module>
     <module>springcloud-config</module>
     <module>micro-test</module>
-    <module>oauth-service</module>
   </modules>
 
   <dependencies>

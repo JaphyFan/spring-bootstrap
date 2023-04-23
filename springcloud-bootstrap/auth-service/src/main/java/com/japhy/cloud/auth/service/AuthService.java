@@ -35,11 +35,13 @@ public class AuthService {
         userService.createUser(signupUserDto.toEntity());
     }
 
-    public TokenDto reissueToken(String accessToken) {
+    public TokenDto reissueToken(TokenDto tokenDto) {
         Authentication authentication = refreshTokenAuthProvider.authenticate(
-                new BearerTokenAuthenticationToken(accessToken));
+                new BearerTokenAuthenticationToken(tokenDto.getRefreshToken()));
+
         Jwt jwt = (Jwt) authentication.getCredentials();
         // check if present in db and not revoked, etc
         return tokenProvider.generateToken(authentication);
     }
+
 }
