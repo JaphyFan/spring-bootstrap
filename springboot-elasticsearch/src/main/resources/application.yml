@@ -4,3 +4,9 @@ logging:
   file:
     path: ../logs/
     name: es.log
+
+spring:
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
